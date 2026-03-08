@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+@theme {
+    --color-instituto-blue: #155ca2;
+    --color-instituto-blue-dark: #0f467a;
+    --color-instituto-yellow: #ffc629;
+    --color-instituto-yellow-hover: #e5b225;
+    --color-instituto-bg: #fcfbf8;
+    /* Bege super claro estilo papel */
+}
+
+body {
+    background-color: var(--color-instituto-bg);
+    @apply text-slate-800 antialiased;
+}
