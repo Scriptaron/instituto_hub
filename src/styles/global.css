@@ -1,4 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
+
 @plugin "daisyui";
 
 @theme {
@@ -7,10 +9,94 @@
     --color-instituto-yellow: #ffc629;
     --color-instituto-yellow-hover: #e5b225;
     --color-instituto-bg: #fcfbf8;
-    /* Bege super claro estilo papel */
+
+    --font-heading: 'Bricolage Grotesque', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
 }
 
 body {
     background-color: var(--color-instituto-bg);
-    @apply text-slate-800 antialiased;
+    color: theme('colors.slate.800');
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+    font-family: var(--font-heading);
+}
+
+/* Custom Utilities for Aesthetic Execution */
+@layer utilities {
+    .text-balance {
+        text-wrap: balance;
+    }
+
+    .neo-shadow {
+        box-shadow: 6px 6px 0px 0px rgba(21, 92, 162, 1);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .neo-shadow:hover {
+        box-shadow: 2px 2px 0px 0px rgba(21, 92, 162, 1);
+        transform: translate(4px, 4px);
+    }
+
+    .neo-shadow-yellow {
+        box-shadow: 6px 6px 0px 0px rgba(255, 198, 41, 1);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .neo-shadow-yellow:hover {
+        box-shadow: 2px 2px 0px 0px rgba(255, 198, 41, 1);
+        transform: translate(4px, 4px);
+    }
+}
+
+/* Entrance Animations */
+@keyframes slide-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-slide-up {
+    animation: slide-up 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+.delay-100 {
+    animation-delay: 100ms;
+}
+
+.delay-200 {
+    animation-delay: 200ms;
+}
+
+.delay-300 {
+    animation-delay: 300ms;
+}
+
+/* Hide Scrollbar Utility */
+.hide-scrollbar {
+    -ms-overflow-style: none;
+    /* IE and Edge */
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+    display: none;
 }
