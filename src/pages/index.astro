@@ -1,24 +1,10 @@
 ---
-import '../styles/global.css';
-import Header from '../components/organisms/Header.astro';
-import Footer from '../components/organisms/Footer.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="pt-BR" data-theme="lofi">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Instituto Hub - Porto Alegre</title>
-	</head>
-	<body class="min-h-screen relative font-body" style="background-image: radial-gradient(var(--color-instituto-blue) 1px, transparent 1px); background-size: 20px 20px;">
+<BaseLayout title="Instituto Hub - Porto Alegre" overflowHidden={false}>
 		<!-- Decor element -->
 		<div class="fixed top-[-5vw] left-[-5vw] w-[40vw] h-[40vw] bg-instituto-yellow/20 rounded-full blur-[100px] -z-10 animate-slide-up pointer-events-none"></div>
-		
-		<!-- Navbar Organism -->
-		<Header />
 
 		<main class="container mx-auto px-4 py-8 md:py-16 max-w-7xl flex flex-col gap-12 sm:gap-16 md:gap-32 relative z-10">
 			
@@ -269,8 +255,7 @@ import Footer from '../components/organisms/Footer.astro';
 
 		</main>
 
-		<!-- Footer Organism -->
-		<Footer />
+
 
         <!-- Floating WhatsApp Button (Mobile Focused) -->
         <a href="https://wa.me/5551999999999?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20Instituto%21" 
@@ -344,5 +329,4 @@ import Footer from '../components/organisms/Footer.astro';
                 }
             });
         </script>
-	</body>
-</html>
+</BaseLayout>

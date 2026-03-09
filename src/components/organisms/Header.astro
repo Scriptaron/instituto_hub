@@ -23,7 +23,7 @@ const defaultClass = 'hover:bg-slate-100 rounded-none hover:text-instituto-blue 
             <ul tabindex="0" class="menu dropdown-content mt-4 z-[1] bg-white border-4 border-instituto-blue rounded-none w-[85vw] max-w-[320px] neo-shadow text-instituto-blue font-bold font-heading uppercase text-xl p-2 gap-2">
                 <li><a href="/" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/') ? 'bg-instituto-yellow border-instituto-blue font-black' : 'hover:bg-slate-100 hover:border-instituto-blue'}`}>Home</a></li>
                 <li><a href="/aulas" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/aulas') ? 'bg-instituto-yellow border-instituto-blue font-black' : 'hover:bg-slate-100 hover:border-instituto-blue'}`}>Aulas</a></li>
-                <li><a href="/eventos" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/eventos') ? 'bg-instituto-yellow border-instituto-blue font-black' : 'hover:bg-slate-100 hover:border-instituto-blue'}`}>Eventos</a></li>
+                <li><a href="/cronograma" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/cronograma') ? 'bg-instituto-yellow border-instituto-blue font-black' : 'hover:bg-slate-100 hover:border-instituto-blue'}`}>Cronograma</a></li>
                 <li><a href="/sobre" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/sobre') ? 'bg-instituto-yellow border-instituto-blue font-black' : 'hover:bg-slate-100 hover:border-instituto-blue'}`}>Sobre</a></li>
             </ul>
         </div>
@@ -33,7 +33,7 @@ const defaultClass = 'hover:bg-slate-100 rounded-none hover:text-instituto-blue 
         <ul class="menu menu-horizontal px-1 text-instituto-blue font-bold font-heading uppercase text-lg gap-4 items-center">
             <li><a href="/" class={`${isActive('/') ? activeClass : defaultClass}`}>Home</a></li>
             <li><a href="/aulas" class={`${isActive('/aulas') ? activeClass : defaultClass}`}>Aulas</a></li>
-            <li><a href="/eventos" class={`${isActive('/eventos') ? activeClass : defaultClass}`}>Eventos</a></li>
+            <li><a href="/cronograma" class={`${isActive('/cronograma') ? activeClass : defaultClass}`}>Cronograma</a></li>
             <li><a href="/sobre" class={`${isActive('/sobre') ? activeClass : defaultClass}`}>Sobre</a></li>
         </ul>
     </div>
