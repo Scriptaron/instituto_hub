@@ -43,6 +43,22 @@ const {
         <meta property="twitter:image" content={image} />
 
 		<title>{title}</title>
+        
+        <!-- Dark Mode Global Injector -->
+        <script is:inline>
+            (function() {
+                const getThemePreference = () => {
+                    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                        return localStorage.getItem('theme');
+                    }
+                    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+                };
+                if (getThemePreference() === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    document.documentElement.setAttribute('data-theme', 'dracula'); // Optional default dark theme for daisyUI elements
+                }
+            })();
+        </script>
 	</head>
 	<body class={`min-h-screen relative font-body ${overflowHidden ? 'overflow-x-hidden' : ''}`} style="background-image: radial-gradient(var(--color-instituto-blue) 1px, transparent 1px); background-size: 20px 20px;">
         <div class="noise-overlay"></div>

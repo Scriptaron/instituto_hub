@@ -20,6 +20,8 @@ body {
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    background-image: radial-gradient(rgba(21, 92, 162, 0.2) 2px, transparent 2px) !important;
+    /* Increased dot visibility */
 }
 
 h1,
@@ -39,22 +41,24 @@ h6,
     }
 
     .neo-shadow {
-        box-shadow: 6px 6px 0px 0px rgba(21, 92, 162, 1);
+        box-shadow: 6px 6px 0px 0px theme('colors.slate.800');
+        /* Changed from bold blue to elegant slate */
         transition: all 0.2s ease-in-out;
     }
 
     .neo-shadow:hover {
-        box-shadow: 2px 2px 0px 0px rgba(21, 92, 162, 1);
+        box-shadow: 2px 2px 0px 0px theme('colors.slate.800');
         transform: translate(4px, 4px);
     }
 
     .neo-shadow-yellow {
-        box-shadow: 6px 6px 0px 0px rgba(255, 198, 41, 1);
+        box-shadow: 6px 6px 0px 0px theme('colors.slate.800');
+        /* Aligning yellow shadows to be slate as well for consistency */
         transition: all 0.2s ease-in-out;
     }
 
     .neo-shadow-yellow:hover {
-        box-shadow: 2px 2px 0px 0px rgba(255, 198, 41, 1);
+        box-shadow: 2px 2px 0px 0px theme('colors.slate.800');
         transform: translate(4px, 4px);
     }
 }
@@ -99,4 +103,107 @@ h6,
 
 .hide-scrollbar::-webkit-scrollbar {
     display: none;
+}
+
+/* ========================================================
+   GLOBAL NEO-BRUTALIST DARK MODE CAPABILITY
+   Minimalist, Elegant Neutral Palette (Church/Apple Inspired)
+   ======================================================== */
+html.dark body {
+    --color-instituto-bg: #121212;
+    /* Deep neutral dark */
+    color: #e4e4e7;
+    /* Zinc 200 */
+    /* Extremely subtle white-ish dots backrgound */
+    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px) !important;
+}
+
+/* Force all structural panels to elegant deep grays */
+html.dark .bg-white,
+html.dark .bg-instituto-blue {
+    background-color: #18181b !important;
+    /* Zinc 900 */
+    color: #f1f5f9 !important;
+}
+
+html.dark .bg-slate-100 {
+    background-color: #27272a !important;
+    /* Zinc 800 */
+}
+
+/* Typography simplification: Convert vibrant blues to soft whites/grays */
+html.dark .text-slate-800,
+html.dark .text-slate-700,
+html.dark .text-slate-600 {
+    color: #a1a1aa !important;
+    /* Zinc 400 */
+}
+
+html.dark .text-instituto-blue {
+    color: #f4f4f5 !important;
+    /* Zinc 100 - High contrast text instead of blue */
+}
+
+/* Monochromatic Borders and Shadows */
+html.dark .border-instituto-blue {
+    border-color: #3f3f46 !important;
+    /* Zinc 700 - Subdued borders */
+}
+
+html.dark .neo-shadow {
+    box-shadow: 4px 4px 0px 0px #27272a !important;
+    /* Zinc 800 sleek shadow */
+}
+
+html.dark .neo-shadow:hover {
+    box-shadow: 2px 2px 0px 0px #27272a !important;
+    transform: translate(2px, 2px);
+}
+
+/* The ONLY point of high color in Dark Mode are CTA buttons (Yellow) */
+html.dark .bg-instituto-yellow,
+html.dark .bg-instituto-yellow-hover:hover,
+html.dark .bg-instituto-yellow .text-instituto-blue,
+html.dark .bg-instituto-yellow-hover:hover .text-instituto-blue,
+html.dark .bg-instituto-yellow.text-instituto-blue,
+html.dark .bg-instituto-yellow-hover:hover.text-instituto-blue {
+    background-color: #fcd34d !important;
+    /* Amber 300 */
+    color: #09090b !important;
+    /* Zinc 950 */
+}
+
+/* Borders inside yellow items must stay dark */
+html.dark .bg-instituto-yellow .border-instituto-blue,
+html.dark .bg-instituto-yellow-hover:hover .border-instituto-blue,
+html.dark .bg-instituto-yellow.border-instituto-blue,
+html.dark .bg-instituto-yellow-hover:hover.border-instituto-blue {
+    border-color: #09090b !important;
+}
+
+/* Theme Toggle Button icon color in dark mode */
+html.dark #theme-toggle {
+    color: #fcd34d !important;
+    /* Yellow Moon */
+}
+
+/* Dim images slightly in dark mode to avoid glare */
+html.dark img:not(.group-hover\:grayscale-0) {
+    filter: brightness(0.7) grayscale(0.2) contrast(1.1);
+}
+
+html.dark img.group-hover\:grayscale-0 {
+    filter: grayscale(0.6) brightness(0.6) contrast(1.1) !important;
+}
+
+html.dark .group:hover img.group-hover\:grayscale-0 {
+    filter: grayscale(0) brightness(0.85) contrast(1.1) !important;
+}
+
+/* Force dark header/footer basic backgrounds */
+html.dark footer,
+html.dark header,
+html.dark .navbar {
+    background-color: #09090b !important;
+    /* Zinc 950 - slightly darker than body to separate header */
 }
