@@ -1,0 +1,181 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Sobre - Instituto Hub">
+    <main class="container mx-auto px-4 py-8 md:py-16 max-w-6xl flex flex-col gap-12 sm:gap-20 relative z-10">
+        
+        <!-- Header Banner -->
+        <section class="bg-instituto-blue text-white border-4 border-instituto-blue neo-shadow p-6 sm:p-10 md:p-14 animate-slide-up transform rotate-1 hover:rotate-0 transition-transform duration-300 w-full relative">
+            <div class="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-instituto-yellow border-4 border-instituto-blue rounded-full z-20 flex items-center justify-center text-2xl sm:text-3xl neo-shadow">
+                🏛️
+            </div>
+            
+            <h1 class="text-4xl sm:text-6xl md:text-8xl font-heading font-black uppercase leading-[0.9] tracking-tighter mb-4 sm:mb-6">
+                Nossa<br/>
+                <span class="text-instituto-yellow" style="-webkit-text-stroke: 2px var(--color-instituto-blue);">História</span>
+            </h1>
+            
+            <p class="text-lg sm:text-xl md:text-3xl font-bold border-l-4 border-instituto-yellow pl-4 sm:pl-6 max-w-3xl leading-snug">
+                Conheça o Instituto de Religião de Porto Alegre e descubra por que milhares de jovens adultos se reúnem aqui.
+            </p>
+        </section>
+
+        <!-- Propósito e Missão Section (Grid Esquerda/Direita) -->
+        <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 animate-slide-up delay-100">
+            <!-- Left Card -->
+            <div class="bg-white border-4 border-instituto-blue neo-shadow p-6 sm:p-10 flex flex-col justify-center transform -rotate-1 hover:rotate-1 transition-transform group">
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-instituto-blue uppercase leading-[1] mb-6 border-b-4 border-instituto-yellow inline-block w-max pb-2 group-hover:text-instituto-yellow transition-colors">
+                    Qual o<br/>Nosso Propósito?
+                </h2>
+                <p class="text-base sm:text-lg font-bold text-slate-600 mb-4 leading-relaxed">
+                    O Instituto de Religião é muito mais do que um prédio ou uma sala de aula. É um <strong class="text-instituto-blue">refúgio espiritual</strong> projetado especificamente para jovens adultos solteiros e casados (de 18 a 30 anos).
+                </p>
+                <p class="text-base sm:text-lg font-bold text-slate-600 leading-relaxed">
+                    Nosso objetivo é ajudar você a compreender e confiar nos ensinamentos e na Expiação de Jesus Cristo, a se qualificar para as bênçãos do templo e a preparar a si mesmo, sua família e outras pessoas para a vida eterna.
+                </p>
+            </div>
+            
+            <!-- Right Card (Image) -->
+            <div class="bg-instituto-yellow border-4 border-instituto-blue neo-shadow overflow-hidden transform rotate-1 hover:-rotate-1 transition-transform h-[300px] sm:h-[400px] lg:h-auto group">
+                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1000&auto=format&fit=crop" alt="Grupo de jovens no instituto reunidos e sorrindo" class="w-full h-full object-cover grayscale-[0.3] contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500" />
+            </div>
+        </section>
+
+        <!-- Big Brutalist Quote -->
+        <section class="bg-slate-800 text-white border-4 border-instituto-blue neo-shadow p-8 sm:p-12 md:p-16 animate-slide-up delay-200 w-full relative overflow-hidden">
+            <div class="absolute -top-10 -right-10 text-[10rem] sm:text-[15rem] text-instituto-yellow font-black opacity-10 leading-none pointer-events-none">
+                "
+            </div>
+            <p class="text-2xl sm:text-4xl md:text-5xl font-black font-heading leading-tight max-w-4xl relative z-10 hover:text-instituto-yellow transition-colors">
+                O Instituto é o baluarte espiritual que todo jovem adulto precisa para não se perder nas névoas de escuridão do mundo moderno.
+            </p>
+            <div class="mt-8 border-t-4 border-instituto-blue pt-4 uppercase tracking-widest font-black text-sm sm:text-base text-instituto-yellow relative z-10 w-max bg-instituto-blue px-4 py-2">
+                A liderança local
+            </div>
+        </section>
+
+        <!-- Estrutura e Destaques (3 Colunas) -->
+        <section class="animate-slide-up delay-300">
+            <div class="flex flex-col md:flex-row md:items-end justify-between font-heading font-black text-instituto-blue mb-8 sm:mb-12">
+                <h2 class="text-4xl sm:text-6xl uppercase leading-[0.9] border-b-8 border-instituto-yellow inline-block pb-2 w-max">
+                    A Estrutura
+                </h2>
+                <div class="text-2xl sm:text-3xl mt-4 md:mt-0 opacity-50"># PORTO ALEGRE</div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Highlight 1 -->
+                <div class="bg-white border-4 border-instituto-blue neo-shadow p-6 group hover:-translate-y-2 transition-transform">
+                    <div class="text-5xl sm:text-6xl mb-4 group-hover:scale-110 transition-transform origin-left">🛋️</div>
+                    <h3 class="text-2xl font-black text-instituto-blue uppercase mb-3 bg-instituto-yellow inline-block px-2 group-hover:text-white group-hover:bg-instituto-blue transition-colors">Salas de Convívio</h3>
+                    <p class="text-slate-600 font-bold leading-snug">
+                        Temos pufes, sofás gigantes e mesas de ping-pong. O lugar perfeito para relaxar entre as aulas, estudar ou bater um papo no intervalo da faculdade.
+                    </p>
+                </div>
+
+                <!-- Highlight 2 -->
+                <div class="bg-white border-4 border-instituto-blue neo-shadow p-6 group hover:-translate-y-2 transition-transform">
+                    <div class="text-5xl sm:text-6xl mb-4 group-hover:scale-110 transition-transform origin-left">🎓</div>
+                    <h3 class="text-2xl font-black text-instituto-blue uppercase mb-3 bg-[#25D366] text-white inline-block px-2 group-hover:text-[#25D366] group-hover:bg-instituto-blue transition-colors">Professores Inspirados</h3>
+                    <p class="text-slate-600 font-bold leading-snug">
+                        Nosso corpo docente é composto por servidores e voluntários incrivelmente preparados para tirar suas dúvidas difíceis e debater o evangelho hoje.
+                    </p>
+                </div>
+
+                <!-- Highlight 3 -->
+                <div class="bg-white border-4 border-instituto-blue neo-shadow p-6 group hover:-translate-y-2 transition-transform">
+                    <div class="text-5xl sm:text-6xl mb-4 group-hover:scale-110 transition-transform origin-left">🎸</div>
+                    <h3 class="text-2xl font-black text-instituto-blue uppercase mb-3 bg-instituto-blue text-white inline-block px-2 group-hover:text-instituto-blue group-hover:bg-instituto-yellow transition-colors">Eventos Semanais</h3>
+                    <p class="text-slate-600 font-bold leading-snug">
+                        Caravanas pro templo, devocionais mundiais, luaus e festas institucionais. O instituto reúne a melhor juventude cristã do Rio Grande do Sul.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="max-w-4xl mx-auto w-full animate-slide-up delay-400 mt-8 mb-12">
+            <h2 class="text-3xl sm:text-5xl font-heading font-black text-instituto-blue uppercase leading-[1] mb-8 text-center sm:text-left border-b-4 border-instituto-yellow inline-block pb-2 w-full sm:w-auto">
+                Perguntas<br/>Frequentes
+            </h2>
+            
+            <div class="flex flex-col gap-4">
+                <!-- FAQ Item 1 -->
+                <details class="group bg-white border-4 border-instituto-blue neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-instituto-blue p-5 sm:p-6 cursor-pointer list-none group-hover:bg-instituto-yellow transition-colors relative z-10 font-heading uppercase">
+                        <span>Preciso ser membro da igreja para participar?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-instituto-blue bg-white group-open:animate-fade-in relative z-0">
+                        <p><strong>De jeito nenhum!</strong> Todos os jovens adultos, de todas as crenças e origens, são extremamente bem-vindos para frequentar nossas aulas semanais, usar as salas de jogos e participar dos nossos eventos e festas.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ Item 2 -->
+                <details class="group bg-white border-4 border-instituto-blue neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-instituto-blue p-5 sm:p-6 cursor-pointer list-none group-hover:bg-instituto-yellow transition-colors relative z-10 font-heading uppercase">
+                        <span>As aulas têm algum custo?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-instituto-blue bg-white group-open:animate-fade-in relative z-0">
+                        <p><strong>Não. Zero. Niente.</strong> Todas as classes de Instituto, materiais curriculares de estudo e acesso às dependências do prédio são <span class="bg-instituto-yellow px-1">100% gratuitos</span>.</p>
+                    </div>
+                </details>
+
+                <!-- FAQ Item 3 -->
+                <details class="group bg-white border-4 border-instituto-blue neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-instituto-blue p-5 sm:p-6 cursor-pointer list-none group-hover:bg-instituto-yellow transition-colors relative z-10 font-heading uppercase">
+                        <span>Como eu me inscrevo em uma turma?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-instituto-blue bg-white group-open:animate-fade-in relative z-0">
+                        <p>É super fácil. Acesse o menu <strong>Aulas</strong> aqui mesmo no site, navegue pelas turmas disponíveis nesta semana e, ao chegar lá, fale com qualquer pessoa na secretaria do prédio que eles farão sua matrícula na hora usando o portal do aluno <em>(MyInstitute)</em>.</p>
+                    </div>
+                </details>
+                
+                <!-- FAQ Item 4 -->
+                <details class="group bg-white border-4 border-instituto-blue neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-instituto-blue p-5 sm:p-6 cursor-pointer list-none group-hover:bg-instituto-yellow transition-colors relative z-10 font-heading uppercase">
+                        <span>Qual o horário de funcionamento do prédio?</span>
+                        <span class="transition group-open:rotate-180">
+                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                        </span>
+                    </summary>
+                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-instituto-blue bg-white group-open:animate-fade-in relative z-0">
+                        <p>O prédio do Instituto Hub normalmente abre de terca a sábado a partir da tarde/noite, durante o horário vigente das aulas (veja a grade). Contudo, nas sextas também realizamos diversas festas estendidas.</p>
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- CTA Final com FAQ ou Contato -->
+        <section class="bg-instituto-yellow border-4 border-instituto-blue neo-shadow p-8 sm:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8 animate-slide-up delay-300">
+            <div class="flex-1">
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-instituto-blue uppercase leading-[1.1] mb-6">
+                    Ainda tem<br/>perguntas?
+                </h2>
+                <p class="text-lg font-bold text-instituto-blue opacity-80 mb-8 max-w-lg">
+                    Se você não faz parte da nossa religião mas ficou muito curioso(a) para visitar o nosso prédio ou se matricular numa aula gratuita, mande uma mensagem! Todos são bem-vindos.
+                </p>
+            </div>
+            
+            <div class="w-full md:w-auto flex flex-col sm:flex-row gap-4">
+                <a href="/aulas" class="btn bg-white text-instituto-blue border-4 border-instituto-blue hover:bg-slate-100 uppercase font-black tracking-widest text-sm sm:text-base py-3 px-6 sm:px-8 h-auto rounded-none shadow-[4px_4px_0_var(--color-instituto-blue)] hover:-translate-y-1 transition-transform w-full sm:w-auto flex items-center justify-center">
+                    Ver Aulas Mapeadas
+                </a>
+                <a href="https://wa.me/5551999999999" target="_blank" rel="noopener noreferrer" class="btn bg-[#25D366] text-white border-4 border-instituto-blue hover:bg-[#128C7E] uppercase font-black tracking-widest text-sm sm:text-base py-3 px-6 sm:px-8 h-auto rounded-none shadow-[4px_4px_0_var(--color-instituto-blue)] hover:-translate-y-1 transition-transform w-full sm:w-auto flex items-center justify-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+                    Chamar no Zap
+                </a>
+            </div>
+        </section>
+        
+    </main>
+</BaseLayout>
