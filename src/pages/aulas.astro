@@ -1,0 +1,134 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import AulaCard from '../components/molecules/AulaCard.astro';
+import { sanityClient } from 'sanity:client';
+import imageUrlBuilder from '@sanity/image-url';
+
+// Inicializa o builder de imagens do Sanity
+const builder = imageUrlBuilder(sanityClient);
+function urlFor(source: any) {
+  return builder.image(source);
+}
+
+// Bate no banco (Sanity) e traz todas as aulas cadastradas, ordenadas por horário (do mais cedo pro mais tarde)
+const aulas = await sanityClient.fetch(`*[_type == "aula"] | order(time asc)`);
+
+const daysOfWeek = [
+    { id: 'terca', label: 'Terça' },
+    { id: 'quarta', label: 'Quarta' },
+    { id: 'quinta', label: 'Quinta' },
+    { id: 'sexta', label: 'Sexta' },
+    { id: 'sabado', label: 'Sábado' }
+];
+
+// Identifica o primeiro dia que contém aulas para ser a aba padrão ativa na tela
+const validDays = daysOfWeek.filter(day => aulas.some((a: any) => a.weekday === day.id));
+const activeDayId = validDays.length > 0 ? validDays[0].id : daysOfWeek[0].id;
+---
+
+<BaseLayout title="Aulas - Instituto Hub">
+
+		<main class="container mx-auto px-4 py-8 md:py-16 max-w-7xl flex flex-col gap-12 sm:gap-16 relative z-10">
+            <!-- Header Banner -->
+            <section class="bg-instituto-yellow border-4 border-instituto-blue neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 max-w-4xl mx-auto mb-4 sm:mb-8 w-full">
+                <div class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white border-4 border-instituto-blue rounded-full z-20 flex items-center justify-center text-xl sm:text-2xl neo-shadow group-hover:scale-110 transition-transform">📚</div>
+                <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-heading font-black text-instituto-blue uppercase leading-[0.9] tracking-tighter">
+                    Aulas<br/>
+                    <span class="text-white" style="-webkit-text-stroke: 1.5px var(--color-instituto-blue);">Ministradas</span>
+                </h1>
+                <p class="mt-4 text-sm sm:text-base md:text-lg font-bold text-instituto-blue border-l-4 border-white pl-3 sm:pl-4">
+                    Conheça a grade curricular deste semestre e inscreva-se nas classes do Instituto de Religião.
+                </p>
+            </section>
+
+            <!-- Tabs Menu (Navegação dos Dias) -->
+            <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6 justify-center animate-slide-up z-20 relative w-full max-w-[340px] sm:max-w-none mx-auto sm:px-2">
+                {daysOfWeek.map(day => (
+                    <button 
+                        class={`tab-btn btn hover:border-instituto-blue border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest sm:tracking-wider text-sm sm:text-base py-0 min-h-0 h-12 sm:h-14 transition-all w-full sm:w-auto sm:px-8 ${
+                            day.id === activeDayId 
+                            ? 'bg-instituto-yellow hover:bg-instituto-yellow text-instituto-blue neo-shadow translate-y-0' 
+                            : 'bg-white hover:bg-slate-100 text-instituto-blue translate-y-1 hover:translate-y-0 hover:neo-shadow'
+                        }`} 
+                        data-target={`tab-${day.id}`}
+                    >
+                        {day.label}
+                    </button>
+                ))}
+            </div>
+
+            <!-- Conteúdo das Abas (Aulas Dinâmicas do Sanity) -->
+            <div class="animate-slide-up delay-100 mt-4 sm:mt-6 min-h-[40vh] relative z-10 w-full mb-12">
+                
+                {daysOfWeek.map(day => {
+                    const aulasDia = aulas.filter((a: any) => a.weekday === day.id);
+                    return (
+                        <section id={`tab-${day.id}`} class={`tab-content ${day.id === activeDayId ? 'grid' : 'hidden'} grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto`}>
+                            {aulasDia.length > 0 ? (
+                                aulasDia.map((aula: any, index: number) => (
+                                    <AulaCard 
+                                        relCode={aula.relCode}
+                                        modality={aula.modality}
+                                        title={aula.title}
+                                        instructor={aula.instructor}
+                                        time={aula.time}
+                                        description={aula.description}
+                                        imageSrc={aula.image ? urlFor(aula.image).width(800).height(600).url() : 'https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1000&auto=format&fit=crop'}
+                                        imageAlt={aula.title}
+                                        tagRotateClass={index % 2 === 0 ? '-rotate-3' : 'rotate-2'}
+                                        theme={aula.theme || 'yellow'}
+                                        enrollLink={aula.enrollLink}
+                                        whatsAppUrl={aula.whatsAppUrl}
+                                        zoomUrl={aula.zoomUrl}
+                                    />
+                                ))
+                            ) : (
+                                <div class="col-span-full py-16 text-center flex flex-col items-center justify-center bg-white border-4 border-instituto-blue neo-shadow group hover:-translate-y-2 transition-transform">
+                                    <div class="text-5xl mb-4 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all">⏳</div>
+                                    <h3 class="text-2xl font-black font-heading text-instituto-blue uppercase">Sem Aulas Neste Dia</h3>
+                                    <p class="text-slate-500 font-bold mt-2">Nenhuma turma foi alocada para este dia da semana no momento.</p>
+                                </div>
+                            )}
+                        </section>
+                    )
+                })}
+
+            </div>
+        </main>
+
+        <!-- Script Isolado Para Alternância de Abas -->
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const tabBtns = document.querySelectorAll('.tab-btn');
+                const tabContents = document.querySelectorAll('.tab-content');
+
+                tabBtns.forEach(btn => {
+                    btn.addEventListener('click', () => {
+                        const targetId = btn.getAttribute('data-target');
+
+                        // Oculta todas as sections / Mostra a Section alvo
+                        tabContents.forEach(content => {
+                            if (content.id === targetId) {
+                                content.classList.remove('hidden');
+                                content.classList.add('grid');
+                            } else {
+                                content.classList.add('hidden');
+                                content.classList.remove('grid');
+                            }
+                        });
+
+                        // Reseta o estilo dos botões inativos e Ilumina a aba ativa
+                        tabBtns.forEach(b => {
+                            if (b === btn) {
+                                b.classList.add('bg-instituto-yellow', 'hover:bg-instituto-yellow', 'neo-shadow', 'translate-y-0');
+                                b.classList.remove('bg-white', 'hover:bg-slate-100', 'translate-y-1', 'hover:translate-y-0', 'hover:neo-shadow');
+                            } else {
+                                b.classList.add('bg-white', 'hover:bg-slate-100', 'translate-y-1', 'hover:translate-y-0', 'hover:neo-shadow');
+                                b.classList.remove('bg-instituto-yellow', 'hover:bg-instituto-yellow', 'neo-shadow', 'translate-y-0');
+                            }
+                        });
+                    });
+                });
+            });
+        </script>
+</BaseLayout>

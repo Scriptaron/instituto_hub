@@ -1,17 +1,323 @@
 ---
-
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Instituto Hub - Porto Alegre" overflowHidden={false}>
+		<!-- Decor element -->
+		<div class="fixed top-[-5vw] left-[-5vw] w-[40vw] h-[40vw] bg-instituto-yellow/20 rounded-full blur-[100px] -z-10 animate-slide-up pointer-events-none"></div>
+
+		<main class="container mx-auto px-4 py-8 md:py-16 max-w-7xl flex flex-col gap-12 sm:gap-16 md:gap-32 relative z-10">
+			
+			<!-- Hero Section / Main CTA -->
+			<section class="flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-16 pt-2 sm:pt-4 md:pt-12 animate-slide-up">
+				<div class="flex-1 flex flex-col gap-4 sm:gap-6 w-full">
+					<p class="font-bold text-instituto-blue tracking-widest uppercase border-b-4 border-instituto-blue inline-block w-max pb-1 text-xs sm:text-sm md:text-base">Porto Alegre</p>
+					<h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] font-heading font-black text-instituto-blue leading-[0.85] tracking-tighter w-full">
+						INSTITUTO<br/>
+						<span class="text-instituto-yellow" style="-webkit-text-stroke: 4px var(--color-instituto-blue);">HUB</span>
+					</h1>
+					<div class="bg-white p-4 md:p-6 border-4 border-instituto-blue neo-shadow mt-2 sm:mt-4">
+                        <p class="text-lg sm:text-xl md:text-3xl text-instituto-blue font-black font-heading leading-tight mb-2">
+                            "A glória de Deus é a inteligência."
+                        </p>
+                        <p class="text-base sm:text-lg md:text-xl text-slate-700 font-bold">
+                            Prepare-se para o futuro e obtenha toda a educação que puder.
+                        </p>
+                    </div>
+					<div class="flex flex-col sm:flex-row flex-wrap gap-4 mt-4 sm:mt-6 w-full">
+						<!-- Primary CTA -->
+						<a href="/aulas" class="btn bg-instituto-blue text-white border-4 border-instituto-blue hover:bg-instituto-blue-dark hover:border-instituto-blue rounded-none py-3 h-auto text-base sm:text-lg md:text-2xl font-black uppercase tracking-wider neo-shadow font-heading px-6 sm:px-8 flex-1 md:flex-none">
+							Inscreva-se nas Aulas
+						</a>
+					</div>
+				</div>
+                <div class="flex-1 w-full bg-instituto-yellow border-4 border-instituto-blue neo-shadow p-3 md:p-6 lg:rotate-2 hover:rotate-0 transition-transform duration-300">
+                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1470&auto=format&fit=crop" alt="Jovens no instituto" class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover border-4 border-instituto-blue grayscale sepia-[0.3] contrast-125 hover:grayscale-0 transition-all duration-500" />
+                </div>
+			</section>
+
+			<!-- Features / Highlights Section -->
+			<section class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 relative animate-slide-up delay-100">
+				
+				<!-- Events Card -->
+				<div class="md:col-span-7 bg-white p-5 sm:p-6 md:p-10 border-4 border-instituto-blue neo-shadow group flex flex-col relative z-20">
+                    <div class="absolute -top-6 -right-6 w-12 h-12 bg-instituto-yellow border-4 border-instituto-blue rounded-full hidden lg:block animate-bounce z-30"></div>
+					<div class="flex justify-between items-start mb-8 sm:mb-10 md:mb-14">
+						<h2 class="text-3xl sm:text-4xl md:text-6xl font-heading font-black text-instituto-blue leading-[0.9] uppercase">
+							Próximos<br/>Eventos
+						</h2>
+						<div class="text-instituto-yellow text-4xl sm:text-5xl group-hover:rotate-12 transition-transform duration-300">🌟</div>
+					</div>
+					
+					<ul class="flex flex-col border-y-4 border-instituto-blue divide-y-4 divide-instituto-blue mt-auto">
+						<li class="flex flex-col sm:flex-row items-stretch group/item hover:bg-instituto-blue/5 transition-colors cursor-pointer">
+							<div class="bg-instituto-yellow sm:border-r-4 sm:border-b-0 border-b-4 border-instituto-blue text-instituto-blue font-black p-4 md:p-6 text-xl md:text-2xl sm:w-32 md:w-40 flex items-center justify-center font-heading text-center">03 MAR</div>
+							<div class="font-bold text-slate-800 text-lg sm:text-xl md:text-3xl p-4 md:p-6 flex items-center flex-1 justify-center sm:justify-start text-center sm:text-left">Volta às Aulas</div>
+						</li>
+						<li class="flex flex-col sm:flex-row items-stretch group/item hover:bg-instituto-blue/5 transition-colors cursor-pointer">
+							<div class="bg-instituto-blue sm:border-r-4 sm:border-b-0 border-b-4 border-instituto-blue text-white p-4 md:p-6 text-xl md:text-2xl font-black sm:w-32 md:w-40 flex items-center justify-center font-heading text-center">07 MAR</div>
+							<div class="font-bold text-slate-800 text-lg sm:text-xl md:text-3xl p-4 md:p-6 flex items-center flex-1 justify-center sm:justify-start text-center sm:text-left">Calourada JAS</div>
+						</li>
+					</ul>
+					
+					<button class="btn w-full mt-8 sm:mt-10 bg-instituto-yellow border-4 border-instituto-blue text-instituto-blue hover:bg-instituto-yellow-hover py-3 sm:py-4 h-auto text-lg sm:text-xl md:text-2xl font-black uppercase tracking-wider neo-shadow-yellow hover:-translate-y-1 hover:border-instituto-blue rounded-none font-heading relative overflow-hidden group">
+                        Ver Programação Completa
+					</button>
+				</div>
+
+				<!-- Classes Card -->
+				<div class="md:col-span-5 flex flex-col gap-6 sm:gap-8">
+                    <div class="bg-instituto-blue text-white p-5 sm:p-6 md:p-10 border-4 border-instituto-blue neo-shadow relative lg:rotate-3 hover:rotate-0 transition-transform duration-300 z-10 flex-1 flex flex-col justify-between overflow-hidden">
+                        <div class="absolute -right-4 -bottom-4 w-32 h-32 bg-instituto-yellow rounded-full blur-2xl opacity-40 z-0 pointer-events-none"></div>
+                        
+                        <div class="relative z-10">
+                            <h2 class="text-3xl sm:text-4xl md:text-6xl font-heading font-black mb-4 sm:mb-6 leading-[0.9] uppercase">
+                                Grade de<br/><span class="text-instituto-yellow">Aulas</span>
+                            </h2>
+                            <p class="text-lg sm:text-xl md:text-2xl text-blue-50 font-medium mb-8 sm:mb-10 border-l-4 border-instituto-yellow pl-4 md:pl-6 leading-snug">
+                                Encontre a classe de Instituto mais próxima, seja presencial ou online.
+                            </p>
+                        </div>
+                        
+                        <button class="btn w-full bg-white border-4 border-instituto-blue text-instituto-blue hover:bg-slate-100 hover:border-instituto-blue py-3 sm:py-4 h-auto text-lg sm:text-xl md:text-3xl font-black neo-shadow hover:-translate-y-1 rounded-none uppercase tracking-wider font-heading mt-auto z-10">
+                            Escolher Turma &rarr;
+                        </button>
+                    </div>
+                </div>
+				</div>
+			</section>
+
+            <!-- Brutalist Photo Gallery / Rotina Section -->
+            <section class="mt-16 relative animate-slide-up delay-100 z-10 w-full overflow-hidden xl:overflow-visible">
+                <!-- Brutalist Mosaic Grid -->
+                <!-- Container is slightly offset to break symmetry -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 px-4 lg:px-0">
+                    
+                    <!-- Main large photo (Spans 2 cols, 2 rows on desktop) -->
+                    <div class="col-span-1 sm:col-span-2 row-span-2 bg-instituto-blue border-4 border-instituto-blue neo-shadow relative group rotate-1 hover:rotate-0 transition-transform h-[250px] sm:h-[300px] md:h-[500px]">
+                        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale-[0.2] contrast-125 group-hover:grayscale-0 transition-all duration-300" alt="Jovens estudando juntos" />
+                        <div class="absolute bottom-4 left-4 bg-instituto-yellow text-instituto-blue font-black font-heading px-4 py-2 border-2 border-instituto-blue neo-shadow-yellow text-lg sm:text-xl">
+                            Aulas Dinâmicas
+                        </div>
+                    </div>
+
+                    <!-- Small horizontal photo -->
+                    <div class="col-span-1 sm:col-span-1 border-4 border-instituto-blue neo-shadow relative group -rotate-2 hover:rotate-0 transition-transform h-[150px] md:h-auto bg-white">
+                        <img src="https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale-[0.2] contrast-125 group-hover:grayscale-0 transition-all duration-300" alt="Amigos rindo" />
+                    </div>
+
+                    <!-- Another small photo -->
+                    <div class="col-span-1 sm:col-span-1 border-4 border-instituto-blue neo-shadow relative group rotate-2 hover:rotate-0 transition-transform h-[150px] md:h-auto bg-instituto-yellow">
+                        <img src="https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale-[0.2] contrast-125 group-hover:grayscale-0 transition-all duration-300" alt="Jovens conversando" />
+                    </div>
+
+                    <!-- Medium span horizontal photo -->
+                    <div class="col-span-1 sm:col-span-2 border-4 border-instituto-blue neo-shadow relative group -rotate-1 hover:rotate-0 transition-transform h-[180px] md:h-[280px] bg-instituto-blue">
+                        <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover grayscale-[0.2] contrast-125 group-hover:grayscale-0 transition-all duration-300" alt="Comunidade unida" />
+                        <div class="absolute bottom-4 right-4 bg-white text-instituto-blue font-black font-heading px-4 py-2 border-2 border-instituto-blue neo-shadow text-base sm:text-lg">
+                            Amizades Reais
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Quotes / Testimonials Carousel Section -->
+            <section class="flex flex-col gap-4 sm:gap-6 relative animate-slide-up delay-200 mt-12 sm:mt-16 overflow-hidden pl-4 lg:pl-0">
+                <div class="flex flex-col md:flex-row md:items-end justify-between pr-4 lg:pr-0 gap-4">
+                    <h2 class="text-2xl sm:text-3xl md:text-5xl font-heading font-black text-instituto-blue uppercase leading-[0.9] border-b-4 border-instituto-blue inline-block w-max pb-2">
+                        O Que Dizem<br/><span class="text-instituto-yellow" style="-webkit-text-stroke: 2px var(--color-instituto-blue);">Na Comunidade</span>
+                    </h2>
+                </div>
+                
+                <div class="relative w-full group/carousel">
+                    <!-- Left indicator Arrow -->
+                    <button id="btn-scroll-left" aria-label="Rolar carrossel para a esquerda" class="absolute left-0 top-1/2 -translate-y-1/2 -mt-4 bg-instituto-yellow text-instituto-blue border-4 border-instituto-blue p-2 neo-shadow hidden md:flex items-center justify-center cursor-pointer hover:bg-instituto-yellow-hover transition-all z-20 ml-2 md:ml-4 opacity-0 group-hover/carousel:opacity-100 disabled:opacity-50">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+                    </button>
+
+                    <!-- Right indicator Arrow -->
+                    <button id="btn-scroll-right" aria-label="Rolar carrossel para a direita" class="absolute right-0 top-1/2 -translate-y-1/2 -mt-4 bg-instituto-yellow text-instituto-blue border-4 border-instituto-blue p-2 neo-shadow hidden md:flex items-center justify-center cursor-pointer hover:bg-instituto-yellow-hover transition-all animate-pulse hover:animate-none z-20 mr-2 md:mr-4 opacity-100 disabled:opacity-50 group-hover/carousel:animate-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+                    </button>
+
+                    <!-- DaisyUI Carousel with Brutalist Scrollbar -->
+                    <div id="carousel-alunos" class="carousel carousel-center max-w-full space-x-4 sm:space-x-6 bg-transparent py-4 sm:py-8 overflow-x-auto pb-8 sm:pb-12 hide-scrollbar scroll-smooth">
+                    
+                    <!-- Carousel Item 1 -->
+                    <div class="carousel-item w-[85vw] sm:w-72 md:w-96 snap-start" data-index="0">
+                        <div class="bg-instituto-yellow border-4 border-instituto-blue p-5 sm:p-6 md:p-8 neo-shadow relative rotate-1 hover:rotate-0 transition-transform w-full h-full flex flex-col justify-between cursor-pointer">
+                            <div class="absolute -top-4 -left-4 text-5xl sm:text-6xl text-white font-black opacity-50 z-0">"</div>
+                            <p class="text-xl font-bold text-instituto-blue relative z-10 font-heading mb-6">
+                                O Instituto transformou completamente minha visão sobre o evangelho e me deu amigos eternos.
+                            </p>
+                            <div class="flex items-center gap-4 relative z-10 border-t-4 border-instituto-blue pt-4 mt-auto">
+                                <div class="w-10 h-10 bg-white border-4 border-instituto-blue rounded-full flex items-center justify-center text-sm">👤</div>
+                                <div>
+                                    <p class="font-black text-instituto-blue uppercase tracking-wider text-sm">João Silva</p>
+                                    <p class="text-xs font-bold text-slate-800 uppercase">Aluno</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Item 2 -->
+                    <div class="carousel-item w-[85vw] sm:w-72 md:w-96 snap-start" data-index="1">
+                        <div class="bg-white border-4 border-instituto-blue p-5 sm:p-6 md:p-8 neo-shadow relative -rotate-1 hover:rotate-0 transition-transform w-full h-full flex flex-col justify-between cursor-pointer">
+                            <div class="absolute -top-4 -left-4 text-5xl sm:text-6xl text-instituto-yellow font-black opacity-50 z-0">"</div>
+                            <p class="text-xl font-bold text-instituto-blue relative z-10 font-heading mb-6">
+                                Ver o progresso espiritual dos jovens adultos a cada semestre é nossa maior recompensa.
+                            </p>
+                            <div class="flex items-center gap-4 relative z-10 border-t-4 border-instituto-blue pt-4 mt-auto">
+                                <div class="w-10 h-10 bg-instituto-yellow border-4 border-instituto-blue rounded-full flex items-center justify-center text-sm">👤</div>
+                                <div>
+                                    <p class="font-black text-instituto-blue uppercase tracking-wider text-sm">Ir. Ribeiro</p>
+                                    <p class="text-xs font-bold text-slate-800 uppercase">Professor</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Item 3 -->
+                    <div class="carousel-item w-[85vw] sm:w-72 md:w-96 snap-start" data-index="2">
+                        <div class="bg-instituto-blue border-4 border-instituto-blue p-5 sm:p-6 md:p-8 neo-shadow relative rotate-2 hover:rotate-0 transition-transform w-full h-full flex flex-col justify-between text-white cursor-pointer">
+                            <div class="absolute -top-4 -left-4 text-5xl sm:text-6xl text-instituto-yellow font-black opacity-50 z-0">"</div>
+                            <p class="text-xl font-bold relative z-10 font-heading mb-6">
+                                As aulas me ajudaram a entender doutrinas difíceis de forma prática para minha vida.
+                            </p>
+                            <div class="flex items-center gap-4 relative z-10 border-t-4 border-instituto-yellow pt-4 mt-auto">
+                                <div class="w-10 h-10 bg-white border-4 border-instituto-yellow rounded-full flex items-center justify-center text-sm text-instituto-blue">👤</div>
+                                <div>
+                                    <p class="font-black text-instituto-yellow uppercase tracking-wider text-sm">Maria Clara</p>
+                                    <p class="text-xs font-bold text-blue-200 uppercase">Aluna</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Carousel Item 4 -->
+                    <div class="carousel-item w-[85vw] sm:w-72 md:w-96 mr-4 sm:mr-8 snap-start" data-index="3">
+                        <div class="bg-slate-100 border-4 border-instituto-blue p-5 sm:p-6 md:p-8 neo-shadow relative -rotate-2 hover:rotate-0 transition-transform w-full h-full flex flex-col justify-between cursor-pointer">
+                            <div class="absolute -top-4 -left-4 text-5xl sm:text-6xl text-instituto-blue font-black opacity-10 z-0">"</div>
+                            <p class="text-xl font-bold text-instituto-blue relative z-10 font-heading mb-6">
+                                Encontrei pessoas incríveis que compartilham os mesmos valores que eu. Um refúgio!
+                            </p>
+                            <div class="flex items-center gap-4 relative z-10 border-t-4 border-instituto-blue pt-4 mt-auto">
+                                <div class="w-10 h-10 bg-instituto-yellow border-4 border-instituto-blue rounded-full flex items-center justify-center text-sm">👤</div>
+                                <div>
+                                    <p class="font-black text-instituto-blue uppercase tracking-wider text-sm">Pedro L.</p>
+                                    <p class="text-xs font-bold text-slate-800 uppercase">Aluno</p>
+                                </div>
+                            </div>
+                    </div>
+                    </div>
+                    
+                    </div>
+
+                    <!-- Pagination Dots (Mobile Only) -->
+                    <div class="flex md:hidden justify-center flex-wrap gap-3 w-full mt-4 sm:mt-6">
+                        <button class="carousel-dot w-4 h-4 rounded-full border-2 border-instituto-blue bg-instituto-blue transition-all duration-300" data-target="0" aria-label="Slide 1"></button>
+                        <button class="carousel-dot w-4 h-4 rounded-full border-2 border-instituto-blue bg-white transition-all duration-300" data-target="1" aria-label="Slide 2"></button>
+                        <button class="carousel-dot w-4 h-4 rounded-full border-2 border-instituto-blue bg-white transition-all duration-300" data-target="2" aria-label="Slide 3"></button>
+                        <button class="carousel-dot w-4 h-4 rounded-full border-2 border-instituto-blue bg-white transition-all duration-300" data-target="3" aria-label="Slide 4"></button>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- Maps Section -->
+            <section class="bg-instituto-blue text-white border-4 border-instituto-blue neo-shadow p-5 sm:p-6 md:p-10 lg:p-16 flex flex-col md:flex-row gap-6 sm:gap-8 md:gap-12 animate-slide-up delay-300 mt-8 sm:mt-0">
+                <div class="flex-1 flex flex-col justify-center relative z-10">
+                    <h2 class="text-4xl sm:text-5xl md:text-7xl font-heading font-black text-instituto-yellow uppercase leading-[0.9] mb-4 sm:mb-6">
+                        Onde <br/>Estamos
+                    </h2>
+                    <p class="text-base sm:text-xl md:text-2xl font-medium text-blue-50 mb-6 sm:mb-8 border-l-4 border-instituto-yellow pl-4">
+                        Venha nos visitar! Nosso edifício fica em um local estratégico, fácil de chegar.
+                    </p>
+                    <div class="bg-white text-instituto-blue border-4 border-instituto-blue neo-shadow-yellow p-4 sm:p-6 font-bold text-base sm:text-lg md:text-xl transform -rotate-1 w-full max-w-max">
+                        📍 Av. Princesa Isabel, 300 <br/>
+                        Santana, Porto Alegre - RS
+                    </div>
+                </div>
+                <div class="flex-1 bg-white border-4 border-instituto-blue h-[250px] sm:h-[350px] md:h-auto md:min-h-[400px] neo-shadow relative overflow-hidden group">
+                    <!-- Embedded Google Map -->
+                    <iframe 
+                        title="Mapa de Localização do Instituto Hub"
+                        src="https://maps.google.com/maps?q=Av.+Princesa+Isabel,+300+-+Santana,+Porto+Alegre+-+RS&t=&z=16&ie=UTF8&iwloc=&output=embed" 
+                        class="absolute inset-0 w-full h-full grayscale-[0.5] contrast-[1.2] group-hover:grayscale-0 transition-all duration-500"
+                        style="border:0;" 
+                        allowfullscreen="" 
+                        loading="lazy" 
+                        referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                </div>
+            </section>
+
+		</main>
+
+
+
+        <script>
+            // Carousel interactive scroll logic
+            document.addEventListener('DOMContentLoaded', () => {
+                const carousel = document.getElementById('carousel-alunos');
+                const btnLeft = document.getElementById('btn-scroll-left');
+                const btnRight = document.getElementById('btn-scroll-right');
+
+                if (carousel && btnLeft && btnRight) {
+                    // Approximate scroll distance (one card's width + gap)
+                    const scrollAmount = 350;
+
+                    btnLeft.addEventListener('click', () => {
+                        carousel.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+                    });
+
+                    btnRight.addEventListener('click', () => {
+                        carousel.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+                    });
+                    
+                    // Dot Indicator Logic via IntersectionObserver
+                    const dots = document.querySelectorAll('.carousel-dot');
+                    const items = document.querySelectorAll('.carousel-item');
+                    
+                    // Click on dot scrolls to a specific percentage of the total scrollable width
+                    dots.forEach((dot, idx) => {
+                        dot.addEventListener('click', () => {
+                            const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                            if (maxScroll > 0) {
+                                const targetScroll = (idx / (dots.length - 1)) * maxScroll;
+                                carousel.scrollTo({ left: targetScroll, behavior: 'smooth' });
+                            }
+                        });
+                    });
+
+                    // Scroll listener tracks percentage to highlight the correct dot on BOTH mobile and desktop
+                    carousel.addEventListener('scroll', () => {
+                        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                        
+                        let activeIndex = 0;
+                        if (maxScroll > 0) {
+                            const scrollPercentage = carousel.scrollLeft / maxScroll;
+                            activeIndex = Math.round(scrollPercentage * (dots.length - 1));
+                        }
+
+                        // Make exactly ONE dot active
+                        dots.forEach((d, idx) => {
+                            if(idx === activeIndex) {
+                                d.classList.remove('bg-white', 'w-4');
+                                d.classList.add('bg-instituto-blue', 'w-8');
+                            } else {
+                                d.classList.add('bg-white', 'w-4');
+                                d.classList.remove('bg-instituto-blue', 'w-8');
+                            }
+                        });
+                    }, { passive: true });
+                    
+                    // Trigger once initially to set the first dot state, after layout has been fully painted
+                    setTimeout(() => {
+                        carousel.dispatchEvent(new Event('scroll'));
+                    }, 150);
+                }
+            });
+        </script>
+</BaseLayout>
