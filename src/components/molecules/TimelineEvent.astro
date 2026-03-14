@@ -28,6 +28,7 @@ export interface Props {
     
     buttonText: string;
     buttonClass?: string;
+    buttonUrl?: string;
 }
 
 const {
@@ -57,7 +58,8 @@ const {
     detailsIconSvg,
     
     buttonText,
-    buttonClass = 'bg-white text-instituto-blue shadow-[4px_4px_0_var(--color-instituto-blue)]'
+    buttonClass = 'bg-white text-instituto-blue shadow-[4px_4px_0_var(--color-instituto-blue)]',
+    buttonUrl
 } = Astro.props;
 
 const isLeft = align === 'left';
@@ -109,6 +111,14 @@ const emptyDivClass = isLeft ? 'mr-auto' : 'ml-auto';
             {detailsText}
         </p>
         
-        <button class={`btn sm:btn-md w-full sm:w-auto border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest text-[10px] sm:text-xs transition-transform active:translate-y-1 active:shadow-none ${buttonClass}`}>{buttonText}</button>
+        {buttonUrl ? (
+            <a href={buttonUrl} target="_blank" rel="noopener noreferrer" class={`btn sm:btn-md w-full sm:w-auto border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest text-[10px] sm:text-xs transition-transform active:translate-y-1 active:shadow-none inline-flex flex-wrap items-center justify-center ${buttonClass}`}>
+                {buttonText}
+            </a>
+        ) : (
+            <button class={`btn sm:btn-md w-full sm:w-auto border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest text-[10px] sm:text-xs transition-transform active:translate-y-1 active:shadow-none ${buttonClass}`}>
+                {buttonText}
+            </button>
+        )}
     </div>
 </div>

@@ -1,6 +1,10 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineEvent from '../components/molecules/TimelineEvent.astro';
+import { sanityClient } from 'sanity:client';
+
+// Busca os eventos no Sanity, ordenados primeiro por Mês (em breve trataremos melhor com data se quisermos) e por "sortOrder" numérico
+const eventData = await sanityClient.fetch(`*[_type == "evento"] | order(sortOrder asc)`);
 
 // Obtém o mês atual (0 = Janeiro, 1 = Fevereiro, ..., 11 = Dezembro)
 const currentMonthIndex = new Date().getMonth();
@@ -25,108 +29,64 @@ const allMonthsData = [
 const availableMonths = allMonthsData.slice(currentMonthIndex);
 
 // Identifica qual é o mês atual pelas propriedades para deixar a aba 'active' por padrão
-// Caso queira testar a visualização de abas, altere temporariamente para allMonthsData[2].id
 const currentMonthId = allMonthsData[currentMonthIndex].id;
 
-// DADOS DOS EVENTOS (MODULARIZAÇÃO)
-// Aqui você simplesmente adiciona ou remove os objetos. O layout será construído sozinho.
-const eventData = [
-    {
-        monthId: 'fev',
-        align: 'right', // 'right' na timeline desktop (card à direita da linha central)
-        dotColorClass: 'bg-[#25D366]',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
-        cardBgClass: 'bg-slate-100',
-        cardExtraClass: 'grayscale opacity-80 hover:grayscale-0 hover:opacity-100',
-        connectorBorderClass: 'border-[#25D366]',
-        tagLabel: 'Passado',
-        tagClass: 'bg-slate-400 text-white shadow-[2px_2px_0_var(--color-instituto-blue)] group-hover:bg-[#25D366]',
-        dateMain: '23 FEV',
-        dateSub: 'SEXTA',
-        title: 'Luau de Boas Vindas',
-        titleClass: 'text-instituto-blue group-hover:text-[#25D366]',
-        detailsText: 'Pátio Frontal • Evento Finalizado',
-        detailsClass: 'text-slate-500',
-        buttonText: 'Fotos do Evento',
-        buttonClass: 'bg-white text-instituto-blue hover:bg-instituto-yellow shadow-[4px_4px_0_var(--color-instituto-blue)]'
-    },
-    {
-        monthId: 'mar',
-        align: 'right', 
+// Dicionário de Cores para converter os Padrões do Sanity nos visuais ricos do Tailwind (Neo-Brutalismo)
+const themeMap: Record<string, any> = {
+    yellow: {
         dotColorClass: 'bg-instituto-yellow',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
         cardBgClass: 'bg-white',
         cardShadowClass: 'shadow-[6px_6px_0_var(--color-instituto-blue)]',
         connectorBorderClass: 'border-instituto-yellow',
-        tagLabel: 'Atividade',
         tagClass: 'bg-[#25D366] text-white shadow-[2px_2px_0_var(--color-instituto-blue)]',
-        price: 'R$ 0,00',
-        dateMain: '15 MAR',
-        dateSub: 'SEXTA',
-        title: 'Festa da Pizza e Jogos',
         titleClass: 'text-instituto-blue group-hover:text-instituto-yellow',
-        detailsText: 'Capela Central • 19:30 às 22:30',
-        detailsClass: 'text-slate-500',
-        buttonText: 'Detalhes',
         buttonClass: 'bg-instituto-blue text-white hover:bg-instituto-yellow hover:text-instituto-blue shadow-[4px_4px_0_var(--color-instituto-yellow)]'
     },
-    {
-        monthId: 'mar',
-        align: 'left', // 'left' na timeline desktop (card à esquerda da linha central)
-        dotColorClass: 'bg-white',
-        cardBgClass: 'bg-instituto-yellow',
-        cardShadowClass: 'shadow-[6px_6px_0_var(--color-instituto-blue)]',
-        connectorBorderClass: 'border-white',
-        tagLabel: 'Devocional',
-        tagClass: 'bg-white text-instituto-blue shadow-[2px_2px_0_var(--color-instituto-blue)]',
-        dateMain: '24 MAR',
-        dateSub: 'DOM',
-        title: 'Devocional Mundial JAS',
-        titleClass: 'text-instituto-blue group-hover:text-white',
-        detailsText: 'Edifício do Instituto / Online • 18:00',
-        detailsClass: 'text-instituto-blue opacity-80',
-        detailsIconSvg: '<svg class="text-instituto-blue shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="14" x="2" y="5" rx="2"/><line x1="2" x2="22" y1="10" y2="10"/></svg>',
-        buttonText: 'Ver Transmissão',
-        buttonClass: 'bg-white text-instituto-blue hover:bg-instituto-blue hover:text-white shadow-[4px_4px_0_var(--color-instituto-blue)]'
-    },
-    {
-        monthId: 'abr',
-        align: 'right', 
+    blue: {
         dotColorClass: 'bg-instituto-blue',
-        dotShadowClass: 'shadow-[4px_4px_0_#FFF]',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-yellow)]',
         cardBgClass: 'bg-white',
         cardShadowClass: 'shadow-[6px_6px_0_var(--color-instituto-blue)]',
         connectorBorderClass: 'border-instituto-blue',
-        tagLabel: 'Igreja Mundial',
-        dateMain: '06 ABR',
-        dateSub: 'FDS',
-        title: 'Conferência Geral',
+        tagClass: 'bg-instituto-blue text-white shadow-[2px_2px_0_var(--color-instituto-yellow)]',
         titleClass: 'text-instituto-blue group-hover:text-instituto-yellow',
-        detailsText: 'Online ou Capela local • FDS Inteiro',
-        detailsClass: 'text-slate-500',
-        buttonText: 'Ver Horários',
-        buttonClass: 'bg-white hover:bg-instituto-blue text-instituto-blue hover:text-white shadow-[4px_4px_0_var(--color-instituto-blue)]'
+        buttonClass: 'bg-white text-instituto-blue hover:bg-instituto-blue hover:text-white shadow-[4px_4px_0_var(--color-instituto-blue)]'
     },
-    {
-        monthId: 'abr',
-        align: 'left', 
+    green: {
+        dotColorClass: 'bg-[#25D366]',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
+        cardBgClass: 'bg-white',
+        cardShadowClass: 'shadow-[6px_6px_0_#25D366]',
+        connectorBorderClass: 'border-[#25D366]',
+        tagClass: 'bg-[#25D366] text-white shadow-[2px_2px_0_var(--color-instituto-blue)]',
+        titleClass: 'text-instituto-blue group-hover:text-[#25D366]',
+        buttonClass: 'bg-white text-[#25D366] border-[#25D366] hover:bg-[#25D366] hover:text-white shadow-[4px_4px_0_var(--color-instituto-blue)]'
+    },
+    dark: {
         dotColorClass: 'bg-slate-800',
         dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
         cardBgClass: 'bg-slate-800',
         cardShadowClass: 'shadow-[6px_6px_0_var(--color-instituto-yellow)]',
+        cardExtraClass: 'border-slate-800', // Override azul padrão da borda
         connectorBorderClass: 'border-slate-800',
-        tagLabel: 'Caravana',
         tagClass: 'bg-white text-slate-800 shadow-[2px_2px_0_var(--color-instituto-yellow)]',
-        dateMain: '13 ABR',
-        dateSub: 'SÁB',
-        title: 'Caravana ao Templo',
         titleClass: 'text-white group-hover:text-instituto-yellow',
-        detailsText: 'Saída do Instituto • 08:00 às 16:00',
         detailsClass: 'text-slate-300',
         detailsIconSvg: '<svg class="text-instituto-yellow shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
-        buttonText: 'Inscrever-se',
-        buttonClass: 'bg-instituto-yellow text-instituto-blue hover:bg-white shadow-[4px_4px_0_#FFF]'
+        buttonClass: 'bg-instituto-yellow text-instituto-blue hover:bg-white shadow-[4px_4px_0_#FFF] border-instituto-yellow'
+    },
+    gray: {
+        dotColorClass: 'bg-slate-400',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
+        cardBgClass: 'bg-slate-100',
+        cardExtraClass: 'grayscale opacity-80 hover:grayscale-0 hover:opacity-100',
+        connectorBorderClass: 'border-slate-400',
+        tagClass: 'bg-slate-400 text-white shadow-[2px_2px_0_var(--color-instituto-blue)]',
+        titleClass: 'text-instituto-blue',
+        buttonClass: 'bg-white text-instituto-blue shadow-[4px_4px_0_var(--color-instituto-blue)]'
     }
-];
+}
 ---
 
 <BaseLayout title="Cronograma - Instituto Hub">
@@ -162,7 +122,7 @@ const eventData = [
                 <div class="w-full relative min-h-[50vh]">
                     
                     {availableMonths.map(month => {
-                        const monthEvents = eventData.filter(event => event.monthId === month.id);
+                        const monthEvents = eventData.filter((event: any) => event.monthId === month.id);
                         const hasEvents = monthEvents.length > 0;
                         
                         return (
@@ -176,11 +136,24 @@ const eventData = [
                                 <div class="relative z-10 py-6">
                                     
                                     {hasEvents ? (
-                                        // Mapeia e renderiza a lista de eventos usando o Componente Modular
-                                        monthEvents.map((evt) => (
-                                            // @ts-ignore // workaround strict typing if needed (Astro.props typed as any)
-                                            <TimelineEvent {...evt} />
-                                        ))
+                                        // Renderiza os Eventos convertendo o Tema escolhido no Sanity para as Classes ricas
+                                        monthEvents.map((evt: any) => {
+                                            const themeProps = themeMap[evt.theme || 'yellow'] || themeMap['yellow'];
+                                            return (
+                                                <TimelineEvent 
+                                                    align={evt.align}
+                                                    tagLabel={evt.tagLabel}
+                                                    dateMain={evt.dateMain}
+                                                    dateSub={evt.dateSub}
+                                                    title={evt.title}
+                                                    detailsText={evt.detailsText}
+                                                    price={evt.price}
+                                                    buttonText={evt.buttonText}
+                                                    buttonUrl={evt.buttonUrl}
+                                                    {...themeProps}
+                                                />
+                                            )
+                                        })
                                     ) : (
                                         // Card de Mês "Vazio"
                                         <div class="w-full flex flex-col animate-fade-in text-center sm:text-left py-12 px-4 sm:px-0">

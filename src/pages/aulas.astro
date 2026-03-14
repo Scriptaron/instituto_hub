@@ -1,6 +1,29 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AulaCard from '../components/molecules/AulaCard.astro';
+import { sanityClient } from 'sanity:client';
+import imageUrlBuilder from '@sanity/image-url';
+
+// Inicializa o builder de imagens do Sanity
+const builder = imageUrlBuilder(sanityClient);
+function urlFor(source: any) {
+  return builder.image(source);
+}
+
+// Bate no banco (Sanity) e traz todas as aulas cadastradas, ordenadas por horário (do mais cedo pro mais tarde)
+const aulas = await sanityClient.fetch(`*[_type == "aula"] | order(time asc)`);
+
+const daysOfWeek = [
+    { id: 'terca', label: 'Terça' },
+    { id: 'quarta', label: 'Quarta' },
+    { id: 'quinta', label: 'Quinta' },
+    { id: 'sexta', label: 'Sexta' },
+    { id: 'sabado', label: 'Sábado' }
+];
+
+// Identifica o primeiro dia que contém aulas para ser a aba padrão ativa na tela
+const validDays = daysOfWeek.filter(day => aulas.some((a: any) => a.weekday === day.id));
+const activeDayId = validDays.length > 0 ? validDays[0].id : daysOfWeek[0].id;
 ---
 
 <BaseLayout title="Aulas - Instituto Hub">
@@ -20,127 +43,55 @@ import AulaCard from '../components/molecules/AulaCard.astro';
 
             <!-- Tabs Menu (Navegação dos Dias) -->
             <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6 justify-center animate-slide-up z-20 relative w-full max-w-[340px] sm:max-w-none mx-auto sm:px-2">
-                <button class="tab-btn btn bg-instituto-yellow hover:bg-instituto-yellow text-instituto-blue hover:border-instituto-blue border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest sm:tracking-wider neo-shadow text-sm sm:text-base py-0 min-h-0 h-12 sm:h-14 transition-all translate-y-0 w-full sm:w-auto sm:px-8" data-target="tab-terca">Terça</button>
-                <button class="tab-btn btn bg-white hover:bg-slate-100 text-instituto-blue hover:border-instituto-blue border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest sm:tracking-wider text-sm sm:text-base py-0 min-h-0 h-12 sm:h-14 transition-all translate-y-1 hover:translate-y-0 hover:neo-shadow w-full sm:w-auto sm:px-8" data-target="tab-quarta">Quarta</button>
-                <button class="tab-btn btn bg-white hover:bg-slate-100 text-instituto-blue hover:border-instituto-blue border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest sm:tracking-wider text-sm sm:text-base py-0 min-h-0 h-12 sm:h-14 transition-all translate-y-1 hover:translate-y-0 hover:neo-shadow w-full sm:w-auto sm:px-8" data-target="tab-quinta">Quinta</button>
-                <button class="tab-btn btn bg-white hover:bg-slate-100 text-instituto-blue hover:border-instituto-blue border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest sm:tracking-wider text-sm sm:text-base py-0 min-h-0 h-12 sm:h-14 transition-all translate-y-1 hover:translate-y-0 hover:neo-shadow w-full sm:w-auto sm:px-8" data-target="tab-sabado">Sábado</button>
+                {daysOfWeek.map(day => (
+                    <button 
+                        class={`tab-btn btn hover:border-instituto-blue border-4 border-instituto-blue rounded-none uppercase font-black tracking-widest sm:tracking-wider text-sm sm:text-base py-0 min-h-0 h-12 sm:h-14 transition-all w-full sm:w-auto sm:px-8 ${
+                            day.id === activeDayId 
+                            ? 'bg-instituto-yellow hover:bg-instituto-yellow text-instituto-blue neo-shadow translate-y-0' 
+                            : 'bg-white hover:bg-slate-100 text-instituto-blue translate-y-1 hover:translate-y-0 hover:neo-shadow'
+                        }`} 
+                        data-target={`tab-${day.id}`}
+                    >
+                        {day.label}
+                    </button>
+                ))}
             </div>
 
-            <!-- Conteúdo das Abas (Aulas) -->
+            <!-- Conteúdo das Abas (Aulas Dinâmicas do Sanity) -->
             <div class="animate-slide-up delay-100 mt-4 sm:mt-6 min-h-[40vh] relative z-10 w-full mb-12">
                 
-                <!-- Aba: Terça-feira -->
-                <section id="tab-terca" class="tab-content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-                    <!-- Aula Card 1 -->
-                    <AulaCard 
-                        relCode="REL 250"
-                        modality="Presencial"
-                        title="Jesus Cristo e o Evangelho Eterno"
-                        instructor="Prof. Almeida"
-                        time="19:30"
-                        description="Estudo focado na vida, missão preordenada, ministério mortal e Expiação do Salvador."
-                        imageSrc="https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1000&auto=format&fit=crop"
-                        imageAlt="Aula Jesus Cristo"
-                        tagRotateClass="-rotate-3"
-                        theme="yellow"
-                    />
-
-                    <!-- Aula Card 1B (Cópia) -->
-                    <AulaCard 
-                        relCode="REL 211"
-                        modality="Presencial"
-                        title="O Novo Testamento"
-                        instructor="Ir. Mendes"
-                        time="20:30"
-                        description="Explore os ensinamentos dos apóstolos e a Igreja primitiva no Novo Testamento."
-                        imageSrc="https://images.unsplash.com/photo-1544928147-79a2dbc1f389?q=80&w=1000&auto=format&fit=crop"
-                        imageAlt="O Novo Testamento"
-                        tagRotateClass="rotate-2"
-                        theme="yellow"
-                    />
-                </section>
-
-                <!-- Aba: Quarta-feira -->
-                <section id="tab-quarta" class="tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-                    <!-- Aula Card 2 -->
-                    <AulaCard 
-                        relCode="REL 225"
-                        modality="100% Online"
-                        title="Oeste Americano"
-                        instructor="Prof. Vieira"
-                        time="18:00"
-                        description="Estudo da jornada pioneira, desafios e a consolidação da Igreja no cenário histórico do século 19."
-                        imageSrc="https://images.unsplash.com/photo-1543452601-57d8fccb6cfa?q=80&w=1000&auto=format&fit=crop"
-                        imageAlt="Aula Oeste Americano"
-                        tagRotateClass="rotate-3"
-                        theme="blue"
-                        zoomUrl="https://zoom.us"
-                    />
-
-                    <!-- Aula Card 2B -->
-                    <AulaCard 
-                        relCode="REL 390R"
-                        modality="100% Online"
-                        title="Mulheres nas Escrituras"
-                        instructor="Ir. Cardoso"
-                        time="19:30"
-                        description="Aprenda a influência, as experiências e o papel essencial das mulheres ao longo das escrituras."
-                        imageSrc="https://images.unsplash.com/photo-1579781404111-9a74a1d4719b?q=80&w=1000&auto=format&fit=crop"
-                        imageAlt="Mulheres nas Escrituras"
-                        tagRotateClass="-rotate-1"
-                        theme="blue"
-                        zoomUrl="https://zoom.us"
-                    />
-                </section>
-
-                <!-- Aba: Quinta-feira -->
-                <section id="tab-quinta" class="tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-                    <!-- Aula Card 3 -->
-                    <AulaCard 
-                        relCode="REL 121"
-                        modality="Híbrido"
-                        title="O Livro de Mórmon"
-                        instructor="Ir. Ribeiro"
-                        time="20:00"
-                        description="Uma análise profunda dos eventos e doutrinas contidas na primeira parte do Livro de Mórmon. Venha fortalecer seu testemunho!"
-                        imageSrc="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?q=80&w=1000&auto=format&fit=crop"
-                        imageAlt="Estudo Escrituras"
-                        tagRotateClass="rotate-2"
-                        theme="blue"
-                        zoomUrl="https://zoom.us"
-                    />
-                </section>
-
-                <!-- Aba: Sábado -->
-                <section id="tab-sabado" class="tab-content hidden grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
-                    <!-- Aula Card 4 -->
-                    <AulaCard 
-                        relCode="REL 234"
-                        modality="Presencial"
-                        title="Casamento Eterno"
-                        instructor="Casal Silva"
-                        time="10:00"
-                        description="Princípios e habilidades necessárias para estabelecer um casamento feliz e fundado no evangelho. Ideal para noivos e recém-casados."
-                        imageSrc="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?q=80&w=1000&auto=format&fit=crop"
-                        imageAlt="Casamento Eterno"
-                        tagRotateClass="rotate-3"
-                        theme="yellow"
-                    />
-
-                    <!-- Aula Card 5 -->
-                    <AulaCard 
-                        relCode="REL 150"
-                        modality="Presencial"
-                        title="O Evangelho Restaurado"
-                        instructor="Bispo Lima"
-                        time="11:30"
-                        description="Mergulhe na história e nas revelações fundamentais da Restauração nestes últimos dias."
-                        imageSrc="https://images.unsplash.com/photo-1493612276216-ee3925520721?q=80&w=1000&auto=format&fit=crop"
-                        imageAlt="O Evangelho Restaurado"
-                        tagRotateClass="-rotate-3"
-                        theme="yellow"
-                    />
-                </section>
+                {daysOfWeek.map(day => {
+                    const aulasDia = aulas.filter((a: any) => a.weekday === day.id);
+                    return (
+                        <section id={`tab-${day.id}`} class={`tab-content ${day.id === activeDayId ? 'grid' : 'hidden'} grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto`}>
+                            {aulasDia.length > 0 ? (
+                                aulasDia.map((aula: any, index: number) => (
+                                    <AulaCard 
+                                        relCode={aula.relCode}
+                                        modality={aula.modality}
+                                        title={aula.title}
+                                        instructor={aula.instructor}
+                                        time={aula.time}
+                                        description={aula.description}
+                                        imageSrc={aula.image ? urlFor(aula.image).width(800).height(600).url() : 'https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1000&auto=format&fit=crop'}
+                                        imageAlt={aula.title}
+                                        tagRotateClass={index % 2 === 0 ? '-rotate-3' : 'rotate-2'}
+                                        theme={aula.theme || 'yellow'}
+                                        enrollLink={aula.enrollLink}
+                                        whatsAppUrl={aula.whatsAppUrl}
+                                        zoomUrl={aula.zoomUrl}
+                                    />
+                                ))
+                            ) : (
+                                <div class="col-span-full py-16 text-center flex flex-col items-center justify-center bg-white border-4 border-instituto-blue neo-shadow group hover:-translate-y-2 transition-transform">
+                                    <div class="text-5xl mb-4 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all">⏳</div>
+                                    <h3 class="text-2xl font-black font-heading text-instituto-blue uppercase">Sem Aulas Neste Dia</h3>
+                                    <p class="text-slate-500 font-bold mt-2">Nenhuma turma foi alocada para este dia da semana no momento.</p>
+                                </div>
+                            )}
+                        </section>
+                    )
+                })}
 
             </div>
         </main>
