@@ -4,23 +4,30 @@
 @plugin "daisyui";
 
 @theme {
-    --color-instituto-blue: #155ca2;
-    --color-instituto-blue-dark: #0f467a;
-    --color-instituto-yellow: #ffc629;
-    --color-instituto-yellow-hover: #e5b225;
-    --color-instituto-bg: #fcfbf8;
+    --color-principal: #7a3aed;
+    --color-destaque: #d9ff7f;
+    --color-background: #f2f2f2;
+    --color-foreground: #2d2d2d;
 
     --font-heading: 'Bricolage Grotesque', sans-serif;
     --font-body: 'DM Sans', sans-serif;
 }
 
+/* NEUTRALIZAÇÃO TOTAL DO DAISYUI PARA ESTILO NEO-BRUTALISTA */
+:root, [data-theme] {
+    --rounded-box: 0rem;
+    --rounded-btn: 0rem;
+    --rounded-badge: 0rem;
+    --tab-radius: 0rem;
+}
+
 body {
-    background-color: var(--color-instituto-bg);
-    color: theme('colors.slate.800');
+    background-color: var(--color-background);
+    color: var(--color-foreground);
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    background-image: radial-gradient(rgba(21, 92, 162, 0.2) 2px, transparent 2px) !important;
+    background-image: radial-gradient(rgba(122, 58, 237, 0.15) 2px, transparent 2px) !important;
     /* Increased dot visibility */
 }
 
@@ -41,25 +48,34 @@ h6,
     }
 
     .neo-shadow {
-        box-shadow: 6px 6px 0px 0px theme('colors.slate.800');
-        /* Changed from bold blue to elegant slate */
+        /* Hack brutalista: o primeiro valor '0px 0px 0px 1px' cria um selo de subpixel para impedir vazamentos de anti-aliasing na tela */
+        box-shadow: 0px 0px 0px 1px var(--color-foreground), 6px 6px 0px 0px var(--color-foreground);
         transition: all 0.2s ease-in-out;
     }
 
     .neo-shadow:hover {
-        box-shadow: 2px 2px 0px 0px theme('colors.slate.800');
+        box-shadow: 0px 0px 0px 1px var(--color-foreground), 2px 2px 0px 0px var(--color-foreground);
         transform: translate(4px, 4px);
     }
 
     .neo-shadow-yellow {
-        box-shadow: 6px 6px 0px 0px theme('colors.slate.800');
-        /* Aligning yellow shadows to be slate as well for consistency */
+        box-shadow: 0px 0px 0px 1px var(--color-foreground), 6px 6px 0px 0px var(--color-foreground);
         transition: all 0.2s ease-in-out;
     }
 
     .neo-shadow-yellow:hover {
-        box-shadow: 2px 2px 0px 0px theme('colors.slate.800');
+        box-shadow: 0px 0px 0px 1px var(--color-foreground), 2px 2px 0px 0px var(--color-foreground);
         transform: translate(4px, 4px);
+    }
+    
+    .neo-shadow-sm {
+        box-shadow: 0px 0px 0px 1px var(--color-foreground), 3px 3px 0px 0px var(--color-foreground);
+        transition: all 0.2s ease-in-out;
+    }
+
+    .neo-shadow-sm:hover {
+        box-shadow: 0px 0px 0px 1px var(--color-foreground), 1px 1px 0px 0px var(--color-foreground);
+        transform: translate(2px, 2px);
     }
 }
 
@@ -110,100 +126,129 @@ h6,
    Minimalist, Elegant Neutral Palette (Church/Apple Inspired)
    ======================================================== */
 html.dark body {
-    --color-instituto-bg: #121212;
-    /* Deep neutral dark */
+    /* Cores Globais Básicas */
+    --color-background: #121212;
     color: #e4e4e7;
-    /* Zinc 200 */
-    /* Extremely subtle white-ish dots backrgound */
-    background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px) !important;
+    
+    /* INVERTE AS CORES: Verde vira o principal, Roxo vira destaque */
+    --color-principal: #d9ff7f; /* Verde */
+    --color-destaque: #7a3aed; /* Roxo */
+
+    /* Tokens DRY para cores estruturais do Dark Mode */
+    --dark-panel-bg: #18181b;     /* Painéis principais (substitui bg-white) */
+    --dark-panel-bg-alt: #27272a; /* Painéis secundários (substitui bg-slate-100) */
+    --dark-panel-text: #f1f5f9;   /* Textos super claros para painéis escuros e botões roxos */
+    --dark-base-black: #09090b;   /* Uso em sombras pesadas, cabeçalhos/rodapés e textos sobre fundos claros(Verde) */
+    
+    /* Bolinhas do fundo com tom de verde translúcido */
+    background-image: radial-gradient(rgba(217, 255, 127, 0.08) 2px, transparent 2px) !important;
 }
 
-/* Force all structural panels to elegant deep grays */
-html.dark .bg-white,
-html.dark .bg-instituto-blue {
-    background-color: #18181b !important;
-    /* Zinc 900 */
-    color: #f1f5f9 !important;
+/* =========================================
+   ESTRUTURA BASE E PAINÉIS
+   ========================================= */
+html.dark .bg-white {
+    background-color: var(--dark-panel-bg) !important;
 }
 
-html.dark .bg-slate-100 {
-    background-color: #27272a !important;
-    /* Zinc 800 */
+html.dark .bg-slate-100,
+html.dark .hover\:bg-slate-100:hover {
+    background-color: var(--dark-panel-bg-alt) !important;
 }
 
-/* Typography simplification: Convert vibrant blues to soft whites/grays */
+html.dark .navbar {
+    background-color: var(--dark-base-black) !important;
+}
+
+/* =========================================
+   TIPOGRAFIA E CONTRASTE
+   ========================================= */
+
+/* Correção de legibilidade para textos auxiliares que usam slates */
 html.dark .text-slate-800,
 html.dark .text-slate-700,
 html.dark .text-slate-600 {
-    color: #a1a1aa !important;
-    /* Zinc 400 */
+    color: #a1a1aa !important; /* Mantido fixo pois é um caso único de zinc-400 */
 }
 
-html.dark .text-instituto-blue {
-    color: #f4f4f5 !important;
-    /* Zinc 100 - High contrast text instead of blue */
+/* As cores Neon (Verde principal e Roxo destaque) exigem texto preto em oposição ao branco para estética absoluta */
+html.dark .bg-principal,
+html.dark .bg-principal .text-white,
+html.dark .bg-principal .text-blue-50,
+html.dark .bg-principal .text-blue-200,
+html.dark .bg-principal .text-slate-200,
+html.dark .bg-destaque .text-white,
+html.dark .bg-destaque .text-blue-50,
+html.dark .bg-destaque .text-blue-200,
+html.dark .bg-destaque .text-slate-200 {
+    color: var(--dark-base-black) !important;
 }
 
-/* Monochromatic Borders and Shadows */
-html.dark .border-instituto-blue {
-    border-color: #3f3f46 !important;
-    /* Zinc 700 - Subdued borders */
+/* Transforma bordas brancas/translúcidas em linhas pretas sólidas para estética sobre os Neons */
+html.dark .bg-principal .border-white,
+html.dark .bg-principal .border-white\/20,
+html.dark .bg-principal .border-principal\/50,
+html.dark .bg-destaque .border-white,
+html.dark .bg-destaque .border-white\/20,
+html.dark .bg-destaque .border-principal\/50 {
+    border-color: var(--dark-base-black) !important; 
 }
 
-html.dark .neo-shadow {
-    box-shadow: 4px 4px 0px 0px #27272a !important;
-    /* Zinc 800 sleek shadow */
+/* Fim da Tipografia */
+
+/* =========================================
+   SOMBRAS NEO-BRUTALISTAS E ÍCONES
+   ========================================= */
+html.dark .neo-shadow, 
+html.dark .neo-shadow-yellow,
+html.dark .neo-shadow-sm,
+html.dark .hover\:neo-shadow:hover,
+html.dark .hover\:neo-shadow-yellow:hover,
+html.dark .hover\:neo-shadow-sm:hover {
+    /* O primeiro 0px 0px 0px 1px garante que não haja vazamentos de anti-aliasing */
+    box-shadow: 0 0 0 1px var(--dark-panel-text), 4px 4px 0px 0px var(--dark-panel-text) !important;
 }
 
-html.dark .neo-shadow:hover {
-    box-shadow: 2px 2px 0px 0px #27272a !important;
+html.dark .neo-shadow:hover,
+html.dark .neo-shadow-yellow:hover {
+    box-shadow: 0 0 0 1px var(--dark-panel-text), 2px 2px 0px 0px var(--dark-panel-text) !important;
     transform: translate(2px, 2px);
 }
 
-/* The ONLY point of high color in Dark Mode are CTA buttons (Yellow) */
-html.dark .bg-instituto-yellow,
-html.dark .bg-instituto-yellow-hover:hover,
-html.dark .bg-instituto-yellow .text-instituto-blue,
-html.dark .bg-instituto-yellow-hover:hover .text-instituto-blue,
-html.dark .bg-instituto-yellow.text-instituto-blue,
-html.dark .bg-instituto-yellow-hover:hover.text-instituto-blue {
-    background-color: #fcd34d !important;
-    /* Amber 300 */
-    color: #09090b !important;
-    /* Zinc 950 */
+html.dark .neo-shadow-sm:hover {
+    box-shadow: 0 0 0 1px var(--dark-panel-text), 1px 1px 0px 0px var(--dark-panel-text) !important;
+    transform: translate(2px, 2px);
 }
 
-/* Borders inside yellow items must stay dark */
-html.dark .bg-instituto-yellow .border-instituto-blue,
-html.dark .bg-instituto-yellow-hover:hover .border-instituto-blue,
-html.dark .bg-instituto-yellow.border-instituto-blue,
-html.dark .bg-instituto-yellow-hover:hover.border-instituto-blue {
-    border-color: #09090b !important;
-}
-
-/* Theme Toggle Button icon color in dark mode */
 html.dark #theme-toggle {
-    color: #fcd34d !important;
-    /* Yellow Moon */
+    color: var(--color-principal) !important;
 }
 
-/* Dim images slightly in dark mode to avoid glare */
-html.dark img:not(.group-hover\:grayscale-0) {
-    filter: brightness(0.7) grayscale(0.2) contrast(1.1);
+/* =========================================
+   TRATAMENTO DE IMAGENS E MÍDIA
+   ========================================= */
+
+/* Transição suave para todas as imagens aplicável a filtros */
+html.dark img {
+    transition: filter 0.5s ease-in-out;
 }
 
-html.dark img.group-hover\:grayscale-0 {
+/* Imagens base Escurecidas: Exceto no hover ou quando o grupo estiver me hover */
+html.dark img:not(.group-hover\:grayscale-0):not(.hover\:grayscale-0) {
+    filter: brightness(0.7) grayscale(0.2) contrast(1.1) !important;
+}
+
+html.dark img.group-hover\:grayscale-0,
+html.dark img.hover\:grayscale-0 {
     filter: grayscale(0.6) brightness(0.6) contrast(1.1) !important;
 }
 
+/* Restaura o brilho e cor total em imagens dentro de Grupos em Hover */
 html.dark .group:hover img.group-hover\:grayscale-0 {
     filter: grayscale(0) brightness(0.85) contrast(1.1) !important;
 }
 
-/* Force dark header/footer basic backgrounds */
-html.dark footer,
-html.dark header,
-html.dark .navbar {
-    background-color: #09090b !important;
-    /* Zinc 950 - slightly darker than body to separate header */
+/* Restaura o brilho e cor total em imagens individuais com Hover Direto */
+html.dark img.hover\:grayscale-0:hover {
+    filter: grayscale(0) brightness(0.85) contrast(1.1) !important;
 }

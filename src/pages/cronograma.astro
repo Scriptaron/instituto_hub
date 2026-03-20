@@ -34,57 +34,57 @@ const currentMonthId = allMonthsData[currentMonthIndex].id;
 // Dicionário de Cores para converter os Padrões do Sanity nos visuais ricos do Tailwind (Neo-Brutalismo)
 const themeMap: Record<string, any> = {
     yellow: {
-        dotColorClass: 'bg-instituto-yellow',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
+        dotColorClass: 'bg-destaque',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
         cardBgClass: 'bg-white',
-        cardShadowClass: 'shadow-[6px_6px_0_var(--color-instituto-blue)]',
-        connectorBorderClass: 'border-instituto-yellow',
-        tagClass: 'bg-[#25D366] text-white shadow-[2px_2px_0_var(--color-instituto-blue)]',
-        titleClass: 'text-instituto-blue group-hover:text-instituto-yellow',
-        buttonClass: 'bg-instituto-blue text-white hover:bg-instituto-yellow hover:text-instituto-blue shadow-[4px_4px_0_var(--color-instituto-yellow)]'
+        cardShadowClass: 'shadow-[6px_6px_0_var(--color-principal)]',
+        connectorBorderClass: 'border-destaque',
+        tagClass: 'bg-[#25D366] text-white shadow-[2px_2px_0_var(--color-principal)]',
+        titleClass: 'text-principal group-hover:text-destaque',
+        buttonClass: 'bg-principal text-white hover:bg-destaque hover:text-principal shadow-[4px_4px_0_var(--color-destaque)]'
     },
     blue: {
-        dotColorClass: 'bg-instituto-blue',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-yellow)]',
+        dotColorClass: 'bg-principal',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-destaque)]',
         cardBgClass: 'bg-white',
-        cardShadowClass: 'shadow-[6px_6px_0_var(--color-instituto-blue)]',
-        connectorBorderClass: 'border-instituto-blue',
-        tagClass: 'bg-instituto-blue text-white shadow-[2px_2px_0_var(--color-instituto-yellow)]',
-        titleClass: 'text-instituto-blue group-hover:text-instituto-yellow',
-        buttonClass: 'bg-white text-instituto-blue hover:bg-instituto-blue hover:text-white shadow-[4px_4px_0_var(--color-instituto-blue)]'
+        cardShadowClass: 'shadow-[6px_6px_0_var(--color-principal)]',
+        connectorBorderClass: 'border-principal',
+        tagClass: 'bg-principal text-white shadow-[2px_2px_0_var(--color-destaque)]',
+        titleClass: 'text-principal group-hover:text-destaque',
+        buttonClass: 'bg-white text-principal hover:bg-principal hover:text-white shadow-[4px_4px_0_var(--color-principal)]'
     },
     green: {
         dotColorClass: 'bg-[#25D366]',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
         cardBgClass: 'bg-white',
         cardShadowClass: 'shadow-[6px_6px_0_#25D366]',
         connectorBorderClass: 'border-[#25D366]',
-        tagClass: 'bg-[#25D366] text-white shadow-[2px_2px_0_var(--color-instituto-blue)]',
-        titleClass: 'text-instituto-blue group-hover:text-[#25D366]',
-        buttonClass: 'bg-white text-[#25D366] border-[#25D366] hover:bg-[#25D366] hover:text-white shadow-[4px_4px_0_var(--color-instituto-blue)]'
+        tagClass: 'bg-[#25D366] text-white shadow-[2px_2px_0_var(--color-principal)]',
+        titleClass: 'text-principal group-hover:text-[#25D366]',
+        buttonClass: 'bg-white text-[#25D366] border-[#25D366] hover:bg-[#25D366] hover:text-white shadow-[4px_4px_0_var(--color-principal)]'
     },
     dark: {
         dotColorClass: 'bg-slate-800',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
         cardBgClass: 'bg-slate-800',
-        cardShadowClass: 'shadow-[6px_6px_0_var(--color-instituto-yellow)]',
+        cardShadowClass: 'shadow-[6px_6px_0_var(--color-destaque)]',
         cardExtraClass: 'border-slate-800', // Override azul padrão da borda
         connectorBorderClass: 'border-slate-800',
-        tagClass: 'bg-white text-slate-800 shadow-[2px_2px_0_var(--color-instituto-yellow)]',
-        titleClass: 'text-white group-hover:text-instituto-yellow',
+        tagClass: 'bg-white text-slate-800 shadow-[2px_2px_0_var(--color-destaque)]',
+        titleClass: 'text-white group-hover:text-destaque',
         detailsClass: 'text-slate-300',
-        detailsIconSvg: '<svg class="text-instituto-yellow shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
-        buttonClass: 'bg-instituto-yellow text-instituto-blue hover:bg-white shadow-[4px_4px_0_#FFF] border-instituto-yellow'
+        detailsIconSvg: '<svg class="text-destaque shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
+        buttonClass: 'bg-destaque text-principal hover:bg-white shadow-[4px_4px_0_#FFF] border-destaque'
     },
     gray: {
         dotColorClass: 'bg-slate-400',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-instituto-blue)]',
+        dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
         cardBgClass: 'bg-slate-100',
         cardExtraClass: 'grayscale opacity-80 hover:grayscale-0 hover:opacity-100',
         connectorBorderClass: 'border-slate-400',
-        tagClass: 'bg-slate-400 text-white shadow-[2px_2px_0_var(--color-instituto-blue)]',
-        titleClass: 'text-instituto-blue',
-        buttonClass: 'bg-white text-instituto-blue shadow-[4px_4px_0_var(--color-instituto-blue)]'
+        tagClass: 'bg-slate-400 text-white shadow-[2px_2px_0_var(--color-principal)]',
+        titleClass: 'text-principal',
+        buttonClass: 'bg-white text-principal shadow-[4px_4px_0_var(--color-principal)]'
     }
 }
 ---
@@ -93,13 +93,13 @@ const themeMap: Record<string, any> = {
 
 		<main class="container mx-auto px-4 py-8 md:py-16 max-w-5xl flex flex-col gap-8 relative z-10">
             <!-- Header Banner -->
-            <section class="bg-instituto-yellow border-4 border-instituto-blue neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 w-full mb-4">
-                <div class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white border-4 border-instituto-blue rounded-full z-20 flex items-center justify-center text-xl sm:text-2xl neo-shadow group-hover:scale-110 transition-transform">📅</div>
-                <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-heading font-black text-instituto-blue uppercase leading-[0.9] tracking-tighter">
+            <section class="bg-destaque border-4 border-principal neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 w-full mb-4">
+                <div class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white border-4 border-principal rounded-full z-20 flex items-center justify-center text-xl sm:text-2xl neo-shadow group-hover:scale-110 transition-transform">📅</div>
+                <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-heading font-black text-principal uppercase leading-[0.9] tracking-tighter">
                     Cronograma<br/>
-                    <span class="text-white" style="-webkit-text-stroke: 1.5px var(--color-instituto-blue);">Mensal</span>
+                    <span class="text-white" style="-webkit-text-stroke: 1.5px var(--color-principal);">Mensal</span>
                 </h1>
-                <p class="mt-4 text-sm sm:text-base md:text-lg font-bold text-instituto-blue border-l-4 border-white pl-3 sm:pl-4">
+                <p class="mt-4 text-sm sm:text-base md:text-lg font-bold text-principal border-l-4 border-white pl-3 sm:pl-4">
                     Acompanhe todos os eventos, atividades e devocionais semestre a semestre.
                 </p>
             </section>
@@ -110,7 +110,7 @@ const themeMap: Record<string, any> = {
                 <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mb-12 z-20 relative w-full pt-4">
                     {availableMonths.map(month => (
                         <button 
-                            class={`month-tab btn rounded-none tracking-widest text-xs sm:text-sm h-10 sm:h-12 px-5 sm:px-8 transition-all border-4 border-instituto-blue outline-none uppercase font-black cursor-pointer ${month.id === currentMonthId ? 'active bg-instituto-yellow text-instituto-blue shadow-[4px_4px_0_var(--color-instituto-blue)] -translate-y-1' : 'bg-white text-instituto-blue hover:bg-instituto-yellow/50 hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-instituto-blue)]'}`} 
+                            class={`month-tab btn rounded-none tracking-widest text-xs sm:text-sm h-10 sm:h-12 px-5 sm:px-8 transition-all border-4 border-principal outline-none uppercase font-black cursor-pointer ${month.id === currentMonthId ? 'active bg-destaque text-principal shadow-[4px_4px_0_var(--color-principal)] -translate-y-1' : 'bg-white text-principal hover:bg-destaque/50 hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-principal)]'}`} 
                             data-month={month.id}
                         >
                             {month.name}
@@ -130,7 +130,7 @@ const themeMap: Record<string, any> = {
                                 
                                 {hasEvents && (
                                     <!-- Tora Vertical Central (A linha conectora) -->
-                                    <div class="absolute left-8 lg:left-1/2 transform lg:-translate-x-1/2 w-4 h-[95%] bg-instituto-blue border-l-4 border-r-4 border-white z-0 mt-8 rounded-full"></div>
+                                    <div class="absolute left-8 lg:left-1/2 transform lg:-translate-x-1/2 w-4 h-[95%] bg-principal border-l-4 border-r-4 border-white z-0 mt-8 rounded-full"></div>
                                 )}
 
                                 <div class="relative z-10 py-6">
@@ -157,16 +157,16 @@ const themeMap: Record<string, any> = {
                                     ) : (
                                         // Card de Mês "Vazio"
                                         <div class="w-full flex flex-col animate-fade-in text-center sm:text-left py-12 px-4 sm:px-0">
-                                            <div class="mx-auto flex flex-col items-center justify-center bg-white border-4 border-instituto-blue p-6 sm:p-10 max-w-lg shadow-[8px_8px_0_var(--color-instituto-blue)] hover:shadow-[12px_12px_0_var(--color-instituto-blue)] transition-all group hover:-translate-y-2">
+                                            <div class="mx-auto flex flex-col items-center justify-center bg-white border-4 border-principal p-6 sm:p-10 max-w-lg shadow-[8px_8px_0_var(--color-principal)] hover:shadow-[12px_12px_0_var(--color-principal)] transition-all group hover:-translate-y-2">
                                                 <div class="text-5xl sm:text-7xl mb-4 sm:mb-6 opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:-rotate-3 transition-all cursor-default relative">
                                                     🗓️
-                                                    <div class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-instituto-yellow border-2 border-instituto-blue animate-pulse"></div>
+                                                    <div class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-destaque border-2 border-principal animate-pulse"></div>
                                                 </div>
-                                                <h3 class="text-xl sm:text-3xl font-black font-heading text-slate-400 group-hover:text-instituto-blue transition-colors uppercase leading-[1.1] mb-3 text-center">Aguardando Eventos</h3>
+                                                <h3 class="text-xl sm:text-3xl font-black font-heading text-slate-400 group-hover:text-principal transition-colors uppercase leading-[1.1] mb-3 text-center">Aguardando Eventos</h3>
                                                 <p class="text-xs sm:text-base font-bold text-slate-400 text-center leading-relaxed">
                                                     O calendário de <strong class="text-slate-500">{month.name}</strong> ainda está sendo planejado pela Estaca. Fique de olho no nosso Instagram para atualizações!
                                                 </p>
-                                                <button class="btn btn-sm mt-6 bg-transparent border-4 border-instituto-blue text-instituto-blue hover:bg-instituto-blue hover:text-white uppercase font-black tracking-widest text-[10px] shadow-[4px_4px_0_var(--color-instituto-blue)] rounded-none">Seguir @instituto</button>
+                                                <button class="btn btn-sm mt-6 bg-transparent border-4 border-principal text-principal hover:bg-principal hover:text-white uppercase font-black tracking-widest text-[10px] shadow-[4px_4px_0_var(--color-principal)] rounded-none">Seguir @instituto</button>
                                             </div>
                                         </div>
                                     )}
@@ -192,13 +192,13 @@ const themeMap: Record<string, any> = {
 
                         // 1. Reset all tabs to inactive state
                         tabs.forEach(t => {
-                            t.classList.remove('active', 'bg-instituto-yellow', 'shadow-[4px_4px_0_var(--color-instituto-blue)]', '-translate-y-1');
-                            t.classList.add('bg-white', 'hover:bg-instituto-yellow/50', 'hover:-translate-y-1', 'hover:shadow-[4px_4px_0_var(--color-instituto-blue)]');
+                            t.classList.remove('active', 'bg-destaque', 'shadow-[4px_4px_0_var(--color-principal)]', '-translate-y-1');
+                            t.classList.add('bg-white', 'hover:bg-destaque/50', 'hover:-translate-y-1', 'hover:shadow-[4px_4px_0_var(--color-principal)]');
                         });
 
                         // 2. Set clicked tab to active state
-                        tab.classList.remove('bg-white', 'hover:bg-instituto-yellow/50', 'hover:-translate-y-1', 'hover:shadow-[4px_4px_0_var(--color-instituto-blue)]');
-                        tab.classList.add('active', 'bg-instituto-yellow', 'shadow-[4px_4px_0_var(--color-instituto-blue)]', '-translate-y-1');
+                        tab.classList.remove('bg-white', 'hover:bg-destaque/50', 'hover:-translate-y-1', 'hover:shadow-[4px_4px_0_var(--color-principal)]');
+                        tab.classList.add('active', 'bg-destaque', 'shadow-[4px_4px_0_var(--color-principal)]', '-translate-y-1');
 
                         // 3. Hide all contents
                         contents.forEach(content => {

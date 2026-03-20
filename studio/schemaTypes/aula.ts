@@ -57,7 +57,6 @@ export const aulaType = defineType({
           {title: 'Terça-feira', value: 'terca'},
           {title: 'Quarta-feira', value: 'quarta'},
           {title: 'Quinta-feira', value: 'quinta'},
-          {title: 'Sexta-feira', value: 'sexta'},
           {title: 'Sábado', value: 'sabado'},
         ],
       },
