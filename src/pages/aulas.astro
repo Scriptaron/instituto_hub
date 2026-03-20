@@ -75,8 +75,7 @@ const activeDayId = validDays.length > 0 ? validDays[0].id : daysOfWeek[0].id;
                                         imageSrc={aula.image ? urlFor(aula.image).width(800).height(600).url() : 'https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1000&auto=format&fit=crop'}
                                         imageAlt={aula.title}
                                         tagRotateClass={index % 2 === 0 ? '-rotate-3' : 'rotate-2'}
-                                        theme={aula.theme || 'yellow'}
-                                        enrollLink={aula.enrollLink}
+                                        theme={aula.relCode === 'Fundamental' ? 'fundamental' : 'eletivo'}
                                         whatsAppUrl={aula.whatsAppUrl}
                                         zoomUrl={aula.zoomUrl}
                                     />

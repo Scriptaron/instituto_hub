@@ -9,8 +9,7 @@ export interface Props {
   imageSrc: string;
   imageAlt: string;
   tagRotateClass?: string;
-  theme?: "yellow" | "blue";
-  enrollLink?: string;
+  theme?: "fundamental" | "eletivo";
   whatsAppUrl?: string;
   zoomUrl?: string;
 }
@@ -25,17 +24,16 @@ const {
   imageSrc,
   imageAlt,
   tagRotateClass = "-rotate-3",
-  theme = "yellow",
-  enrollLink = "https://myinstitute.churchofjesuschrist.org",
+  theme = "fundamental",
   whatsAppUrl = "#",
   zoomUrl
 } = Astro.props;
 
-const isYellow = theme === "yellow";
-const tagColorClass = isYellow 
+const isFundamental = theme === "fundamental";
+const tagColorClass = isFundamental 
   ? "bg-destaque text-principal border-principal neo-shadow-yellow" 
   : "bg-principal text-white border-white neo-shadow";
-const dotColorClass = isYellow ? "bg-destaque" : "bg-principal";
+const dotColorClass = isFundamental ? "bg-destaque" : "bg-principal";
 ---
 
 <div class="bg-white border-4 border-principal neo-shadow flex flex-col group relative h-full">
@@ -60,7 +58,7 @@ const dotColorClass = isYellow ? "bg-destaque" : "bg-principal";
         </div>
         
         <div class="flex flex-col gap-2 mt-auto pt-4 border-t-2 border-dashed border-principal">
-            <a href={enrollLink} target="_blank" rel="noopener noreferrer" class="btn w-full bg-principal hover:bg-principal text-white border-4 border-principal rounded-none uppercase font-black tracking-widest text-xs neo-shadow-sm min-h-0 h-10">
+            <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=s-7mYddfqkquPGHo3rCbeeM0om7MfKhBu1hqe0-54JxURUMwSlpUU0ExVzZaNUw1NjQ4REhWWlIxSC4u" target="_blank" rel="noopener noreferrer" class="btn w-full bg-principal hover:bg-principal text-white border-4 border-principal rounded-none uppercase font-black tracking-widest text-xs neo-shadow-sm min-h-0 h-10">
                 Matricular-se
             </a>
             {zoomUrl ? (

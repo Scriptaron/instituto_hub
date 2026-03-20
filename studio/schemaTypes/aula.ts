@@ -13,8 +13,15 @@ export const aulaType = defineType({
     }),
     defineField({
       name: 'relCode',
-      title: 'Código da Classe (Ex: REL 250)',
+      title: 'Tipo de Curso (Grau de Exigência)',
       type: 'string',
+      description: 'Classifique se o curso é Fundamental para a formatura ou Eletivo.',
+      options: {
+        list: [
+          {title: 'Curso Fundamental', value: 'Fundamental'},
+          {title: 'Curso Eletivo', value: 'Eletivo'},
+        ],
+      },
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -68,18 +75,7 @@ export const aulaType = defineType({
       type: 'text',
       validation: (rule) => rule.required().max(200),
     }),
-    defineField({
-      name: 'theme',
-      title: 'Cor do Card (Tema)',
-      type: 'string',
-      options: {
-        list: [
-          {title: 'Amarelo (Primário)', value: 'yellow'},
-          {title: 'Azul (Secundário)', value: 'blue'},
-        ],
-      },
-      initialValue: 'yellow',
-    }),
+
     defineField({
       name: 'image',
       title: 'Imagem de Capa',
@@ -88,12 +84,7 @@ export const aulaType = defineType({
         hotspot: true,
       },
     }),
-    defineField({
-      name: 'enrollLink',
-      title: 'Link de Matrícula (MyInstitute)',
-      type: 'url',
-      initialValue: 'https://myinstitute.churchofjesuschrist.org',
-    }),
+
     defineField({
       name: 'whatsAppUrl',
       title: 'Link do Grupo de WhatsApp',
@@ -101,8 +92,9 @@ export const aulaType = defineType({
     }),
     defineField({
       name: 'zoomUrl',
-      title: 'Link do Zoom (Apenas se tiver online)',
+      title: 'Link do Zoom',
       type: 'url',
+      hidden: ({document}) => document?.modality === 'Presencial',
     }),
   ],
   preview: {

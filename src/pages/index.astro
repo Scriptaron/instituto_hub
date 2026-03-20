@@ -58,11 +58,15 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 							<div class="bg-principal sm:border-r-4 sm:border-b-0 border-b-4 border-principal text-white p-4 md:p-6 text-xl md:text-2xl font-black sm:w-32 md:w-40 flex items-center justify-center font-heading text-center">07 MAR</div>
 							<div class="font-bold text-slate-800 text-lg sm:text-xl md:text-3xl p-4 md:p-6 flex items-center flex-1 justify-center sm:justify-start text-center sm:text-left">Calourada JAS</div>
 						</li>
+						<li class="flex flex-col sm:flex-row items-stretch group/item hover:bg-principal/5 transition-colors cursor-pointer">
+							<div class="bg-destaque sm:border-r-4 sm:border-b-0 border-b-4 border-principal text-principal p-4 md:p-6 text-xl md:text-2xl font-black sm:w-32 md:w-40 flex items-center justify-center font-heading text-center">15 ABR</div>
+							<div class="font-bold text-slate-800 text-lg sm:text-xl md:text-3xl p-4 md:p-6 flex items-center flex-1 justify-center sm:justify-start text-center sm:text-left">Devocional Mundial</div>
+						</li>
 					</ul>
 					
-					<button class="btn w-full mt-8 sm:mt-10 bg-destaque border-4 border-principal text-principal hover:bg-destaque py-3 sm:py-4 h-auto text-lg sm:text-xl md:text-2xl font-black uppercase tracking-wider neo-shadow-yellow hover:-translate-y-1 hover:border-principal rounded-none font-heading relative overflow-hidden group">
+					<a href="/cronograma" class="btn block w-full text-center mt-8 sm:mt-10 bg-destaque border-4 border-principal text-principal hover:bg-destaque py-3 sm:py-4 md:py-5 h-auto text-lg sm:text-xl md:text-2xl font-black uppercase tracking-wider neo-shadow-yellow hover:-translate-y-1 hover:border-principal rounded-none font-heading relative overflow-hidden group">
                         Ver Programação Completa
-					</button>
+					</a>
 				</div>
 
 				<!-- Classes Card -->
@@ -79,9 +83,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
                             </p>
                         </div>
                         
-                        <button class="btn w-full bg-white border-4 border-principal text-principal hover:bg-slate-100 hover:border-principal py-3 sm:py-4 h-auto text-lg sm:text-xl md:text-3xl font-black neo-shadow hover:-translate-y-1 rounded-none uppercase tracking-wider font-heading mt-auto z-10">
+                        <a href="/aulas" class="btn block w-full text-center bg-white border-4 border-principal text-principal hover:bg-slate-100 hover:border-principal py-3 sm:py-4 h-auto text-lg sm:text-xl md:text-3xl font-black neo-shadow hover:-translate-y-1 rounded-none uppercase tracking-wider font-heading mt-auto z-10">
                             Escolher Turma &rarr;
-                        </button>
+                        </a>
                     </div>
                 </div>
 				</div>
@@ -89,6 +93,21 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
             <!-- Brutalist Photo Gallery / Rotina Section -->
             <section class="mt-16 relative animate-slide-up delay-100 z-10 w-full overflow-hidden xl:overflow-visible">
+                <!-- Banner Noite de Esportes -->
+                <div class="mb-6 md:mb-8 mx-4 lg:mx-0 bg-white border-4 border-principal neo-shadow p-6 md:p-8 flex flex-col md:flex-row md:items-center justify-between gap-6 group hover:-translate-y-1 transition-transform z-20 relative">
+                    <div class="flex-1">
+                        <h3 class="text-2xl sm:text-3xl md:text-4xl font-heading font-black text-principal uppercase mb-3 leading-none">
+                            Noite de Esportes <span class="bg-destaque text-principal px-2 inline-block -rotate-1 mt-1 sm:mt-0">e Integração</span>
+                        </h3>
+                        <p class="text-slate-700 font-bold text-base sm:text-lg border-l-4 border-principal pl-4 max-w-3xl">
+                            Todas as quartas das 19h até as 22h30 no Instituto Missionário — traga seus amigos!
+                        </p>
+                    </div>
+                    <div class="text-6xl sm:text-7xl group-hover:scale-110 group-hover:rotate-12 transition-transform origin-center flex-shrink-0 self-start md:self-auto">
+                        🏀
+                    </div>
+                </div>
+
                 <!-- Brutalist Mosaic Grid -->
                 <!-- Container is slightly offset to break symmetry -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 px-4 lg:px-0">
