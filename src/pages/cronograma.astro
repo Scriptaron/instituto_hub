@@ -3,8 +3,26 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineEvent from '../components/molecules/TimelineEvent.astro';
 import { sanityClient } from 'sanity:client';
 
-// Busca os eventos no Sanity, ordenados primeiro por Mês (em breve trataremos melhor com data se quisermos) e por "sortOrder" numérico
-const eventData = await sanityClient.fetch(`*[_type == "evento"] | order(sortOrder asc)`);
+// Busca os eventos no Sanity, ordenados rigorosamente pela nova Data Real
+const rawEvents = await sanityClient.fetch(`*[_type == "evento"] | order(eventDate asc)`);
+
+// Automatiza todos os dados temporais do evento, antes exigidos no painel, a partir de apenas eventDate
+const monthsAbbr = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
+const monthsNamesUpper = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+const daysOfWeekBr = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
+
+const eventData = rawEvents.map((evt: any) => {
+    if (!evt.eventDate) return { ...evt, monthId: 'jan', dateMain: '00 S/D', dateSub: 'S/D' };
+    
+    const d = new Date(evt.eventDate + 'T12:00:00'); // Força 12h para evitar fuso bug de virar o dia
+    
+    return {
+        ...evt,
+        monthId: monthsAbbr[d.getMonth()],
+        dateMain: `${d.getDate().toString().padStart(2, '0')} ${monthsNamesUpper[d.getMonth()]}`,
+        dateSub: daysOfWeekBr[d.getDay()]
+    };
+});
 
 // Obtém o mês atual (0 = Janeiro, 1 = Fevereiro, ..., 11 = Dezembro)
 const currentMonthIndex = new Date().getMonth();
@@ -136,12 +154,16 @@ const themeMap: Record<string, any> = {
                                 <div class="relative z-10 py-6">
                                     
                                     {hasEvents ? (
-                                        // Renderiza os Eventos convertendo o Tema escolhido no Sanity para as Classes ricas
-                                        monthEvents.map((evt: any) => {
-                                            const themeProps = themeMap[evt.theme || 'yellow'] || themeMap['yellow'];
+                                        // Renderiza os Eventos gerenciando automaticamente o Tema e o Alinhamento (esq/dir) para o usuário
+                                        monthEvents.map((evt: any, index: number) => {
+                                            const themeKeys = ['yellow', 'blue', 'green', 'dark'];
+                                            const autoTheme = themeKeys[index % themeKeys.length];
+                                            const autoAlign = index % 2 === 0 ? 'right' : 'left';
+                                            const themeProps = themeMap[autoTheme];
+                                            
                                             return (
                                                 <TimelineEvent 
-                                                    align={evt.align}
+                                                    align={autoAlign}
                                                     tagLabel={evt.tagLabel}
                                                     dateMain={evt.dateMain}
                                                     dateSub={evt.dateSub}

@@ -1,5 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { sanityClient } from 'sanity:client';
+
+// Busca os 3 próximos eventos com data >= hoje, ordenados por data real
+const today = new Date().toISOString().split('T')[0]; // Formato: AAAA-MM-DD
+const proximosEventos = await sanityClient.fetch(
+  `*[_type == "evento" && eventDate >= $today] | order(eventDate asc) [0...3] {
+    title,
+    eventDate
+  }`,
+  { today }
+);
+
+function formatEventDate(dateStr: string) {
+  if (!dateStr) return "S/D";
+  const [y, m, d] = dateStr.split('-');
+  const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
+  return `${d} ${months[parseInt(m) - 1]}`;
+}
 ---
 
 <BaseLayout title="Instituto Hub - Porto Alegre" overflowHidden={false}>
@@ -14,8 +32,24 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 					<p class="font-bold text-principal tracking-widest uppercase border-b-4 border-principal inline-block w-max pb-1 text-xs sm:text-sm md:text-base">Porto Alegre</p>
 					<h1 class="text-5xl sm:text-6xl md:text-8xl lg:text-[9rem] font-heading font-black text-principal leading-[0.85] tracking-tighter w-full">
 						INSTITUTO<br/>
-						<span class="text-destaque" style="-webkit-text-stroke: 4px var(--color-principal);">HUB</span>
+						<span class="text-destaque stroke-text">HUB</span>
 					</h1>
+
+					<style>
+						.stroke-text {
+							-webkit-text-stroke: 1.5px var(--color-principal);
+						}
+						@media (min-width: 768px) {
+							.stroke-text {
+								-webkit-text-stroke: 3px var(--color-principal);
+							}
+						}
+						@media (min-width: 1024px) {
+							.stroke-text {
+								-webkit-text-stroke: 4px var(--color-principal);
+							}
+						}
+					</style>
 					<div class="bg-white p-4 md:p-6 border-4 border-principal neo-shadow mt-2 sm:mt-4">
                         <p class="text-lg sm:text-xl md:text-3xl text-principal font-black font-heading leading-tight mb-2">
                             "A glória de Deus é a inteligência."
@@ -48,21 +82,28 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 						</h2>
 						<div class="text-destaque text-4xl sm:text-5xl group-hover:rotate-12 transition-transform duration-300">🌟</div>
 					</div>
-					
 					<ul class="flex flex-col border-y-4 border-principal divide-y-4 divide-principal mt-auto">
-						<li class="flex flex-col sm:flex-row items-stretch group/item hover:bg-principal/5 transition-colors cursor-pointer">
-							<div class="bg-destaque sm:border-r-4 sm:border-b-0 border-b-4 border-principal text-principal font-black p-4 md:p-6 text-xl md:text-2xl sm:w-32 md:w-40 flex items-center justify-center font-heading text-center">03 MAR</div>
-							<div class="font-bold text-slate-800 text-lg sm:text-xl md:text-3xl p-4 md:p-6 flex items-center flex-1 justify-center sm:justify-start text-center sm:text-left">Volta às Aulas</div>
-						</li>
-						<li class="flex flex-col sm:flex-row items-stretch group/item hover:bg-principal/5 transition-colors cursor-pointer">
-							<div class="bg-principal sm:border-r-4 sm:border-b-0 border-b-4 border-principal text-white p-4 md:p-6 text-xl md:text-2xl font-black sm:w-32 md:w-40 flex items-center justify-center font-heading text-center">07 MAR</div>
-							<div class="font-bold text-slate-800 text-lg sm:text-xl md:text-3xl p-4 md:p-6 flex items-center flex-1 justify-center sm:justify-start text-center sm:text-left">Calourada JAS</div>
-						</li>
-						<li class="flex flex-col sm:flex-row items-stretch group/item hover:bg-principal/5 transition-colors cursor-pointer">
-							<div class="bg-destaque sm:border-r-4 sm:border-b-0 border-b-4 border-principal text-principal p-4 md:p-6 text-xl md:text-2xl font-black sm:w-32 md:w-40 flex items-center justify-center font-heading text-center">15 ABR</div>
-							<div class="font-bold text-slate-800 text-lg sm:text-xl md:text-3xl p-4 md:p-6 flex items-center flex-1 justify-center sm:justify-start text-center sm:text-left">Devocional Mundial</div>
-						</li>
+						{proximosEventos.length > 0 ? (
+							proximosEventos.map((evt: any, i: number) => {
+								const bgClass = i === 1 ? 'bg-principal text-white' : 'bg-destaque text-principal';
+								return (
+									<li class="flex flex-col sm:flex-row items-stretch group/item hover:bg-principal/5 transition-colors">
+										<div class={`${bgClass} sm:border-r-4 sm:border-b-0 border-b-4 border-principal font-black p-4 md:p-6 text-xl md:text-2xl sm:w-32 md:w-40 flex items-center justify-center font-heading text-center leading-tight`}>
+											{formatEventDate(evt.eventDate)}
+										</div>
+										<div class="font-bold text-slate-800 text-lg sm:text-xl md:text-3xl p-4 md:p-6 flex items-center flex-1 justify-center sm:justify-start text-center sm:text-left">{evt.title}</div>
+									</li>
+								)
+							})
+						) : (
+							<li class="flex flex-col items-center justify-center py-10 gap-3 text-center">
+								<span class="text-4xl">📭</span>
+								<p class="font-black text-principal uppercase text-lg">Sem eventos por enquanto!</p>
+								<p class="text-slate-500 font-bold text-sm">Fique de olho no Instagram para as próximas novidades.</p>
+							</li>
+						)}
 					</ul>
+					
 					
 					<a href="/cronograma" class="btn block w-full text-center mt-8 sm:mt-10 bg-destaque border-4 border-principal text-principal hover:bg-destaque py-3 sm:py-4 md:py-5 h-auto text-lg sm:text-xl md:text-2xl font-black uppercase tracking-wider neo-shadow-yellow hover:-translate-y-1 hover:border-principal rounded-none font-heading relative overflow-hidden group">
                         Ver Programação Completa

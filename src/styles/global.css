@@ -28,7 +28,8 @@ body {
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     background-image: radial-gradient(rgba(122, 58, 237, 0.15) 2px, transparent 2px) !important;
-    /* Increased dot visibility */
+    background-size: 32px 32px !important;
+    background-attachment: fixed !important;
 }
 
 h1,
@@ -156,8 +157,11 @@ html.dark .hover\:bg-slate-100:hover {
     background-color: var(--dark-panel-bg-alt) !important;
 }
 
-html.dark .navbar {
-    background-color: var(--dark-base-black) !important;
+/* =========================================
+   HEADER UNIFICADO (COR SÓLIDA)
+   ========================================= */
+.header-bg {
+    background-color: var(--color-background) !important;
 }
 
 /* =========================================
