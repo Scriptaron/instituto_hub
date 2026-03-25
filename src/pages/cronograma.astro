@@ -3,6 +3,10 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineEvent from '../components/molecules/TimelineEvent.astro';
 import { sanityClient } from 'sanity:client';
 
+// Configuração de Cache no Edge (Netlify ISR magico)
+Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
+Astro.response.headers.set('Netlify-CDN-Cache-Control', 'public, s-maxage=60, stale-while-revalidate=31536000');
+
 // Busca os eventos no Sanity, ordenados rigorosamente pela nova Data Real
 const rawEvents = await sanityClient.fetch(`*[_type == "evento"] | order(eventDate asc)`);
 

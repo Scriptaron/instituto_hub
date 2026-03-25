@@ -9,11 +9,12 @@
     "astro": "astro"
   },
   "dependencies": {
+    "@astrojs/netlify": "^6.6.5",
     "@sanity/astro": "^3.3.1",
     "@sanity/client": "^7.17.0",
     "@sanity/image-url": "^2.0.3",
     "@tailwindcss/vite": "^4.2.1",
-    "astro": "^5.17.1",
+    "astro": "^6.0.8",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-is": "^19.2.4",
@@ -22,6 +23,9 @@
     "tailwindcss": "^4.2.1"
   },
   "devDependencies": {
-    "daisyui": "^5.5.19"
+    "@types/lodash": "^4.17.24",
+    "daisyui": "^5.5.19",
+    "lodash": "^4.17.23",
+    "react-compiler-runtime": "^1.0.0"
   }
 }
