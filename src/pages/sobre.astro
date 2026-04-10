@@ -7,27 +7,132 @@ export const prerender = true;
 <BaseLayout title="Sobre - Instituto Hub">
     <main class="container mx-auto px-4 py-8 md:py-16 max-w-6xl flex flex-col gap-12 sm:gap-20 relative z-10">
         
-        <!-- Header Banner -->
-        <section class="bg-principal text-white border-4 border-principal neo-shadow p-6 sm:p-10 md:p-14 animate-slide-up transform rotate-1 hover:rotate-0 transition-transform duration-300 w-full relative">
-            <div class="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-destaque border-4 border-principal rounded-full z-20 flex items-center justify-center text-2xl sm:text-3xl neo-shadow">
+        <!-- Seção Nossa História -->
+        <section class="bg-principal text-white p-6 sm:p-8 md:p-10 animate-slide-up w-full relative">
+            <div class="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-12 h-12 sm:w-16 sm:h-16 bg-destaque border-4 border-principal rounded-full z-20 flex items-center justify-center text-2xl sm:text-3xl neo-shadow transform -rotate-12">
                 🏛️
             </div>
-            
-            <h1 class="text-4xl sm:text-6xl md:text-8xl font-heading font-black uppercase leading-[0.9] tracking-tighter mb-4 sm:mb-6">
-                Nossa<br/>
-                <span class="text-destaque" style="-webkit-text-stroke: 2px var(--color-principal);">História</span>
-            </h1>
-            
-            <p class="text-lg sm:text-xl md:text-3xl font-bold border-l-4 border-destaque pl-4 sm:pl-6 max-w-3xl leading-snug">
-                Conheça o Instituto de Religião de Porto Alegre e descubra por que milhares de jovens adultos se reúnem aqui.
-            </p>
+
+            <!-- Layout 3 Colunas: Texto | Carrossel de Diretores | Foto do Local -->
+            <div class="flex flex-col lg:flex-row gap-8 lg:gap-10 items-start w-full relative z-10 pt-4">
+                
+                <!-- Coluna 1: Título + Texto -->
+                <div class="w-full lg:w-[30%] shrink-0 flex flex-col pt-0 lg:pt-2">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-heading font-black uppercase leading-[0.9] tracking-tighter mb-8">
+                        Nossa<br/>
+                        <span class="text-destaque" style="-webkit-text-stroke: 1px var(--color-principal);">História</span>
+                    </h1>
+                    <p class="text-base sm:text-lg font-bold border-l-4 border-destaque pl-4 leading-relaxed opacity-90">
+                        Conheça o Instituto de Religião de Porto Alegre e descubra por que milhares de jovens adultos se reúnem aqui.
+                    </p>
+                </div>
+
+                <!-- Coluna 2: Carrossel de Diretores -->
+                <div class="w-full lg:w-[26%] shrink-0 relative flex flex-col items-center mx-auto lg:mx-0 mt-6 lg:mt-0">
+                    <!-- Badge -->
+                    <div class="absolute -top-8 left-1/2 -translate-x-1/2 bg-destaque text-principal font-heading font-black uppercase text-xs sm:text-sm tracking-widest px-4 py-1.5 border-2 border-black shadow-[2px_2px_0_0_black] -rotate-2 w-max z-30 pointer-events-none">
+                        Nossos Diretores
+                    </div>
+
+                    <!-- Carrossel + Botões (em linha) -->
+                    <div class="relative flex items-center justify-center pt-10 w-full gap-2">
+                        <!-- Botão Anterior -->
+                        <button id="btn-prev-diretor" aria-label="Diretor Anterior" class="shrink-0 z-30 bg-transparent text-destaque p-1.5 transition-transform hover:scale-110 active:scale-95 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+                        </button>
+
+                        <!-- Container (1 slide visível) -->
+                        <div id="carousel-diretores" class="w-[200px] flex overflow-hidden snap-x snap-mandatory scroll-smooth shrink-0">
+                            <!-- Slide 1 -->
+                            <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
+                                <div class="bg-white p-2 pb-14 transform rotate-1 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
+                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-yellow-100 opacity-90 z-10 pointer-events-none"></div>
+                                    <div class="w-full aspect-[4/5] overflow-hidden bg-destaque mb-2">
+                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop" alt="Diretor" class="w-full h-full object-cover grayscale-[0.3]" />
+                                    </div>
+                                    <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Sérgio O.</p>
+                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2010 - 2015</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 2 -->
+                            <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
+                                <div class="bg-white p-2 pb-14 transform -rotate-1 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
+                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-pink-100 opacity-90 z-10 pointer-events-none"></div>
+                                    <div class="w-full aspect-[4/5] overflow-hidden bg-[#25D366] mb-2">
+                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop" alt="Diretora" class="w-full h-full object-cover grayscale-[0.3]" />
+                                    </div>
+                                    <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Maria E.</p>
+                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2015 - 2020</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 3 -->
+                            <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
+                                <div class="bg-white p-2 pb-14 transform rotate-2 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
+                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-blue-100 opacity-90 z-10 pointer-events-none"></div>
+                                    <div class="w-full aspect-[4/5] overflow-hidden bg-principal mb-2">
+                                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300&auto=format&fit=crop" alt="Diretor" class="w-full h-full object-cover grayscale-[0.3]" />
+                                    </div>
+                                    <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Carlos M.</p>
+                                        <span class="bg-destaque text-principal px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2020 - Atual</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botão Próximo -->
+                        <button id="btn-next-diretor" aria-label="Próximo Diretor" class="shrink-0 z-30 bg-transparent text-destaque p-1.5 transition-transform hover:scale-110 active:scale-95 cursor-pointer">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+                        </button>
+                    </div>
+
+                    <script>
+                        document.addEventListener('DOMContentLoaded', () => {
+                            const carousel = document.getElementById('carousel-diretores');
+                            const btnPrev = document.getElementById('btn-prev-diretor');
+                            const btnNext = document.getElementById('btn-next-diretor');
+                            if (carousel && btnPrev && btnNext) {
+                                const update = () => {
+                                    const max = carousel.scrollWidth - carousel.clientWidth;
+                                    btnPrev.style.visibility = carousel.scrollLeft <= 5 ? 'hidden' : 'visible';
+                                    btnNext.style.visibility = carousel.scrollLeft >= max - 5 ? 'hidden' : 'visible';
+                                };
+                                btnNext.addEventListener('click', () => carousel.scrollBy({ left: carousel.clientWidth, behavior: 'smooth' }));
+                                btnPrev.addEventListener('click', () => carousel.scrollBy({ left: -carousel.clientWidth, behavior: 'smooth' }));
+                                carousel.addEventListener('scroll', update);
+                                setTimeout(update, 100);
+                            }
+                        });
+                    </script>
+                </div>
+
+                <!-- Coluna 3: Foto do Local -->
+                <div class="w-full lg:flex-1 flex justify-center lg:justify-end mt-10 lg:mt-0">
+                    <div class="bg-white p-3 pb-16 sm:p-4 sm:pb-20 transform rotate-2 w-full max-w-[380px] sm:max-w-[440px] group relative text-principal outline outline-[1.5px] outline-transparent ring-1 ring-transparent">
+                        <!-- Fita adesiva -->
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-8 bg-yellow-100 opacity-90 transform -rotate-3 z-10 pointer-events-none shadow-sm drop-shadow-sm"></div>
+                        <!-- Imagem 4/3 -->
+                        <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200 mb-2">
+                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop" alt="Foto histórica do Instituto" class="w-full h-full object-cover grayscale-[0.8] contrast-125" />
+                        </div>
+                        <div class="absolute bottom-5 sm:bottom-6 w-full left-0 text-center px-4 flex flex-col items-center">
+                            <p class="font-heading font-black text-principal text-lg sm:text-xl uppercase tracking-wider">O Início</p>
+                            <p class="font-bold text-slate-500 text-[0.65rem] sm:text-xs mt-0.5 uppercase tracking-wide">A Sede Oficial do Instituto</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Propósito e Missão Section (Grid Esquerda/Direita) -->
         <section class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 animate-slide-up delay-100">
             <!-- Left Card -->
-            <div class="bg-white border-4 border-principal neo-shadow p-6 sm:p-10 flex flex-col justify-center transform -rotate-1 hover:rotate-1 transition-transform group">
-                <h2 class="text-3xl sm:text-5xl font-heading font-black text-principal uppercase leading-[1] mb-6 border-b-4 border-destaque inline-block w-max pb-2 group-hover:text-destaque transition-colors">
+            <div class="bg-white border-4 border-principal p-6 sm:p-10 flex flex-col justify-center transform -rotate-1">
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-principal uppercase leading-[1] mb-6 border-b-4 border-destaque inline-block w-max pb-2">
                     Qual o<br/>Nosso Propósito?
                 </h2>
                 <p class="text-base sm:text-lg font-bold text-slate-600 mb-4 leading-relaxed">
@@ -52,7 +157,7 @@ export const prerender = true;
             <p class="text-2xl sm:text-4xl md:text-5xl font-black font-heading leading-tight max-w-4xl relative z-10 hover:text-destaque transition-colors">
                 O Instituto é o baluarte espiritual que todo jovem adulto precisa para não se perder nas névoas de escuridão do mundo moderno.
             </p>
-            <div class="mt-8 border-t-4 border-principal pt-4 uppercase tracking-widest font-black text-sm sm:text-base text-destaque relative z-10 w-max bg-principal px-4 py-2">
+            <div class="mt-8 bg-principal text-destaque uppercase tracking-widest font-black text-xs sm:text-sm relative z-10 w-max px-6 py-4 flex items-center justify-center leading-none">
                 A liderança local
             </div>
         </section>
@@ -70,9 +175,9 @@ export const prerender = true;
                 <!-- Highlight 1 -->
                 <div class="bg-white border-4 border-principal neo-shadow p-6 group hover:-translate-y-2 transition-transform">
                     <div class="text-5xl sm:text-6xl mb-4 group-hover:scale-110 transition-transform origin-left">🛋️</div>
-                    <h3 class="text-2xl font-black text-principal uppercase mb-3 bg-destaque inline-block px-2 group-hover:text-white group-hover:bg-principal transition-colors">Salas de Convívio</h3>
+                    <h3 class="text-2xl font-black text-principal uppercase mb-3 bg-destaque inline-block px-2 group-hover:text-white group-hover:bg-principal transition-colors">Salas de Jogos e Convívio</h3>
                     <p class="text-slate-600 font-bold leading-snug">
-                        Temos pufes, sofás gigantes e mesas de ping-pong. O lugar perfeito para relaxar entre as aulas, estudar ou bater um papo no intervalo da faculdade.
+                        Temos salas climatizadas, amplo estacionamento, sofás gigantes e mesas de ping-pong. O lugar perfeito para relaxar, estudar ou bater um papo.
                     </p>
                 </div>
 
@@ -92,6 +197,62 @@ export const prerender = true;
                     <p class="text-slate-600 font-bold leading-snug">
                         Caravanas pro templo, devocionais mundiais, luaus e festas institucionais. O instituto reúne a melhor juventude cristã do Rio Grande do Sul.
                     </p>
+                </div>
+            </div>
+
+            <!-- Galeria de Ambientes - Bento Grid -->
+            <div class="mt-12 sm:mt-16 w-full relative">
+                <div class="flex flex-col md:flex-row md:items-end justify-between font-heading font-black text-principal mb-6">
+                    <h3 class="text-3xl sm:text-5xl uppercase leading-[0.9] border-b-8 border-destaque inline-block pb-2 w-max mt-4">
+                        Conheça os<br/><span class="text-destaque" style="-webkit-text-stroke: 1px var(--color-principal);">Ambientes</span>
+                    </h3>
+                </div>
+
+                <!-- Bento Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 mt-8 w-full auto-rows-[250px] sm:auto-rows-[300px] lg:auto-rows-[360px]">
+                    
+                    <!-- Foto 1 (Destaque, 2 colunas) -->
+                    <div class="md:col-span-2 relative group overflow-hidden border-4 border-principal neo-shadow w-full h-full transform transition-transform hover:-translate-y-1 hover:rotate-1 bg-principal">
+                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop" alt="Convívio e Sofás" class="w-full h-full object-cover grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="bg-destaque text-principal px-3 py-1.5 text-sm sm:text-base font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Lounge Principal</span>
+                            <p class="text-white font-bold text-sm sm:text-base max-w-md mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
+                                Sofás gigantes e ambiente perfeito para conversar, relaxar ou jogar ping-pong antes e depois das aulas.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Foto 2 (1 coluna) -->
+                    <div class="md:col-span-1 relative group overflow-hidden border-4 border-principal neo-shadow w-full h-full transform transition-transform hover:-translate-y-1 hover:-rotate-1 bg-principal">
+                        <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?q=80&w=800&auto=format&fit=crop" alt="Salas Climatizadas" class="absolute inset-0 w-full h-full object-cover grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="bg-[#25D366] text-white px-3 py-1.5 text-sm font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Salas de Aula</span>
+                        </div>
+                    </div>
+
+                    <!-- Foto 3 (1 coluna) -->
+                    <div class="md:col-span-1 relative group overflow-hidden border-4 border-principal neo-shadow w-full h-full transform transition-transform hover:-translate-y-1 hover:rotate-1 bg-principal">
+                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" alt="Estacionamento e Estrutura Externa" class="absolute inset-0 w-full h-full object-cover grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="bg-blue-400 text-white px-3 py-1.5 text-sm font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Co-worker</span>
+                        </div>
+                    </div>
+
+                    <!-- Foto 4 (Destaque, 2 colunas) -->
+                    <div class="md:col-span-2 relative group overflow-hidden border-4 border-principal neo-shadow w-full h-full transform transition-transform hover:-translate-y-1 hover:-rotate-1 bg-principal">
+                        <img src="https://images.unsplash.com/photo-1511116173007-8461abfd4bea?q=80&w=1200&auto=format&fit=crop" alt="Festas e Eventos" class="w-full h-full object-cover grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105" />
+                        <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
+                        <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
+                            <span class="bg-white text-principal px-3 py-1.5 text-sm sm:text-base font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Salão de Eventos</span>
+                            <p class="text-white font-bold text-sm sm:text-base max-w-md mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
+                                Amplo espaço e palco para nossas noites de jogos, devocionais musicais e grandes festas institucionais.
+                            </p>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </section>
@@ -223,7 +384,7 @@ export const prerender = true;
                 <a href="/aulas" class="btn bg-white text-principal border-4 border-principal hover:bg-slate-100 uppercase font-black tracking-widest text-sm sm:text-base py-3 px-6 sm:px-8 h-auto rounded-none shadow-[4px_4px_0_var(--color-principal)] hover:-translate-y-1 transition-transform w-full sm:w-auto flex items-center justify-center">
                     Ver Aulas Mapeadas
                 </a>
-                <a href="https://wa.me/5551999999999" target="_blank" rel="noopener noreferrer" class="btn bg-[#25D366] text-white border-4 border-principal hover:bg-[#128C7E] uppercase font-black tracking-widest text-sm sm:text-base py-3 px-6 sm:px-8 h-auto rounded-none shadow-[4px_4px_0_var(--color-principal)] hover:-translate-y-1 transition-transform w-full sm:w-auto flex items-center justify-center gap-2">
+                <a href="https://wa.me/555191774826" target="_blank" rel="noopener noreferrer" class="btn bg-[#25D366] text-white border-4 border-principal hover:bg-[#128C7E] uppercase font-black tracking-widest text-sm sm:text-base py-3 px-6 sm:px-8 h-auto rounded-none shadow-[4px_4px_0_var(--color-principal)] hover:-translate-y-1 transition-transform w-full sm:w-auto flex items-center justify-center gap-2">
                     <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
                     Chamar no Zap
                 </a>
