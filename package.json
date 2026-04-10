@@ -9,7 +9,7 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/netlify": "^6.6.5",
+    "@astrojs/netlify": "^7.0.6",
     "@sanity/astro": "^3.3.1",
     "@sanity/client": "^7.17.0",
     "@sanity/image-url": "^2.0.3",
