@@ -15,10 +15,10 @@
 
 /* NEUTRALIZAÇÃO TOTAL DO DAISYUI PARA ESTILO NEO-BRUTALISTA */
 :root, [data-theme] {
-    --rounded-box: 0rem;
-    --rounded-btn: 0rem;
-    --rounded-badge: 0rem;
-    --tab-radius: 0rem;
+    --rounded-box: 0.5rem;
+    --rounded-btn: 0.5rem;
+    --rounded-badge: 0.5rem;
+    --tab-radius: 0.5rem;
 }
 
 body {

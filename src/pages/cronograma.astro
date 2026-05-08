@@ -115,7 +115,7 @@ const themeMap: Record<string, any> = {
 
 		<main class="container mx-auto px-4 py-8 md:py-16 max-w-5xl flex flex-col gap-8 relative z-10">
             <!-- Header Banner -->
-            <section class="bg-destaque border-4 border-principal neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 w-full mb-4">
+            <section class="bg-destaque border-4 border-principal neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 w-full mb-4 rounded-2xl">
                 <div class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white border-4 border-principal rounded-full z-20 flex items-center justify-center text-xl sm:text-2xl neo-shadow group-hover:scale-110 transition-transform">📅</div>
                 <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-heading font-black text-principal uppercase leading-[0.9] tracking-tighter">
                     Cronograma<br/>
@@ -132,7 +132,7 @@ const themeMap: Record<string, any> = {
                 <div class="flex flex-wrap gap-3 sm:gap-4 justify-center mb-12 z-20 relative w-full pt-4">
                     {availableMonths.map(month => (
                         <button 
-                            class={`month-tab btn rounded-none tracking-widest text-xs sm:text-sm h-10 sm:h-12 px-5 sm:px-8 transition-all border-4 border-principal outline-none uppercase font-black cursor-pointer ${month.id === currentMonthId ? 'active bg-destaque text-principal shadow-[4px_4px_0_var(--color-principal)] -translate-y-1' : 'bg-white text-principal hover:bg-destaque/50 hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-principal)]'}`} 
+                            class={`month-tab btn  tracking-widest text-xs sm:text-sm h-10 sm:h-12 px-5 sm:px-8 transition-all border-4 border-principal outline-none uppercase font-black cursor-pointer ${month.id === currentMonthId ? 'active bg-destaque text-principal shadow-[4px_4px_0_var(--color-principal)] -translate-y-1' : 'bg-white text-principal hover:bg-destaque/50 hover:-translate-y-1 hover:shadow-[4px_4px_0_var(--color-principal)]'}`} 
                             data-month={month.id}
                         >
                             {month.name}
@@ -183,7 +183,7 @@ const themeMap: Record<string, any> = {
                                     ) : (
                                         // Card de Mês "Vazio"
                                         <div class="w-full flex flex-col animate-fade-in text-center sm:text-left py-12 px-4 sm:px-0">
-                                            <div class="mx-auto flex flex-col items-center justify-center bg-white border-4 border-principal p-6 sm:p-10 max-w-lg shadow-[8px_8px_0_var(--color-principal)] hover:shadow-[12px_12px_0_var(--color-principal)] transition-all group hover:-translate-y-2">
+                                            <div class="mx-auto flex flex-col items-center justify-center bg-white border-4 border-principal p-6 sm:p-10 max-w-lg shadow-[8px_8px_0_var(--color-principal)] hover:shadow-[12px_12px_0_var(--color-principal)] transition-all group hover:-translate-y-2 rounded-2xl">
                                                 <div class="text-5xl sm:text-7xl mb-4 sm:mb-6 opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:-rotate-3 transition-all cursor-default relative">
                                                     🗓️
                                                     <div class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-destaque border-2 border-principal animate-pulse"></div>
@@ -192,7 +192,7 @@ const themeMap: Record<string, any> = {
                                                 <p class="text-xs sm:text-base font-bold text-slate-400 text-center leading-relaxed">
                                                     O calendário de <strong class="text-slate-500">{month.name}</strong> ainda está sendo planejado pela Estaca. Fique de olho no nosso Instagram para atualizações!
                                                 </p>
-                                                <button class="btn btn-sm mt-6 bg-transparent border-4 border-principal text-principal hover:bg-principal hover:text-white uppercase font-black tracking-widest text-[10px] shadow-[4px_4px_0_var(--color-principal)] rounded-none">Seguir @instituto</button>
+                                                <button class="btn btn-sm mt-6 bg-transparent border-4 border-principal text-principal hover:bg-principal hover:text-white uppercase font-black tracking-widest text-[10px] shadow-[4px_4px_0_var(--color-principal)] ">Seguir @instituto</button>
                                             </div>
                                         </div>
                                     )}

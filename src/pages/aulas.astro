@@ -33,7 +33,7 @@ const activeDayId = validDays.length > 0 ? validDays[0].id : daysOfWeek[0].id;
 
 		<main class="container mx-auto px-4 py-8 md:py-16 max-w-7xl flex flex-col gap-12 sm:gap-16 relative z-10">
             <!-- Header Banner -->
-            <section class="bg-destaque border-4 border-principal neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 max-w-4xl mx-auto mb-4 sm:mb-8 w-full">
+            <section class="bg-destaque border-4 border-principal neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 max-w-4xl mx-auto mb-4 sm:mb-8 w-full rounded-2xl">
                 <div class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white border-4 border-principal rounded-full z-20 flex items-center justify-center text-xl sm:text-2xl neo-shadow group-hover:scale-110 transition-transform">📚</div>
                 <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-heading font-black text-principal uppercase leading-[0.9] tracking-tighter">
                     Aulas<br/>
@@ -48,7 +48,7 @@ const activeDayId = validDays.length > 0 ? validDays[0].id : daysOfWeek[0].id;
             <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6 justify-center animate-slide-up z-20 relative w-full max-w-[340px] sm:max-w-none mx-auto sm:px-2">
                 {daysOfWeek.map(day => (
                     <button 
-                        class={`tab-btn btn hover:border-principal border-4 border-principal rounded-none uppercase font-black tracking-widest sm:tracking-wider text-sm sm:text-base py-0 min-h-0 h-12 sm:h-14 transition-all w-full sm:w-auto sm:px-8 ${
+                        class={`tab-btn btn hover:border-principal border-4 border-principal  uppercase font-black tracking-widest sm:tracking-wider text-sm sm:text-base py-0 min-h-0 h-12 sm:h-14 transition-all w-full sm:w-auto sm:px-8 ${
                             day.id === activeDayId 
                             ? 'bg-destaque hover:bg-destaque text-principal neo-shadow translate-y-0' 
                             : 'bg-white hover:bg-slate-100 text-principal translate-y-1 hover:translate-y-0 hover:neo-shadow'
@@ -85,7 +85,7 @@ const activeDayId = validDays.length > 0 ? validDays[0].id : daysOfWeek[0].id;
                                     />
                                 ))
                             ) : (
-                                <div class="col-span-full py-16 text-center flex flex-col items-center justify-center bg-white border-4 border-principal neo-shadow group hover:-translate-y-2 transition-transform">
+                                <div class="col-span-full py-16 text-center flex flex-col items-center justify-center bg-white border-4 border-principal neo-shadow group hover:-translate-y-2 transition-transform rounded-2xl">
                                     <div class="text-5xl mb-4 grayscale opacity-40 group-hover:grayscale-0 group-hover:opacity-100 transition-all">⏳</div>
                                     <h3 class="text-2xl font-black font-heading text-principal uppercase">Sem Aulas Neste Dia</h3>
                                     <p class="text-slate-500 font-bold mt-2">Nenhuma turma foi alocada para este dia da semana no momento.</p>
