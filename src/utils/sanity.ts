@@ -26,8 +26,12 @@ export const ALL_MONTHS: Mes[] = [
 /** Formata "YYYY-MM-DD" → "22 JUN". Retorna "S/D" se inválido. */
 export function formatEventDate(dateStr: string | undefined): string {
   if (!dateStr) return 'S/D';
-  const [, m, d] = dateStr.split('-');
-  return `${d} ${MONTHS_NAMES_UPPER[parseInt(m) - 1]}`;
+  const parts = dateStr.split('-');
+  if (parts.length < 3) return 'S/D';
+  const [, m, d] = parts;
+  const monthIdx = parseInt(m) - 1;
+  if (isNaN(monthIdx) || monthIdx < 0 || monthIdx > 11 || !d) return 'S/D';
+  return `${d} ${MONTHS_NAMES_UPPER[monthIdx]}`;
 }
 
 /** Enriquece Evento com campos de data formatados. */
