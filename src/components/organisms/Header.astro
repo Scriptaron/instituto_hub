@@ -75,10 +75,9 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
         const toggleBtn = document.getElementById('theme-toggle');
         const sunIcon = document.getElementById('theme-icon-sun');
         const moonIcon = document.getElementById('theme-icon-moon');
-        const html = document.documentElement;
 
-        // Function to update icon visibility
-        const updateIcons = (isDark) => {
+        function updateIcons(isDark) {
+            if (!sunIcon || !moonIcon) return;
             if (isDark) {
                 sunIcon.classList.remove('hidden');
                 moonIcon.classList.add('hidden');
@@ -86,28 +85,31 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
                 sunIcon.classList.add('hidden');
                 moonIcon.classList.remove('hidden');
             }
-        };
+        }
 
-        // Initialize state based on script injected from BaseLayout
-        const isCurrentlyDark = html.classList.contains('dark');
-        updateIcons(isCurrentlyDark);
+        const isCurrentDark = document.documentElement.classList.contains('dark');
+        updateIcons(isCurrentDark);
 
-        toggleBtn.addEventListener('click', () => {
-            const willBeDark = !html.classList.contains('dark');
+        if (toggleBtn) {
+            toggleBtn.replaceWith(toggleBtn.cloneNode(true));
+        }
+
+        const newToggleBtn = document.getElementById('theme-toggle');
+        newToggleBtn?.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            const willBeDark = !isDark;
             
             if (willBeDark) {
-                html.classList.add('dark');
-                html.setAttribute('data-theme', 'dracula'); // Optional DaisyUI trigger
+                document.documentElement.classList.add('dark');
                 localStorage.setItem('theme', 'dark');
             } else {
-                html.classList.remove('dark');
-                html.setAttribute('data-theme', 'lofi');
+                document.documentElement.classList.remove('dark');
                 localStorage.setItem('theme', 'light');
             }
-
             updateIcons(willBeDark);
         });
 
+        // 1. Local Menu Listeners (attached to the elements directly, safe across page loads)
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
 
@@ -117,39 +119,58 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
                 mobileMenu.classList.toggle('hidden');
                 menuBtn.setAttribute('aria-expanded', String(!isOpen));
             });
+
+            // Keyboard support for div role="button"
+            menuBtn.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    menuBtn.click();
+                }
+            });
         }
 
-        // Fechar menu mobile ao rolar a página
-        window.addEventListener('scroll', () => {
-            if (document.activeElement) {
-                document.activeElement.blur();
-            }
-            if (menuBtn && mobileMenu) {
-                mobileMenu.classList.add('hidden');
-                menuBtn.setAttribute('aria-expanded', 'false');
-            }
-        }, { passive: true });
+        // 2. Global Listeners (prevent duplicates via window flag, dynamic DOM lookups)
+        if (!window.__headerGlobalListenersAttached) {
+            window.__headerGlobalListenersAttached = true;
 
-        // Fechar menu ao clicar fora dele (UX Touch)
-        document.addEventListener('touchstart', (e) => {
-            const dropdown = document.querySelector('.dropdown');
-            if (dropdown && !dropdown.contains(e.target)) {
-                if (document.activeElement) document.activeElement.blur();
-                if (menuBtn && mobileMenu) {
-                    mobileMenu.classList.add('hidden');
-                    menuBtn.setAttribute('aria-expanded', 'false');
+            // Fechar menu mobile ao rolar a página
+            window.addEventListener('scroll', () => {
+                const currentMenuBtn = document.getElementById('mobile-menu-btn');
+                const currentMobileMenu = document.getElementById('mobile-menu');
+                if (document.activeElement) {
+                    document.activeElement.blur();
                 }
-            }
-        }, { passive: true });
+                if (currentMenuBtn && currentMobileMenu) {
+                    currentMobileMenu.classList.add('hidden');
+                    currentMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            }, { passive: true });
 
-        // Fechar menu ao pressionar Esc
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && menuBtn && mobileMenu && !mobileMenu.classList.contains('hidden')) {
-                if (document.activeElement) document.activeElement.blur();
-                mobileMenu.classList.add('hidden');
-                menuBtn.setAttribute('aria-expanded', 'false');
-            }
-        });
+            // Fechar menu ao clicar fora (UX Click/Pointer)
+            document.addEventListener('pointerdown', (e) => {
+                const currentMenuBtn = document.getElementById('mobile-menu-btn');
+                const currentMobileMenu = document.getElementById('mobile-menu');
+                const dropdown = document.querySelector('.dropdown');
+                if (dropdown && !dropdown.contains(e.target)) {
+                    if (document.activeElement) document.activeElement.blur();
+                    if (currentMenuBtn && currentMobileMenu) {
+                        currentMobileMenu.classList.add('hidden');
+                        currentMenuBtn.setAttribute('aria-expanded', 'false');
+                    }
+                }
+            }, { passive: true });
+
+            // Fechar menu ao pressionar Esc
+            document.addEventListener('keydown', (e) => {
+                const currentMenuBtn = document.getElementById('mobile-menu-btn');
+                const currentMobileMenu = document.getElementById('mobile-menu');
+                if (e.key === 'Escape' && currentMenuBtn && currentMobileMenu && !currentMobileMenu.classList.contains('hidden')) {
+                    if (document.activeElement) document.activeElement.blur();
+                    currentMobileMenu.classList.add('hidden');
+                    currentMenuBtn.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
     });
 </script>
 
