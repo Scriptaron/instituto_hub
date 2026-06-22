@@ -4,6 +4,8 @@ import TimelineEvent from '../components/molecules/TimelineEvent.astro';
 import { fetchEventos } from '../utils/sanity';
 import { getThemeByIndex } from '../utils/theme';
 import type { EventoFormatado } from '../types/index.ts';
+import HeroBanner from '../components/molecules/HeroBanner.astro';
+import EmptyState from '../components/molecules/EmptyState.astro';
 
 // Configuração de Cache no Edge (Netlify ISR magico)
 Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
@@ -19,16 +21,13 @@ const { eventData, availableMonths, currentMonthId } = await fetchEventos();
 
 		<main class="container mx-auto px-4 py-8 md:py-16 max-w-5xl flex flex-col gap-8 relative z-10">
             <!-- Header Banner -->
-            <section class="bg-destaque border-4 border-principal neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 w-full mb-4 rounded-2xl">
-                <div class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white border-4 border-principal rounded-full z-20 flex items-center justify-center text-xl sm:text-2xl neo-shadow group-hover:scale-110 transition-transform">📅</div>
-                <h1 class="text-[2.5rem] sm:text-5xl md:text-6xl font-heading font-black text-principal uppercase leading-[0.9] tracking-tighter">
-                    Cronograma<br/>
-                    <span class="text-white" style="-webkit-text-stroke: 1.5px var(--color-principal);">Mensal</span>
-                </h1>
-                <p class="mt-4 text-sm sm:text-base md:text-lg font-bold text-principal opacity-80">
-                    Acompanhe todos os eventos, atividades e devocionais semestre a semestre.
-                </p>
-            </section>
+            <HeroBanner
+              emoji="📅"
+              titleLine1="Cronograma"
+              titleLine2="Mensal"
+              subtitle="Acompanhe todos os eventos, atividades e devocionais semestre a semestre."
+              class="mb-4"
+            />
 
             <div class="animate-slide-up delay-100 z-10 w-full mb-16 px-0 sm:px-4">
                 
@@ -84,19 +83,13 @@ const { eventData, availableMonths, currentMonthId } = await fetchEventos();
                                         })
                                     ) : (
                                         // Card de Mês "Vazio"
-                                        <div class="w-full flex flex-col animate-fade-in text-center sm:text-left py-12 px-4 sm:px-0">
-                                            <div class="mx-auto flex flex-col items-center justify-center bg-white border-4 border-principal p-6 sm:p-10 max-w-lg shadow-[8px_8px_0_var(--color-principal)] hover:shadow-[12px_12px_0_var(--color-principal)] transition-all group hover:-translate-y-2 rounded-2xl">
-                                                <div class="text-5xl sm:text-7xl mb-4 sm:mb-6 opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 group-hover:-rotate-3 transition-all cursor-default relative">
-                                                    🗓️
-                                                    <div class="absolute -top-2 -right-2 w-4 h-4 rounded-full bg-destaque border-2 border-principal animate-pulse"></div>
-                                                </div>
-                                                <h3 class="text-xl sm:text-3xl font-black font-heading text-slate-400 group-hover:text-principal transition-colors uppercase leading-[1.1] mb-3 text-center">Aguardando Eventos</h3>
-                                                <p class="text-xs sm:text-base font-bold text-slate-400 text-center leading-relaxed">
-                                                    O calendário de <strong class="text-slate-500">{month.name}</strong> ainda está sendo planejado pela Estaca. Fique de olho no nosso Instagram para atualizações!
-                                                </p>
-                                                <button class="btn btn-sm mt-6 bg-transparent border-4 border-principal text-principal hover:bg-principal hover:text-white uppercase font-black tracking-widest text-[10px] shadow-[4px_4px_0_var(--color-principal)] ">Seguir @instituto</button>
-                                            </div>
-                                        </div>
+                                        <EmptyState
+                                          emoji="🗓️"
+                                          title="Aguardando Eventos"
+                                          description={`O calendário de ${month.name} ainda está sendo planejado pela Estaca. Fique de olho no nosso Instagram para atualizações!`}
+                                          actionLabel="Seguir @instituto"
+                                          actionHref="https://www.instagram.com/institutopoa/"
+                                        />
                                     )}
 
                                 </div>
