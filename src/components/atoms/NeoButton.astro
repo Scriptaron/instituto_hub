@@ -1,5 +1,7 @@
 ---
 // src/components/atoms/NeoButton.astro
+import { cn } from '../../utils/cn';
+
 export interface Props {
   href?: string;
   variant?: 'primary' | 'secondary' | 'whatsapp' | 'zoom' | 'ghost';
@@ -39,7 +41,7 @@ const variantClasses = {
 };
 
 const base = 'btn inline-flex items-center justify-center gap-2 font-black font-heading uppercase tracking-widest hover:-translate-y-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal';
-const finalClass = [base, sizeClasses[size], variantClasses[variant], extraClass].join(' ');
+const finalClass = cn(base, sizeClasses[size], variantClasses[variant], extraClass);
 ---
 
 {href ? (

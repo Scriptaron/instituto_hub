@@ -1,5 +1,7 @@
 ---
 // src/components/atoms/NeoTag.astro
+import { cn } from '../../utils/cn';
+
 export interface Props {
   variant?: 'principal' | 'destaque' | 'white' | 'dark';
   rotate?: string;
@@ -17,10 +19,10 @@ const variantClasses = {
 };
 
 const sizeClasses = { xs: 'text-[10px] px-2 py-0.5', sm: 'text-xs px-3 py-1' };
-const finalClass = [
+const finalClass = cn(
   'inline-block font-black font-heading uppercase tracking-widest border-2',
   sizeClasses[size], variantClasses[variant], rotate, extraClass
-].join(' ');
+);
 ---
 
 <span class={finalClass}><slot /></span>
