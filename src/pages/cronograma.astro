@@ -3,6 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineEvent from '../components/molecules/TimelineEvent.astro';
 import { fetchEventos } from '../utils/sanity';
 import { getThemeByIndex } from '../utils/theme';
+import type { EventoFormatado } from '../types/index.ts';
 
 // Configuração de Cache no Edge (Netlify ISR magico)
 Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
@@ -62,7 +63,7 @@ const { eventData, availableMonths, currentMonthId } = await fetchEventos();
                                     
                                     {hasEvents ? (
                                         // Renderiza os Eventos gerenciando automaticamente o Tema e o Alinhamento (esq/dir) para o usuário
-                                        monthEvents.map((evt: any, index: number) => {
+                                        monthEvents.map((evt: EventoFormatado, index: number) => {
                                             const autoAlign = index % 2 === 0 ? 'right' : 'left';
                                             const themeProps = getThemeByIndex(index);
                                             
