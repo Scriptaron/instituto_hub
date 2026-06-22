@@ -127,7 +127,7 @@ Tag compacta com contorno e design característico do estilo de cartaz.
 
 | Prop | Tipo | Padrão | Descrição |
 |---|---|---|---|
-| `variant` | `'principal' \| 'destaque' \| 'white' \| 'dark'` | `'destaque'` | Variante de col para o fundo e contorno. |
+| `variant` | `'principal' \| 'destaque' \| 'white' \| 'dark'` | `'destaque'` | Variante de cor para o fundo e contorno. |
 | `size` | `'xs' \| 'sm'` | `'sm'` | Define o tamanho do texto e padding. |
 | `rotate` | `string` | `""` | Classe de rotação Tailwind (ex: `rotate-3` ou `-rotate-3`). |
 | `class` | `string` | `""` | Classes CSS extras. |
