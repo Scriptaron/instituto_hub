@@ -16,11 +16,11 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
 <div class="navbar header-bg border-b-4 border-principal sticky top-0 z-50 animate-slide-up px-4 md:px-8">
     <div class="navbar-start">
         <div class="dropdown">
-            <div tabindex="0" role="button" aria-label="Abrir Menu Principal" aria-expanded="false" class="btn btn-ghost lg:hidden p-2 text-principal">
+            <div id="mobile-menu-btn" tabindex="0" role="button" aria-label="Abrir Menu Principal" aria-expanded="false" class="btn btn-ghost lg:hidden p-2 text-principal">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
             </div>
             <!-- Improved Mobile Menu UX -->
-            <ul tabindex="0" class="menu dropdown-content mt-4 z-[1] bg-white border-2 border-principal  w-[85vw] max-w-[320px] neo-shadow text-principal font-bold font-heading uppercase text-xl p-2 gap-2">
+            <ul id="mobile-menu" tabindex="0" class="menu dropdown-content hidden mt-4 z-[1] bg-white border-2 border-principal  w-[85vw] max-w-[320px] neo-shadow text-principal font-bold font-heading uppercase text-xl p-2 gap-2">
                 <li><a href="/" class={`py-4 px-6  border-2 border-transparent ${isActive('/') ? 'bg-destaque border-principal font-black' : 'hover:bg-slate-100 hover:border-principal'}`}>Home</a></li>
                 <li><a href="/aulas" class={`py-4 px-6  border-2 border-transparent ${isActive('/aulas') ? 'bg-destaque border-principal font-black' : 'hover:bg-slate-100 hover:border-principal'}`}>Aulas</a></li>
                 <li><a href="/cronograma" class={`py-4 px-6  border-2 border-transparent ${isActive('/cronograma') ? 'bg-destaque border-principal font-black' : 'hover:bg-slate-100 hover:border-principal'}`}>Cronograma</a></li>
@@ -108,10 +108,25 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
             updateIcons(willBeDark);
         });
 
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        if (menuBtn && mobileMenu) {
+            menuBtn.addEventListener('click', () => {
+                const isOpen = !mobileMenu.classList.contains('hidden');
+                mobileMenu.classList.toggle('hidden');
+                menuBtn.setAttribute('aria-expanded', String(!isOpen));
+            });
+        }
+
         // Fechar menu mobile ao rolar a página
         window.addEventListener('scroll', () => {
             if (document.activeElement) {
                 document.activeElement.blur();
+            }
+            if (menuBtn && mobileMenu) {
+                mobileMenu.classList.add('hidden');
+                menuBtn.setAttribute('aria-expanded', 'false');
             }
         }, { passive: true });
 
@@ -120,8 +135,21 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
             const dropdown = document.querySelector('.dropdown');
             if (dropdown && !dropdown.contains(e.target)) {
                 if (document.activeElement) document.activeElement.blur();
+                if (menuBtn && mobileMenu) {
+                    mobileMenu.classList.add('hidden');
+                    menuBtn.setAttribute('aria-expanded', 'false');
+                }
             }
         }, { passive: true });
+
+        // Fechar menu ao pressionar Esc
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && menuBtn && mobileMenu && !mobileMenu.classList.contains('hidden')) {
+                if (document.activeElement) document.activeElement.blur();
+                mobileMenu.classList.add('hidden');
+                menuBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
     });
 </script>
 
