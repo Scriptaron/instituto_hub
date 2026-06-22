@@ -1,6 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
 
+/* Configura o dark: do Tailwind para usar a classe .dark (não prefers-color-scheme) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+
 @plugin "daisyui";
 
 @theme {
@@ -8,6 +12,12 @@
     --color-destaque: #d9ff7f;
     --color-background: #f2f2f2;
     --color-foreground: #2d2d2d;
+
+    /* Cores de marca de terceiros — usadas apenas em botões de CTA externos */
+    --color-whatsapp: #25D366;
+    --color-whatsapp-hover: #128C7E;
+    --color-zoom: #2D8CFF;
+    --color-zoom-hover: #0B5CFF;
 
     --font-heading: 'Bricolage Grotesque', sans-serif;
     --font-body: 'DM Sans', sans-serif;

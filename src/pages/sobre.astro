@@ -1,5 +1,14 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import FAQ from '../components/organisms/FAQ.astro';
+import { Image } from 'astro:assets';
+import imgProposito from '../assets/img_proposito.jpg';
+import dirMarco from '../assets/diretor-marco.jpg';
+import dirJair from '../assets/diretor-jair.jpg';
+import dirRobson from '../assets/diretor-robson.jpg';
+import dirGeraldo from '../assets/diretor-geraldo.jpg';
+import dirHeberto from '../assets/diretor-heberto.jpg';
+import dirEverton from '../assets/diretor-everton.jpg';
 
 export const prerender = true;
 ---
@@ -22,7 +31,7 @@ export const prerender = true;
                         Nossa<br/>
                         <span class="text-destaque" style="-webkit-text-stroke: 1px var(--color-principal);">História</span>
                     </h1>
-                    <p class="text-base sm:text-lg font-bold border-l-4 border-destaque pl-4 leading-relaxed opacity-90">
+                    <p class="text-base sm:text-lg font-bold leading-relaxed opacity-80">
                         Conheça o Instituto de Religião de Porto Alegre e descubra por que milhares de jovens adultos se reúnem aqui.
                     </p>
                 </div>
@@ -48,11 +57,11 @@ export const prerender = true;
                                 <div class="bg-white p-2 pb-14 transform rotate-1 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
                                     <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-yellow-100 opacity-90 z-10 pointer-events-none"></div>
                                     <div class="w-full aspect-[4/5] overflow-hidden bg-destaque mb-2">
-                                        <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=300&auto=format&fit=crop" alt="Diretor" class="w-full h-full object-cover grayscale-[0.3] " />
+                                        <Image src={dirMarco} alt="Marco Antônio Rais" class="w-full h-full object-cover object-top grayscale-[0.3] " />
                                     </div>
                                     <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
-                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Sérgio O.</p>
-                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2010 - 2015</span>
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Marco Rais</p>
+                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">1995 - 2002</span>
                                     </div>
                                 </div>
                             </div>
@@ -60,12 +69,12 @@ export const prerender = true;
                             <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
                                 <div class="bg-white p-2 pb-14 transform -rotate-1 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
                                     <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-pink-100 opacity-90 z-10 pointer-events-none"></div>
-                                    <div class="w-full aspect-[4/5] overflow-hidden bg-[#25D366] mb-2">
-                                        <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=300&auto=format&fit=crop" alt="Diretora" class="w-full h-full object-cover grayscale-[0.3] " />
+                                    <div class="w-full aspect-[4/5] overflow-hidden bg-destaque mb-2">
+                                        <Image src={dirJair} alt="Jair Chagas Brollo" class="w-full h-full object-cover object-top grayscale-[0.3] " />
                                     </div>
                                     <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
-                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Maria E.</p>
-                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2015 - 2020</span>
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Jair Brollo</p>
+                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2002 - 2004</span>
                                     </div>
                                 </div>
                             </div>
@@ -74,10 +83,49 @@ export const prerender = true;
                                 <div class="bg-white p-2 pb-14 transform rotate-2 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
                                     <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-blue-100 opacity-90 z-10 pointer-events-none"></div>
                                     <div class="w-full aspect-[4/5] overflow-hidden bg-principal mb-2">
-                                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300&auto=format&fit=crop" alt="Diretor" class="w-full h-full object-cover grayscale-[0.3] " />
+                                        <Image src={dirRobson} alt="Robson Marcanch Medeiros" class="w-full h-full object-cover object-[30%_top] grayscale-[0.3] " />
                                     </div>
                                     <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
-                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Carlos M.</p>
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1" title="Robson Marcanch Medeiros">Robson Medeiros</p>
+                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2005 - 2012</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 4 -->
+                            <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
+                                <div class="bg-white p-2 pb-14 transform -rotate-2 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
+                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-yellow-100 opacity-90 z-10 pointer-events-none"></div>
+                                    <div class="w-full aspect-[4/5] overflow-hidden bg-destaque mb-2">
+                                        <Image src={dirGeraldo} alt="Geraldo Oliveira" class="w-full h-full object-cover object-top grayscale-[0.3] " />
+                                    </div>
+                                    <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Geraldo Oliveira</p>
+                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2012 - 2014</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 5 -->
+                            <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
+                                <div class="bg-white p-2 pb-14 transform rotate-1 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
+                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-pink-100 opacity-90 z-10 pointer-events-none"></div>
+                                    <div class="w-full aspect-[4/5] overflow-hidden bg-destaque mb-2">
+                                        <Image src={dirHeberto} alt="Herberto Morôni Klein" class="w-full h-full object-cover object-top grayscale-[0.3] " />
+                                    </div>
+                                    <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Herberto Klein</p>
+                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2018 - 2019</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Slide 6 -->
+                            <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
+                                <div class="bg-white p-2 pb-14 transform rotate-2 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
+                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-blue-100 opacity-90 z-10 pointer-events-none"></div>
+                                    <div class="w-full aspect-[4/5] overflow-hidden bg-principal mb-2">
+                                        <Image src={dirEverton} alt="Everton Freitas" class="w-full h-full object-cover object-top grayscale-[0.3] " />
+                                    </div>
+                                    <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Everton Freitas</p>
                                         <span class="bg-destaque text-principal px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2020 - Atual</span>
                                     </div>
                                 </div>
@@ -91,7 +139,7 @@ export const prerender = true;
                     </div>
 
                     <script>
-                        document.addEventListener('DOMContentLoaded', () => {
+                        document.addEventListener('astro:page-load', () => {
                             const carousel = document.getElementById('carousel-diretores');
                             const btnPrev = document.getElementById('btn-prev-diretor');
                             const btnNext = document.getElementById('btn-next-diretor');
@@ -144,8 +192,8 @@ export const prerender = true;
             </div>
             
             <!-- Right Card (Image) -->
-            <div class="bg-destaque border-4 border-principal neo-shadow overflow-hidden transform rotate-1 hover:-rotate-1 transition-transform h-[300px] sm:h-[400px] lg:h-auto group rounded-2xl">
-                <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1000&auto=format&fit=crop" alt="Grupo de jovens no instituto reunidos e sorrindo" class="w-full h-full object-cover grayscale-[0.3] contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 " />
+            <div class="bg-destaque border-4 border-principal neo-shadow overflow-hidden transform rotate-1 hover:-rotate-1 transition-transform relative h-[300px] sm:h-[400px] lg:h-full lg:min-h-[400px] group rounded-2xl">
+                <Image src={imgProposito} alt="Grupo de jovens no instituto reunidos e sorrindo" class="absolute inset-0 w-full h-full object-cover grayscale-[0.3] contrast-125 group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500 " />
             </div>
         </section>
 
@@ -184,7 +232,7 @@ export const prerender = true;
                 <!-- Highlight 2 -->
                 <div class="bg-white border-4 border-principal neo-shadow p-6 group hover:-translate-y-2 transition-transform rounded-2xl">
                     <div class="text-5xl sm:text-6xl mb-4 group-hover:scale-110 transition-transform origin-left">🎓</div>
-                    <h3 class="text-2xl font-black text-principal uppercase mb-3 bg-[#25D366] text-white inline-block px-2 group-hover:text-[#25D366] group-hover:bg-principal transition-colors">Professores Inspirados</h3>
+                    <h3 class="text-2xl font-black text-foreground uppercase mb-3 bg-destaque inline-block px-2 group-hover:text-white group-hover:bg-principal transition-colors">Professores Inspirados</h3>
                     <p class="text-slate-600 font-bold leading-snug">
                         Nosso corpo docente é composto por servidores e voluntários incrivelmente preparados para tirar suas dúvidas difíceis e debater o evangelho hoje.
                     </p>
@@ -228,7 +276,7 @@ export const prerender = true;
                         <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?q=80&w=800&auto=format&fit=crop" alt="Salas Climatizadas" class="absolute inset-0 w-full h-full object-cover grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
                         <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
                         <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="bg-[#25D366] text-white px-3 py-1.5 text-sm font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Salas de Aula</span>
+                            <span class="bg-principal text-white px-3 py-1.5 text-sm font-black uppercase tracking-widest border-2 border-white shadow-[2px_2px_0_0_black]">Salas de Aula</span>
                         </div>
                     </div>
 
@@ -258,116 +306,7 @@ export const prerender = true;
         </section>
 
         <!-- FAQ Section -->
-        <section class="max-w-4xl mx-auto w-full animate-slide-up delay-400 mt-8 mb-12">
-            <h2 class="text-3xl sm:text-5xl font-heading font-black text-principal uppercase leading-[1] mb-8 text-center sm:text-left border-b-4 border-destaque inline-block pb-2 w-full sm:w-auto">
-                Perguntas<br/>Frequentes
-            </h2>
-            
-            <div class="flex flex-col gap-4">
-                <!-- FAQ Item 1 -->
-                <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl">
-                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase">
-                        <span>Preciso ser membro da igreja para participar?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
-                        <p><strong>De jeito nenhum!</strong> Todos os jovens adultos, de todas as crenças e origens, são extremamente bem-vindos para frequentar nossas aulas semanais, usar as salas de jogos e participar dos nossos eventos e festas.</p>
-                    </div>
-                </details>
-
-                <!-- FAQ Item 2 -->
-                <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl">
-                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase">
-                        <span>As aulas têm algum custo?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
-                        <p><strong>Não. Zero. Niente.</strong> Todas as classes de Instituto, materiais curriculares de estudo e acesso às dependências do prédio são <span class="bg-destaque px-1">100% gratuitos</span>.</p>
-                    </div>
-                </details>
-
-                <!-- FAQ Item 3 -->
-                <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl">
-                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase">
-                        <span>Como eu me inscrevo em uma turma?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
-                        <p>É super fácil. Acesse o menu <strong>Aulas</strong> aqui mesmo no site, navegue pelas turmas disponíveis nesta semana e, ao chegar lá, fale com qualquer pessoa na secretaria do prédio que eles farão sua matrícula na hora usando o portal do aluno <em>(MyInstitute)</em>.</p>
-                    </div>
-                </details>
-                
-                <!-- FAQ Item 4 -->
-                <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl">
-                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase">
-                        <span>Qual o horário de funcionamento do prédio?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
-                        <p>O prédio do Instituto Hub normalmente abre de terca a sábado a partir da tarde/noite, durante o horário vigente das aulas (veja a grade). Contudo, nas sextas também realizamos diversas festas estendidas.</p>
-                    </div>
-                </details>
-
-                <!-- FAQ Item 5 -->
-                <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl">
-                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase">
-                        <span>Qual é o propósito do Instituto?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
-                        <p>O Instituto de Religião é um programa oficial da Igreja focado na educação religiosa de jovens adultos (de 18 a 30 anos). O grande propósito é proporcionar um ambiente seguro para que você fortaleça seu compromisso com Jesus Cristo por meio de um estudo aprofundado das escrituras e das palavras dos profetas modernos. É o lugar perfeito para encontrar respostas e fazer grandes amigos.</p>
-                        <a href="https://www.churchofjesuschrist.org/study/manual/objective-of-seminaries-and-institutes-2022/objective?lang=por" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-xs tracking-widest uppercase font-black px-4 py-2 bg-principal text-white hover:bg-destaque hover:text-principal border-2 border-principal neo-shadow-sm transition-colors w-max">
-                            Ler mais no site oficial
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                        </a>
-                    </div>
-                </details>
-
-                <!-- FAQ Item 6 -->
-                <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl">
-                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase">
-                        <span>Como funciona a Formatura do Instituto?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
-                        <p>Sim, você se forma de verdade! Para receber o diploma de Formatura do Instituto, você precisa concluir cursos específicos, cumprir a frequência mínima de 75% e fazer as leituras de elevação do aprendizado. Antes da formatura, acontece uma rápida conversa com o Bispo local (Endosso Eclesiástico). Membros e amigos da Igreja podem se formar e receber os certificados!</p>
-                        <a href="https://www.churchofjesuschrist.org/si/institute/institute-graduation-requirements?lang=por" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-xs tracking-widest uppercase font-black px-4 py-2 bg-principal text-white hover:bg-destaque hover:text-principal border-2 border-principal neo-shadow-sm transition-colors w-max">
-                            Certificados e Graduação
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                        </a>
-                    </div>
-                </details>
-
-                <!-- FAQ Item 7 -->
-                <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl">
-                    <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase">
-                        <span>Posso transferir créditos do Instituto para a BYU?</span>
-                        <span class="transition group-open:rotate-180">
-                            <svg fill="none" height="24" shape-rendering="geometricPrecision" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
-                        </span>
-                    </summary>
-                    <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
-                        <p>Com certeza. Vários de nossos cursos (especialmente a grade de cursos "Fundamentais") geram <span class="bg-destaque px-1 text-principal">créditos acadêmicos reais</span>. Se você for aprovado nesses cursos, esses créditos podem ser transferidos e eliminar disciplinas obrigatórias de religião caso você vá estudar na BYU (Brigham Young University), BYU-Idaho, BYU-Hawaii ou na Ensign College no futuro.</p>
-                        <a href="https://www.churchofjesuschrist.org/si/institute/institute-graduation-requirements?lang=por" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-xs tracking-widest uppercase font-black px-4 py-2 bg-principal text-white hover:bg-destaque hover:text-principal border-2 border-principal neo-shadow-sm transition-colors w-max">
-                            Normas de Transferência
-                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                        </a>
-                    </div>
-                </details>
-            </div>
-        </section>
+        <FAQ />
 
         <!-- CTA Final com FAQ ou Contato -->
         <section class="bg-destaque border-4 border-principal neo-shadow p-8 sm:p-12 lg:p-16 flex flex-col md:flex-row items-center justify-between gap-8 animate-slide-up delay-300 rounded-2xl">

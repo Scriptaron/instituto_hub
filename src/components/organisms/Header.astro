@@ -71,7 +71,7 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
 </div>
 
 <script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
+    document.addEventListener('astro:page-load', () => {
         const toggleBtn = document.getElementById('theme-toggle');
         const sunIcon = document.getElementById('theme-icon-sun');
         const moonIcon = document.getElementById('theme-icon-moon');

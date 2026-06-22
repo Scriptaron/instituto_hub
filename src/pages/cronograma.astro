@@ -1,57 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineEvent from '../components/molecules/TimelineEvent.astro';
-import { sanityClient } from 'sanity:client';
+import { fetchEventos } from '../utils/sanity';
 
 // Configuração de Cache no Edge (Netlify ISR magico)
 Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
 Astro.response.headers.set('Netlify-CDN-Cache-Control', 'public, s-maxage=60, stale-while-revalidate=31536000');
 
-// Busca os eventos no Sanity, ordenados rigorosamente pela nova Data Real
-const rawEvents = await sanityClient.fetch(`*[_type == "evento"] | order(eventDate asc)`);
-
-// Automatiza todos os dados temporais do evento, antes exigidos no painel, a partir de apenas eventDate
-const monthsAbbr = ['jan', 'fev', 'mar', 'abr', 'mai', 'jun', 'jul', 'ago', 'set', 'out', 'nov', 'dez'];
-const monthsNamesUpper = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-const daysOfWeekBr = ['DOM', 'SEG', 'TER', 'QUA', 'QUI', 'SEX', 'SÁB'];
-
-const eventData = rawEvents.map((evt: any) => {
-    if (!evt.eventDate) return { ...evt, monthId: 'jan', dateMain: '00 S/D', dateSub: 'S/D' };
-    
-    const d = new Date(evt.eventDate + 'T12:00:00'); // Força 12h para evitar fuso bug de virar o dia
-    
-    return {
-        ...evt,
-        monthId: monthsAbbr[d.getMonth()],
-        dateMain: `${d.getDate().toString().padStart(2, '0')} ${monthsNamesUpper[d.getMonth()]}`,
-        dateSub: daysOfWeekBr[d.getDay()]
-    };
-});
-
-// Obtém o mês atual (0 = Janeiro, 1 = Fevereiro, ..., 11 = Dezembro)
-const currentMonthIndex = new Date().getMonth();
-
-// Mapeamento de todos os meses do ano com seus dados
-const allMonthsData = [
-    { id: 'jan', name: 'Janeiro' },
-    { id: 'fev', name: 'Fevereiro' },
-    { id: 'mar', name: 'Março' },
-    { id: 'abr', name: 'Abril' },
-    { id: 'mai', name: 'Maio' },
-    { id: 'jun', name: 'Junho' },
-    { id: 'jul', name: 'Julho' },
-    { id: 'ago', name: 'Agosto' },
-    { id: 'set', name: 'Setembro' },
-    { id: 'out', name: 'Outubro' },
-    { id: 'nov', name: 'Novembro' },
-    { id: 'dez', name: 'Dezembro' }
-];
-
-// Filtra a lista para manter apenas o mês atual e os próximos até Dezembro
-const availableMonths = allMonthsData.slice(currentMonthIndex);
-
-// Identifica qual é o mês atual pelas propriedades para deixar a aba 'active' por padrão
-const currentMonthId = allMonthsData[currentMonthIndex].id;
+const { eventData, availableMonths, currentMonthId } = await fetchEventos();
 
 // Dicionário de Cores para converter os Padrões do Sanity nos visuais ricos do Tailwind (Neo-Brutalismo)
 const themeMap: Record<string, any> = {
@@ -61,7 +17,7 @@ const themeMap: Record<string, any> = {
         cardBgClass: 'bg-white',
         cardShadowClass: 'shadow-[6px_6px_0_var(--color-principal)]',
         connectorBorderClass: 'border-destaque',
-        tagClass: 'bg-[#25D366] text-white shadow-[2px_2px_0_var(--color-principal)]',
+        tagClass: 'bg-destaque text-foreground shadow-[2px_2px_0_var(--color-principal)]',
         titleClass: 'text-principal group-hover:text-destaque',
         buttonClass: 'bg-principal text-white hover:bg-destaque hover:text-principal shadow-[4px_4px_0_var(--color-destaque)]'
     },
@@ -76,14 +32,14 @@ const themeMap: Record<string, any> = {
         buttonClass: 'bg-white text-principal hover:bg-principal hover:text-white shadow-[4px_4px_0_var(--color-principal)]'
     },
     green: {
-        dotColorClass: 'bg-[#25D366]',
+        dotColorClass: 'bg-destaque',
         dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
         cardBgClass: 'bg-white',
-        cardShadowClass: 'shadow-[6px_6px_0_#25D366]',
-        connectorBorderClass: 'border-[#25D366]',
-        tagClass: 'bg-[#25D366] text-white shadow-[2px_2px_0_var(--color-principal)]',
-        titleClass: 'text-principal group-hover:text-[#25D366]',
-        buttonClass: 'bg-white text-[#25D366] border-[#25D366] hover:bg-[#25D366] hover:text-white shadow-[4px_4px_0_var(--color-principal)]'
+        cardShadowClass: 'shadow-[6px_6px_0_var(--color-destaque)]',
+        connectorBorderClass: 'border-destaque',
+        tagClass: 'bg-destaque text-foreground shadow-[2px_2px_0_var(--color-principal)]',
+        titleClass: 'text-principal group-hover:text-destaque',
+        buttonClass: 'bg-white text-principal border-destaque hover:bg-destaque hover:text-foreground shadow-[4px_4px_0_var(--color-principal)]'
     },
     dark: {
         dotColorClass: 'bg-slate-800',
@@ -121,7 +77,7 @@ const themeMap: Record<string, any> = {
                     Cronograma<br/>
                     <span class="text-white" style="-webkit-text-stroke: 1.5px var(--color-principal);">Mensal</span>
                 </h1>
-                <p class="mt-4 text-sm sm:text-base md:text-lg font-bold text-principal border-l-4 border-principal pl-3 sm:pl-4">
+                <p class="mt-4 text-sm sm:text-base md:text-lg font-bold text-principal opacity-80">
                     Acompanhe todos os eventos, atividades e devocionais semestre a semestre.
                 </p>
             </section>
@@ -208,7 +164,7 @@ const themeMap: Record<string, any> = {
 
 
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('astro:page-load', () => {
                 const tabs = document.querySelectorAll('.month-tab');
                 const contents = document.querySelectorAll('.month-content');
 
