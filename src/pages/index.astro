@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sanityClient } from 'sanity:client';
+import { formatEventDate } from '../utils/sanity';
 import TestimonialCarousel from '../components/organisms/TestimonialCarousel.astro';
 import { Image } from 'astro:assets';
 import imgHero from '../assets/img_herosection.jpg';
@@ -23,12 +24,7 @@ const proximosEventos = await sanityClient.fetch(
   { today }
 );
 
-function formatEventDate(dateStr: string) {
-  if (!dateStr) return "S/D";
-  const [y, m, d] = dateStr.split('-');
-  const months = ['JAN', 'FEV', 'MAR', 'ABR', 'MAI', 'JUN', 'JUL', 'AGO', 'SET', 'OUT', 'NOV', 'DEZ'];
-  return `${d} ${months[parseInt(m) - 1]}`;
-}
+
 ---
 
 <BaseLayout title="Instituto Hub - Porto Alegre" overflowHidden={false}>

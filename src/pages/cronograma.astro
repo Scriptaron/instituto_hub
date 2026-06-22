@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TimelineEvent from '../components/molecules/TimelineEvent.astro';
 import { fetchEventos } from '../utils/sanity';
+import { getThemeByIndex } from '../utils/theme';
 
 // Configuração de Cache no Edge (Netlify ISR magico)
 Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
@@ -10,61 +11,7 @@ Astro.response.headers.set('Netlify-CDN-Cache-Control', 'public, s-maxage=60, st
 const { eventData, availableMonths, currentMonthId } = await fetchEventos();
 
 // Dicionário de Cores para converter os Padrões do Sanity nos visuais ricos do Tailwind (Neo-Brutalismo)
-const themeMap: Record<string, any> = {
-    yellow: {
-        dotColorClass: 'bg-destaque',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
-        cardBgClass: 'bg-white',
-        cardShadowClass: 'shadow-[6px_6px_0_var(--color-principal)]',
-        connectorBorderClass: 'border-destaque',
-        tagClass: 'bg-destaque text-foreground shadow-[2px_2px_0_var(--color-principal)]',
-        titleClass: 'text-principal group-hover:text-destaque',
-        buttonClass: 'bg-principal text-white hover:bg-destaque hover:text-principal shadow-[4px_4px_0_var(--color-destaque)]'
-    },
-    blue: {
-        dotColorClass: 'bg-principal',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-destaque)]',
-        cardBgClass: 'bg-white',
-        cardShadowClass: 'shadow-[6px_6px_0_var(--color-principal)]',
-        connectorBorderClass: 'border-principal',
-        tagClass: 'bg-principal text-white shadow-[2px_2px_0_var(--color-destaque)]',
-        titleClass: 'text-principal group-hover:text-destaque',
-        buttonClass: 'bg-white text-principal hover:bg-principal hover:text-white shadow-[4px_4px_0_var(--color-principal)]'
-    },
-    green: {
-        dotColorClass: 'bg-destaque',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
-        cardBgClass: 'bg-white',
-        cardShadowClass: 'shadow-[6px_6px_0_var(--color-destaque)]',
-        connectorBorderClass: 'border-destaque',
-        tagClass: 'bg-destaque text-foreground shadow-[2px_2px_0_var(--color-principal)]',
-        titleClass: 'text-principal group-hover:text-destaque',
-        buttonClass: 'bg-white text-principal border-destaque hover:bg-destaque hover:text-foreground shadow-[4px_4px_0_var(--color-principal)]'
-    },
-    dark: {
-        dotColorClass: 'bg-slate-800',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
-        cardBgClass: 'bg-slate-800',
-        cardShadowClass: 'shadow-[6px_6px_0_var(--color-destaque)]',
-        cardExtraClass: 'border-slate-800', // Override azul padrão da borda
-        connectorBorderClass: 'border-slate-800',
-        tagClass: 'bg-white text-slate-800 shadow-[2px_2px_0_var(--color-destaque)]',
-        titleClass: 'text-white group-hover:text-destaque',
-        detailsClass: 'text-slate-300',
-        detailsIconSvg: '<svg class="text-destaque shrink-0" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>',
-        buttonClass: 'bg-destaque text-principal hover:bg-white shadow-[4px_4px_0_#FFF] border-destaque'
-    },
-    gray: {
-        dotColorClass: 'bg-slate-400',
-        dotShadowClass: 'shadow-[4px_4px_0_var(--color-principal)]',
-        cardBgClass: 'bg-slate-100',
-        cardExtraClass: 'grayscale opacity-80 hover:grayscale-0 hover:opacity-100',
-        connectorBorderClass: 'border-slate-400',
-        tagClass: 'bg-slate-400 text-white shadow-[2px_2px_0_var(--color-principal)]',
-        titleClass: 'text-principal',
-        buttonClass: 'bg-white text-principal shadow-[4px_4px_0_var(--color-principal)]'
-    }
-}
+
 ---
 
 <BaseLayout title="Cronograma - Instituto Hub">
@@ -116,10 +63,8 @@ const themeMap: Record<string, any> = {
                                     {hasEvents ? (
                                         // Renderiza os Eventos gerenciando automaticamente o Tema e o Alinhamento (esq/dir) para o usuário
                                         monthEvents.map((evt: any, index: number) => {
-                                            const themeKeys = ['yellow', 'blue', 'green', 'dark'];
-                                            const autoTheme = themeKeys[index % themeKeys.length];
                                             const autoAlign = index % 2 === 0 ? 'right' : 'left';
-                                            const themeProps = themeMap[autoTheme];
+                                            const themeProps = getThemeByIndex(index);
                                             
                                             return (
                                                 <TimelineEvent 
