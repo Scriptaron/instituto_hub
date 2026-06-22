@@ -1,0 +1,53 @@
+---
+// src/components/atoms/NeoButton.astro
+export interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'whatsapp' | 'zoom' | 'ghost';
+  size?: 'sm' | 'md' | 'lg';
+  class?: string;
+  target?: string;
+  rel?: string;
+  type?: 'button' | 'submit' | 'reset';
+  disabled?: boolean;
+  'aria-label'?: string;
+}
+
+const {
+  href,
+  variant = 'primary',
+  size = 'md',
+  class: extraClass = '',
+  target,
+  rel,
+  type = 'button',
+  disabled = false,
+  'aria-label': ariaLabel,
+} = Astro.props;
+
+const sizeClasses = {
+  sm: 'text-xs px-4 min-h-0 h-9',
+  md: 'text-xs sm:text-sm px-6 min-h-0 h-11',
+  lg: 'text-sm sm:text-base px-8 min-h-0 h-13',
+};
+
+const variantClasses = {
+  primary:   'bg-principal text-white border-4 border-principal hover:bg-principal neo-shadow',
+  secondary: 'bg-white text-principal border-4 border-principal hover:bg-slate-50 neo-shadow',
+  whatsapp:  'bg-[#25D366] hover:bg-[#128C7E] text-white dark:text-foreground border-4 border-principal neo-shadow',
+  zoom:      'bg-[#2D8CFF] hover:bg-[#0B5CFF] text-white dark:text-foreground border-4 border-principal neo-shadow',
+  ghost:     'bg-transparent text-principal border-4 border-principal hover:bg-principal/10',
+};
+
+const base = 'btn inline-flex items-center justify-center gap-2 font-black font-heading uppercase tracking-widest hover:-translate-y-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal';
+const finalClass = [base, sizeClasses[size], variantClasses[variant], extraClass].join(' ');
+---
+
+{href ? (
+  <a href={href} class={finalClass} target={target} rel={rel} aria-label={ariaLabel}>
+    <slot />
+  </a>
+) : (
+  <button type={type} class={finalClass} disabled={disabled} aria-label={ariaLabel}>
+    <slot />
+  </button>
+)}

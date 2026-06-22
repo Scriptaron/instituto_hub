@@ -1,0 +1,26 @@
+---
+// src/components/atoms/NeoTag.astro
+export interface Props {
+  variant?: 'principal' | 'destaque' | 'white' | 'dark';
+  rotate?: string;
+  class?: string;
+  size?: 'xs' | 'sm';
+}
+
+const { variant = 'destaque', rotate = '', class: extraClass = '', size = 'sm' } = Astro.props;
+
+const variantClasses = {
+  principal: 'bg-principal text-white border-principal',
+  destaque:  'bg-destaque text-foreground border-principal',
+  white:     'bg-white text-principal border-principal',
+  dark:      'bg-slate-800 text-white border-slate-800',
+};
+
+const sizeClasses = { xs: 'text-[10px] px-2 py-0.5', sm: 'text-xs px-3 py-1' };
+const finalClass = [
+  'inline-block font-black font-heading uppercase tracking-widest border-2',
+  sizeClasses[size], variantClasses[variant], rotate, extraClass
+].join(' ');
+---
+
+<span class={finalClass}><slot /></span>
