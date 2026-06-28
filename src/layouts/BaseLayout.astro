@@ -52,7 +52,7 @@ const {
 		<title>{title}</title>
         <ClientRouter />
         
-        <!-- Dark Mode and Palette Global Injector -->
+        <!-- Dark Mode and Shadow Style Global Injector -->
         <script is:inline>
             (function() {
                 function getThemePreference() {
@@ -73,19 +73,19 @@ const {
                     }
                 }
 
-                function applyPalette() {
-                    const palette = (typeof localStorage !== 'undefined' && localStorage.getItem('theme-palette')) || 'neon';
-                    document.documentElement.setAttribute('data-palette', palette);
+                function applyShadowStyle() {
+                    const shadow = (typeof localStorage !== 'undefined' && localStorage.getItem('theme-shadow-style')) || 'black-shadow';
+                    document.documentElement.setAttribute('data-shadow-style', shadow);
                 }
 
                 // Aplica imediatamente (previne FOUC no carregamento inicial)
                 applyTheme();
-                applyPalette();
+                applyShadowStyle();
 
                 // Re-aplica após cada navegação do ClientRouter (evita reset do data-theme e classe .dark)
                 document.addEventListener('astro:after-swap', () => {
                     applyTheme();
-                    applyPalette();
+                    applyShadowStyle();
                 });
             })();
         </script>

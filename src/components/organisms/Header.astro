@@ -52,17 +52,16 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
         </ul>
     </div>
     <div class="navbar-end flex justify-end gap-3 sm:gap-4 items-center pr-2">
-        <!-- Palette Selector (Combobox) -->
+        <!-- Shadow Style Selector (Combobox) -->
         <div class="relative mr-1 sm:mr-2">
             <select 
-                id="palette-select" 
-                aria-label="Escolher Paleta de Cores"
+                id="shadow-select" 
+                aria-label="Escolher Estilo de Sombra"
                 class="bg-white dark:bg-zinc-800 text-principal border-2 border-principal font-bold font-heading uppercase text-xs h-10 sm:h-12 px-2 sm:px-3 rounded-lg outline-none cursor-pointer shadow-[2px_2px_0_0_black] dark:shadow-[2px_2px_0_0_#f1f5f9] transition-all hover:bg-slate-50 dark:hover:bg-zinc-700"
             >
-                <option value="neon">Original</option>
-                <option value="social">Lavanda</option>
-                <option value="retro">Retro</option>
-                <option value="forest">Forest</option>
+                <option value="black-shadow">Sombra Preta</option>
+                <option value="neon-shadow">Sombra Neon</option>
+                <option value="white-shadow">Sombra Branca</option>
             </select>
         </div>
 
@@ -125,20 +124,20 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
             updateIcons(willBeDark);
         });
 
-        // Palette Selector Logic
-        const select = document.getElementById('palette-select');
+        // Shadow Style Selector Logic
+        const select = document.getElementById('shadow-select');
         if (select) {
             select.replaceWith(select.cloneNode(true));
         }
 
-        const newSelect = document.getElementById('palette-select');
-        const savedPalette = localStorage.getItem('theme-palette') || 'neon';
+        const newSelect = document.getElementById('shadow-select');
+        const savedShadow = localStorage.getItem('theme-shadow-style') || 'black-shadow';
         if (newSelect) {
-            newSelect.value = savedPalette;
+            newSelect.value = savedShadow;
             newSelect.addEventListener('change', (e) => {
-                const targetPalette = e.target.value;
-                document.documentElement.setAttribute('data-palette', targetPalette);
-                localStorage.setItem('theme-palette', targetPalette);
+                const targetShadow = e.target.value;
+                document.documentElement.setAttribute('data-shadow-style', targetShadow);
+                localStorage.setItem('theme-shadow-style', targetShadow);
             });
         }
 

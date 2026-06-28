@@ -14,42 +14,42 @@ async function navigateTo(page: Page, href: string) {
   await page.locator(`.navbar a[href="${href}"]:visible`).click();
 }
 
-test.describe('Seletor de Paleta de Cores', () => {
+test.describe('Seletor de Estilo de Sombra', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
   });
 
-  test('deve possuir o combobox seletor de paletas no header', async ({ page }) => {
-    const select = page.locator('#palette-select');
+  test('deve possuir o combobox seletor de sombras no header', async ({ page }) => {
+    const select = page.locator('#shadow-select');
     await expect(select).toBeVisible();
   });
 
-  test('deve mudar a paleta para social ao selecionar', async ({ page }) => {
-    const select = page.locator('#palette-select');
-    await select.selectOption('social');
-    await expect(page.locator('html')).toHaveAttribute('data-palette', 'social');
+  test('deve mudar o estilo de sombra para neon ao selecionar', async ({ page }) => {
+    const select = page.locator('#shadow-select');
+    await select.selectOption('neon-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'neon-shadow');
   });
 
-  test('deve persistir a paleta selecionada apos atualizar', async ({ page }) => {
-    const select = page.locator('#palette-select');
-    await select.selectOption('retro');
-    await expect(page.locator('html')).toHaveAttribute('data-palette', 'retro');
+  test('deve persistir o estilo de sombra selecionado apos atualizar', async ({ page }) => {
+    const select = page.locator('#shadow-select');
+    await select.selectOption('white-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'white-shadow');
 
     await page.reload();
-    await expect(page.locator('html')).toHaveAttribute('data-palette', 'retro');
-    const currentVal = await page.locator('#palette-select').inputValue();
-    expect(currentVal).toBe('retro');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'white-shadow');
+    const currentVal = await page.locator('#shadow-select').inputValue();
+    expect(currentVal).toBe('white-shadow');
   });
 
-  test('deve persistir a paleta selecionada apos navegar para outra pagina', async ({ page }) => {
-    const select = page.locator('#palette-select');
-    await select.selectOption('forest');
-    await expect(page.locator('html')).toHaveAttribute('data-palette', 'forest');
+  test('deve persistir o estilo de sombra selecionado apos navegar para outra pagina', async ({ page }) => {
+    const select = page.locator('#shadow-select');
+    await select.selectOption('white-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'white-shadow');
 
     // Navega para /aulas usando o helper para suportar mobile/desktop
     await navigateTo(page, '/aulas');
     await page.waitForURL(/\/aulas/);
 
-    await expect(page.locator('html')).toHaveAttribute('data-palette', 'forest');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'white-shadow');
   });
 });

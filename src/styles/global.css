@@ -35,35 +35,6 @@
     --color-dot-pattern: rgba(122, 58, 237, 0.15);
 }
 
-/* 2. Lavanda Social */
-html[data-palette="social"] {
-    --color-background: #e8e4f8;
-    --color-principal: #5e3be0;
-    --color-destaque: #00a84f;
-    --color-destaque-foreground: #ffffff;
-    --color-foreground: #1c0e4a;
-    --color-dot-pattern: rgba(94, 59, 224, 0.15);
-}
-
-/* 3. Retro Sunset */
-html[data-palette="retro"] {
-    --color-background: #fafaf9;
-    --color-principal: #2563eb;
-    --color-destaque: #ff6b00;
-    --color-destaque-foreground: #ffffff;
-    --color-foreground: #000000;
-    --color-dot-pattern: rgba(37, 99, 235, 0.15);
-}
-
-/* 4. Forest & Rose */
-html[data-palette="forest"] {
-    --color-background: #f0fdf4;
-    --color-principal: #065f46;
-    --color-destaque: #ec4899;
-    --color-destaque-foreground: #ffffff;
-    --color-foreground: #022c22;
-    --color-dot-pattern: rgba(6, 95, 70, 0.15);
-}
 
 /* NEUTRALIZAÇÃO TOTAL DO DAISYUI PARA ESTILO NEO-BRUTALISTA */
 :root, [data-theme] {
@@ -203,53 +174,27 @@ html.dark body {
     --color-principal: #d9ff7f;
     --color-destaque: #7a3aed;
     --color-destaque-foreground: #ffffff;
-    --dark-panel-bg: #18181b;
+    --dark-panel-bg: #1c1c1f;     /* Lighter panel bg for black shadow contrast */
     --dark-panel-bg-alt: #27272a;
     --dark-panel-text: #f1f5f9;
     --dark-base-black: #09090b;
     --color-dot-pattern: rgba(217, 255, 127, 0.08);
+
+    /* Default Shadow Style: Black Shadow */
+    --dark-shadow-color: #000000;
+    --dark-shadow-ring-color: var(--dark-panel-text); /* White border, black shadow */
 }
 
-/* Lavanda Social - Dark Mode */
-html.dark[data-palette="social"] body {
-    --color-background: #0f0d19;
-    --color-principal: #a78bfa;
-    --color-destaque: #14532d;
-    --color-destaque-foreground: #ffffff;
-    --color-foreground: #f1f5f9;
-    --dark-panel-bg: #181622;
-    --dark-panel-bg-alt: #242232;
-    --dark-panel-text: #f1f5f9;
-    --dark-base-black: #09090b;
-    --color-dot-pattern: rgba(167, 139, 250, 0.08);
+/* 2. Sombra Neon */
+html.dark[data-shadow-style="neon-shadow"] body {
+    --dark-shadow-color: var(--color-principal); /* Verde Limão */
+    --dark-shadow-ring-color: var(--dark-base-black); /* Black border, green shadow */
 }
 
-/* Retro Sunset - Dark Mode */
-html.dark[data-palette="retro"] body {
-    --color-background: #0b132b;
-    --color-principal: #ff9f1c;
-    --color-destaque: #1e3a8a;
-    --color-destaque-foreground: #ffffff;
-    --color-foreground: #f8fafc;
-    --dark-panel-bg: #111a36;
-    --dark-panel-bg-alt: #1c274c;
-    --dark-panel-text: #f8fafc;
-    --dark-base-black: #050a18;
-    --color-dot-pattern: rgba(255, 159, 28, 0.08);
-}
-
-/* Forest & Rose - Dark Mode */
-html.dark[data-palette="forest"] body {
-    --color-background: #022c22;
-    --color-principal: #f472b6;
-    --color-destaque: #064e3b;
-    --color-destaque-foreground: #ffffff;
-    --color-foreground: #f0fdf4;
-    --dark-panel-bg: #064e3b;
-    --dark-panel-bg-alt: #0f766e;
-    --dark-panel-text: #f0fdf4;
-    --dark-base-black: #021a14;
-    --color-dot-pattern: rgba(74, 222, 128, 0.08);
+/* 3. Sombra Branca */
+html.dark[data-shadow-style="white-shadow"] body {
+    --dark-shadow-color: var(--dark-panel-text); /* White shadow */
+    --dark-shadow-ring-color: var(--dark-panel-text); /* White border */
 }
 
 /* =========================================
@@ -305,22 +250,24 @@ html.dark .bg-principal .border-principal\/50 {
    ========================================= */
 html.dark .neo-shadow, 
 html.dark .neo-shadow-yellow,
-html.dark .neo-shadow-sm,
 html.dark .hover\:neo-shadow:hover,
-html.dark .hover\:neo-shadow-yellow:hover,
+html.dark .hover\:neo-shadow-yellow:hover {
+    box-shadow: 0 0 0 1px var(--dark-shadow-ring-color), 4px 4px 0px 0px var(--dark-shadow-color) !important;
+}
+
+html.dark .neo-shadow-sm,
 html.dark .hover\:neo-shadow-sm:hover {
-    /* O primeiro 0px 0px 0px 1px garante que não haja vazamentos de anti-aliasing */
-    box-shadow: 0 0 0 1px var(--dark-panel-text), 4px 4px 0px 0px var(--dark-panel-text) !important;
+    box-shadow: 0 0 0 1px var(--dark-shadow-ring-color), 3px 3px 0px 0px var(--dark-shadow-color) !important;
 }
 
 html.dark .neo-shadow:hover,
 html.dark .neo-shadow-yellow:hover {
-    box-shadow: 0 0 0 1px var(--dark-panel-text), 2px 2px 0px 0px var(--dark-panel-text) !important;
+    box-shadow: 0 0 0 1px var(--dark-shadow-ring-color), 2px 2px 0px 0px var(--dark-shadow-color) !important;
     transform: translate(2px, 2px);
 }
 
 html.dark .neo-shadow-sm:hover {
-    box-shadow: 0 0 0 1px var(--dark-panel-text), 1px 1px 0px 0px var(--dark-panel-text) !important;
+    box-shadow: 0 0 0 1px var(--dark-shadow-ring-color), 1px 1px 0px 0px var(--dark-shadow-color) !important;
     transform: translate(2px, 2px);
 }
 
