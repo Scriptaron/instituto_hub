@@ -52,6 +52,20 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
         </ul>
     </div>
     <div class="navbar-end flex justify-end gap-3 sm:gap-4 items-center pr-2">
+        <!-- Palette Selector (Combobox) -->
+        <div class="relative mr-1 sm:mr-2">
+            <select 
+                id="palette-select" 
+                aria-label="Escolher Paleta de Cores"
+                class="bg-white dark:bg-zinc-800 text-principal border-2 border-principal font-bold font-heading uppercase text-xs h-10 sm:h-12 px-2 sm:px-3 rounded-lg outline-none cursor-pointer shadow-[2px_2px_0_0_black] dark:shadow-[2px_2px_0_0_#f1f5f9] transition-all hover:bg-slate-50 dark:hover:bg-zinc-700"
+            >
+                <option value="neon">Original</option>
+                <option value="social">Lavanda</option>
+                <option value="retro">Retro</option>
+                <option value="forest">Forest</option>
+            </select>
+        </div>
+
         <!-- Theme Toggle Button -->
         <button id="theme-toggle" aria-label="Alternar Tema Escuro" class="btn bg-white hover:bg-slate-100 text-principal border-2 border-principal  neo-shadow min-h-0 h-10 w-10 sm:h-12 sm:w-12 p-0 flex items-center justify-center">
             <svg id="theme-icon-sun" class="hidden w-6 h-6 sm:w-7 sm:h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -101,13 +115,32 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
             
             if (willBeDark) {
                 document.documentElement.classList.add('dark');
+                document.documentElement.setAttribute('data-theme', 'dracula');
                 localStorage.setItem('theme', 'dark');
             } else {
                 document.documentElement.classList.remove('dark');
+                document.documentElement.setAttribute('data-theme', 'lofi');
                 localStorage.setItem('theme', 'light');
             }
             updateIcons(willBeDark);
         });
+
+        // Palette Selector Logic
+        const select = document.getElementById('palette-select');
+        if (select) {
+            select.replaceWith(select.cloneNode(true));
+        }
+
+        const newSelect = document.getElementById('palette-select');
+        const savedPalette = localStorage.getItem('theme-palette') || 'neon';
+        if (newSelect) {
+            newSelect.value = savedPalette;
+            newSelect.addEventListener('change', (e) => {
+                const targetPalette = e.target.value;
+                document.documentElement.setAttribute('data-palette', targetPalette);
+                localStorage.setItem('theme-palette', targetPalette);
+            });
+        }
 
         // 1. Local Menu Listeners (attached to the elements directly, safe across page loads)
         const menuBtn = document.getElementById('mobile-menu-btn');

@@ -9,6 +9,7 @@
 @theme {
     --color-principal: #7a3aed;
     --color-destaque: #d9ff7f;
+    --color-destaque-foreground: #2d2d2d;
     --color-background: #f2f2f2;
     --color-foreground: #2d2d2d;
 
@@ -20,6 +21,48 @@
 
     --font-heading: 'Bricolage Grotesque', sans-serif;
     --font-body: 'DM Sans', sans-serif;
+}
+
+/* ========================================================
+   PALETTE CUSTOM PROPERTY CONFIGURATIONS
+   ======================================================== */
+:root {
+    --color-background: #f2f2f2;
+    --color-principal: #7a3aed;
+    --color-destaque: #d9ff7f;
+    --color-destaque-foreground: #2d2d2d;
+    --color-foreground: #2d2d2d;
+    --color-dot-pattern: rgba(122, 58, 237, 0.15);
+}
+
+/* 2. Lavanda Social */
+html[data-palette="social"] {
+    --color-background: #e8e4f8;
+    --color-principal: #5e3be0;
+    --color-destaque: #00a84f;
+    --color-destaque-foreground: #ffffff;
+    --color-foreground: #1c0e4a;
+    --color-dot-pattern: rgba(94, 59, 224, 0.15);
+}
+
+/* 3. Retro Sunset */
+html[data-palette="retro"] {
+    --color-background: #fafaf9;
+    --color-principal: #2563eb;
+    --color-destaque: #ff6b00;
+    --color-destaque-foreground: #ffffff;
+    --color-foreground: #000000;
+    --color-dot-pattern: rgba(37, 99, 235, 0.15);
+}
+
+/* 4. Forest & Rose */
+html[data-palette="forest"] {
+    --color-background: #f0fdf4;
+    --color-principal: #065f46;
+    --color-destaque: #ec4899;
+    --color-destaque-foreground: #ffffff;
+    --color-foreground: #022c22;
+    --color-dot-pattern: rgba(6, 95, 70, 0.15);
 }
 
 /* NEUTRALIZAÇÃO TOTAL DO DAISYUI PARA ESTILO NEO-BRUTALISTA */
@@ -36,7 +79,7 @@ body {
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    background-image: radial-gradient(rgba(122, 58, 237, 0.15) 2px, transparent 2px) !important;
+    background-image: radial-gradient(var(--color-dot-pattern) 2px, transparent 2px) !important;
     background-size: 32px 32px !important;
     background-attachment: fixed !important;
 }
@@ -151,25 +194,62 @@ h6,
 
 /* ========================================================
    GLOBAL NEO-BRUTALIST DARK MODE CAPABILITY
-   Minimalist, Elegant Neutral Palette (Church/Apple Inspired)
    ======================================================== */
 html.dark body {
-    /* Cores Globais Básicas */
-    --color-background: #121212;
     color: #e4e4e7;
-    
-    /* INVERTE AS CORES: Verde vira o principal, Roxo vira destaque */
-    --color-principal: #d9ff7f; /* Verde */
-    --color-destaque: #7a3aed; /* Roxo */
+    --color-foreground: #e4e4e7;
+    /* Default dark mode values (neon theme) */
+    --color-background: #121212;
+    --color-principal: #d9ff7f;
+    --color-destaque: #7a3aed;
+    --color-destaque-foreground: #ffffff;
+    --dark-panel-bg: #18181b;
+    --dark-panel-bg-alt: #27272a;
+    --dark-panel-text: #f1f5f9;
+    --dark-base-black: #09090b;
+    --color-dot-pattern: rgba(217, 255, 127, 0.08);
+}
 
-    /* Tokens DRY para cores estruturais do Dark Mode */
-    --dark-panel-bg: #18181b;     /* Painéis principais (substitui bg-white) */
-    --dark-panel-bg-alt: #27272a; /* Painéis secundários (substitui bg-slate-100) */
-    --dark-panel-text: #f1f5f9;   /* Textos super claros para painéis escuros e botões roxos */
-    --dark-base-black: #09090b;   /* Uso em sombras pesadas, cabeçalhos/rodapés e textos sobre fundos claros(Verde) */
-    
-    /* Bolinhas do fundo com tom de verde translúcido */
-    background-image: radial-gradient(rgba(217, 255, 127, 0.08) 2px, transparent 2px) !important;
+/* Lavanda Social - Dark Mode */
+html.dark[data-palette="social"] body {
+    --color-background: #0f0d19;
+    --color-principal: #a78bfa;
+    --color-destaque: #14532d;
+    --color-destaque-foreground: #ffffff;
+    --color-foreground: #f1f5f9;
+    --dark-panel-bg: #181622;
+    --dark-panel-bg-alt: #242232;
+    --dark-panel-text: #f1f5f9;
+    --dark-base-black: #09090b;
+    --color-dot-pattern: rgba(167, 139, 250, 0.08);
+}
+
+/* Retro Sunset - Dark Mode */
+html.dark[data-palette="retro"] body {
+    --color-background: #0b132b;
+    --color-principal: #ff9f1c;
+    --color-destaque: #1e3a8a;
+    --color-destaque-foreground: #ffffff;
+    --color-foreground: #f8fafc;
+    --dark-panel-bg: #111a36;
+    --dark-panel-bg-alt: #1c274c;
+    --dark-panel-text: #f8fafc;
+    --dark-base-black: #050a18;
+    --color-dot-pattern: rgba(255, 159, 28, 0.08);
+}
+
+/* Forest & Rose - Dark Mode */
+html.dark[data-palette="forest"] body {
+    --color-background: #022c22;
+    --color-principal: #f472b6;
+    --color-destaque: #064e3b;
+    --color-destaque-foreground: #ffffff;
+    --color-foreground: #f0fdf4;
+    --dark-panel-bg: #064e3b;
+    --dark-panel-bg-alt: #0f766e;
+    --dark-panel-text: #f0fdf4;
+    --dark-base-black: #021a14;
+    --color-dot-pattern: rgba(74, 222, 128, 0.08);
 }
 
 /* =========================================
@@ -207,21 +287,14 @@ html.dark .bg-principal,
 html.dark .bg-principal .text-white,
 html.dark .bg-principal .text-blue-50,
 html.dark .bg-principal .text-blue-200,
-html.dark .bg-principal .text-slate-200,
-html.dark .bg-destaque .text-white,
-html.dark .bg-destaque .text-blue-50,
-html.dark .bg-destaque .text-blue-200,
-html.dark .bg-destaque .text-slate-200 {
+html.dark .bg-principal .text-slate-200 {
     color: var(--dark-base-black) !important;
 }
 
 /* Transforma bordas brancas/translúcidas em linhas pretas sólidas para estética sobre os Neons */
 html.dark .bg-principal .border-white,
 html.dark .bg-principal .border-white\/20,
-html.dark .bg-principal .border-principal\/50,
-html.dark .bg-destaque .border-white,
-html.dark .bg-destaque .border-white\/20,
-html.dark .bg-destaque .border-principal\/50 {
+html.dark .bg-principal .border-principal\/50 {
     border-color: var(--dark-base-black) !important; 
 }
 
@@ -282,4 +355,11 @@ html.dark .group:hover img.group-hover\:grayscale-0 {
 /* Restaura o brilho e cor total em imagens individuais com Hover Direto */
 html.dark img.hover\:grayscale-0:hover {
     filter: grayscale(0) brightness(0.85) contrast(1.1) !important;
+}
+
+/* Correção de contraste sobre fundo destaque */
+.bg-destaque.text-principal,
+.bg-destaque .text-principal,
+.hover\:bg-destaque:hover {
+    color: var(--color-destaque-foreground) !important;
 }

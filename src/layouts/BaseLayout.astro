@@ -52,7 +52,7 @@ const {
 		<title>{title}</title>
         <ClientRouter />
         
-        <!-- Dark Mode Global Injector -->
+        <!-- Dark Mode and Palette Global Injector -->
         <script is:inline>
             (function() {
                 function getThemePreference() {
@@ -73,15 +73,24 @@ const {
                     }
                 }
 
+                function applyPalette() {
+                    const palette = (typeof localStorage !== 'undefined' && localStorage.getItem('theme-palette')) || 'neon';
+                    document.documentElement.setAttribute('data-palette', palette);
+                }
+
                 // Aplica imediatamente (previne FOUC no carregamento inicial)
                 applyTheme();
+                applyPalette();
 
                 // Re-aplica após cada navegação do ClientRouter (evita reset do data-theme e classe .dark)
-                document.addEventListener('astro:after-swap', applyTheme);
+                document.addEventListener('astro:after-swap', () => {
+                    applyTheme();
+                    applyPalette();
+                });
             })();
         </script>
 	</head>
-	<body class={`min-h-screen relative font-body ${overflowHidden ? 'overflow-x-hidden' : ''}`} style="background-image: radial-gradient(var(--color-principal) 1px, transparent 1px); background-size: 20px 20px;">
+	<body class={`min-h-screen relative font-body ${overflowHidden ? 'overflow-x-hidden' : ''}`}>
         <div class="noise-overlay" aria-hidden="true"></div>
 		
 		<Header />
