@@ -56,8 +56,12 @@ const {
         <script is:inline>
             (function() {
                 function getThemePreference() {
-                    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-                        return localStorage.getItem('theme');
+                    try {
+                        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
+                            return localStorage.getItem('theme');
+                        }
+                    } catch (e) {
+                        // Ignora erro de segurança no acesso a localStorage
                     }
                     return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
                 }
@@ -74,7 +78,14 @@ const {
                 }
 
                 function applyShadowStyle() {
-                    const shadow = (typeof localStorage !== 'undefined' && localStorage.getItem('theme-shadow-style')) || 'black-shadow';
+                    let shadow = 'black-shadow';
+                    try {
+                        if (typeof localStorage !== 'undefined' && localStorage.getItem('theme-shadow-style')) {
+                            shadow = localStorage.getItem('theme-shadow-style');
+                        }
+                    } catch (e) {
+                        // Ignora erro de segurança no acesso a localStorage
+                    }
                     document.documentElement.setAttribute('data-shadow-style', shadow);
                 }
 

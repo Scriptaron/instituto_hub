@@ -19,37 +19,48 @@ test.describe('Seletor de Estilo de Sombra', () => {
     await page.goto('/');
   });
 
-  test('deve possuir o combobox seletor de sombras no header', async ({ page }) => {
+  test('deve possuir o combobox seletor de sombras no header com a opção padrão black-shadow', async ({ page }) => {
     const select = page.locator('#shadow-select');
     await expect(select).toBeVisible();
+    await expect(select).toHaveValue('black-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'black-shadow');
   });
 
-  test('deve mudar o estilo de sombra para neon ao selecionar', async ({ page }) => {
+  test('deve mudar o estilo de sombra para degradê ao selecionar', async ({ page }) => {
     const select = page.locator('#shadow-select');
-    await select.selectOption('neon-shadow');
-    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'neon-shadow');
+    await select.selectOption('gradient-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'gradient-shadow');
+  });
+
+  test('deve mudar o estilo de sombra para preta ao selecionar', async ({ page }) => {
+    const select = page.locator('#shadow-select');
+    // Força outro valor primeiro
+    await select.selectOption('gradient-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'gradient-shadow');
+    
+    // Seleciona black-shadow
+    await select.selectOption('black-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'black-shadow');
   });
 
   test('deve persistir o estilo de sombra selecionado apos atualizar', async ({ page }) => {
     const select = page.locator('#shadow-select');
-    await select.selectOption('white-shadow');
-    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'white-shadow');
+    await select.selectOption('stripe-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'stripe-shadow');
 
     await page.reload();
-    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'white-shadow');
-    const currentVal = await page.locator('#shadow-select').inputValue();
-    expect(currentVal).toBe('white-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'stripe-shadow');
+    await expect(page.locator('#shadow-select')).toHaveValue('stripe-shadow');
   });
 
   test('deve persistir o estilo de sombra selecionado apos navegar para outra pagina', async ({ page }) => {
     const select = page.locator('#shadow-select');
-    await select.selectOption('white-shadow');
-    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'white-shadow');
+    await select.selectOption('stripe-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'stripe-shadow');
 
-    // Navega para /aulas usando o helper para suportar mobile/desktop
     await navigateTo(page, '/aulas');
     await page.waitForURL(/\/aulas/);
 
-    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'white-shadow');
+    await expect(page.locator('html')).toHaveAttribute('data-shadow-style', 'stripe-shadow');
   });
 });

@@ -60,8 +60,8 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
                 class="bg-white dark:bg-zinc-800 text-principal border-2 border-principal font-bold font-heading uppercase text-xs h-10 sm:h-12 px-2 sm:px-3 rounded-lg outline-none cursor-pointer shadow-[2px_2px_0_0_black] dark:shadow-[2px_2px_0_0_#f1f5f9] transition-all hover:bg-slate-50 dark:hover:bg-zinc-700"
             >
                 <option value="black-shadow">Sombra Preta</option>
-                <option value="neon-shadow">Sombra Neon</option>
-                <option value="white-shadow">Sombra Branca</option>
+                <option value="gradient-shadow">Sombra Degradê</option>
+                <option value="stripe-shadow">Sombra Listrada</option>
             </select>
         </div>
 
@@ -115,11 +115,15 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
             if (willBeDark) {
                 document.documentElement.classList.add('dark');
                 document.documentElement.setAttribute('data-theme', 'dracula');
-                localStorage.setItem('theme', 'dark');
+                try {
+                    localStorage.setItem('theme', 'dark');
+                } catch (e) {}
             } else {
                 document.documentElement.classList.remove('dark');
                 document.documentElement.setAttribute('data-theme', 'lofi');
-                localStorage.setItem('theme', 'light');
+                try {
+                    localStorage.setItem('theme', 'light');
+                } catch (e) {}
             }
             updateIcons(willBeDark);
         });
@@ -131,13 +135,19 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
         }
 
         const newSelect = document.getElementById('shadow-select');
-        const savedShadow = localStorage.getItem('theme-shadow-style') || 'black-shadow';
+        let savedShadow = 'black-shadow';
+        try {
+            savedShadow = localStorage.getItem('theme-shadow-style') || 'black-shadow';
+        } catch (e) {}
+        
         if (newSelect) {
             newSelect.value = savedShadow;
-            newSelect.addEventListener('change', (e) => {
-                const targetShadow = e.target.value;
+            newSelect.addEventListener('change', () => {
+                const targetShadow = newSelect.value;
                 document.documentElement.setAttribute('data-shadow-style', targetShadow);
-                localStorage.setItem('theme-shadow-style', targetShadow);
+                try {
+                    localStorage.setItem('theme-shadow-style', targetShadow);
+                } catch (e) {}
             });
         }
 

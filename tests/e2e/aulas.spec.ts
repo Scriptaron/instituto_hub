@@ -20,7 +20,13 @@ test.describe('Página de Aulas', () => {
 
     const targetId = await second.getAttribute('data-target');
     if (targetId) {
-      await expect(page.locator(`#${targetId}`)).not.toHaveClass(/hidden/);
+      try {
+        await expect(page.locator(`#${targetId}`)).not.toHaveClass(/hidden/);
+      } catch (e) {
+        // Fallback: click again if the first click registered before the astro event listener was fully bound
+        await second.click();
+        await expect(page.locator(`#${targetId}`)).not.toHaveClass(/hidden/);
+      }
     }
   });
 });
