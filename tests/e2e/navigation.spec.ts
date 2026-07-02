@@ -5,13 +5,14 @@ async function navigateTo(page: Page, href: string) {
   if (await menuBtn.isVisible()) {
     await menuBtn.click();
     // Fallback in case click registered before the astro event listener was fully bound
-    if (await page.locator('#mobile-menu').evaluate(el => el.classList.contains('hidden'))) {
-      await page.locator('#mobile-menu').evaluate(el => el.classList.remove('hidden'));
+    if (await page.locator('#mobile-menu-overlay').evaluate(el => el.classList.contains('hidden'))) {
+      await page.locator('#mobile-menu-overlay').evaluate(el => el.classList.remove('hidden'));
     }
-    await expect(page.locator('#mobile-menu')).not.toHaveClass(/hidden/);
+    await expect(page.locator('#mobile-menu-overlay')).not.toHaveClass(/hidden/);
+    await page.locator(`#mobile-menu-overlay a[href="${href}"]:visible`).click();
+  } else {
+    await page.locator(`.navbar a[href="${href}"]:visible`).click();
   }
-  // Click the visible link in the header via Playwright locator to enforce actionability checks
-  await page.locator(`.navbar a[href="${href}"]:visible`).click();
 }
 
 test.describe('Navegação básica', () => {
