@@ -4,7 +4,7 @@ import { cn } from '../../utils/cn';
 
 export interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'whatsapp' | 'zoom' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'highlight' | 'whatsapp' | 'zoom' | 'ghost';
   size?: 'sm' | 'md' | 'lg';
   class?: string;
   target?: string;
@@ -33,14 +33,15 @@ const sizeClasses = {
 };
 
 const variantClasses = {
-  primary:   'bg-principal text-white border-4 border-principal hover:bg-principal neo-shadow',
-  secondary: 'bg-white text-principal border-4 border-principal hover:bg-slate-50 neo-shadow',
+  primary:   'bg-principal text-[var(--color-principal-foreground)] border-4 border-principal hover:bg-principal neo-shadow',
+  secondary: 'bg-white text-principal border-4 border-principal hover:bg-slate-50 dark:bg-[var(--dark-panel-bg)] neo-shadow',
+  highlight: 'bg-destaque text-[var(--color-destaque-foreground)] border-4 border-principal hover:bg-destaque neo-shadow',
   whatsapp:  'bg-[#25D366] hover:bg-[#128C7E] text-white dark:text-foreground border-4 border-principal neo-shadow',
   zoom:      'bg-[#2D8CFF] hover:bg-[#0B5CFF] text-white dark:text-foreground border-4 border-principal neo-shadow',
   ghost:     'bg-transparent text-principal border-4 border-principal hover:bg-principal/10',
 };
 
-const base = 'btn inline-flex items-center justify-center gap-2 font-black font-heading uppercase tracking-widest hover:-translate-y-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal';
+const base = 'btn inline-flex items-center justify-center gap-2 font-black font-heading uppercase tracking-widest transition-all hover:-translate-y-0.5 active:translate-y-0.5 focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal disabled:opacity-50 disabled:pointer-events-none disabled:transform-none';
 const finalClass = cn(base, sizeClasses[size], variantClasses[variant], extraClass);
 ---
 
