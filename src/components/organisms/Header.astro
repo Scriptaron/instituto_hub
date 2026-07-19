@@ -147,6 +147,11 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
 <script>
     document.addEventListener('astro:page-load', () => {
         const toggleBtn = document.getElementById('theme-toggle');
+        if (toggleBtn) {
+            toggleBtn.replaceWith(toggleBtn.cloneNode(true));
+        }
+
+        const newToggleBtn = document.getElementById('theme-toggle');
         const sunIcon = document.getElementById('theme-icon-sun');
         const moonIcon = document.getElementById('theme-icon-moon');
 
@@ -161,14 +166,9 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
             }
         }
 
-        const isCurrentDark = document.documentElement.classList.contains('dark');
-        updateIcons(isCurrentDark);
+        // Sync icons with current theme state on every page load
+        updateIcons(document.documentElement.classList.contains('dark'));
 
-        if (toggleBtn) {
-            toggleBtn.replaceWith(toggleBtn.cloneNode(true));
-        }
-
-        const newToggleBtn = document.getElementById('theme-toggle');
         newToggleBtn?.addEventListener('click', (event) => {
             const isDark = document.documentElement.classList.contains('dark');
             const willBeDark = !isDark;

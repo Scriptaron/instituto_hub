@@ -301,6 +301,18 @@ html.dark img.hover\:grayscale-0:hover {
     filter: grayscale(0) brightness(0.85) contrast(1.1) !important;
 }
 
+/* Em dispositivos touch (sem hover real), mostra as fotos com brilho e cor
+   normais desde o início — sem interação de hover para "revelar" a imagem. */
+@media (hover: none) {
+    html.dark img:not(.group-hover\:grayscale-0):not(.hover\:grayscale-0) {
+        filter: brightness(0.85) grayscale(0) contrast(1.1) !important;
+    }
+    html.dark img.group-hover\:grayscale-0,
+    html.dark img.hover\:grayscale-0 {
+        filter: grayscale(0) brightness(0.85) contrast(1.1) !important;
+    }
+}
+
 /* Correção de contraste sobre fundo destaque */
 .bg-destaque.text-principal,
 .bg-destaque .text-principal,
@@ -375,4 +387,14 @@ html.dark .neo-halftone:hover::after {
     .neo-halftone::after {
         transition: none !important;
     }
-}
+}
+
+/* Remove o efeito halftone em dispositivos touch (sem hover real).
+   Usa detecção de capacidade de input, não tamanho de tela —
+   correto para touch phones/tablets enquanto preserva o efeito
+   em laptops com tela touch que ainda têm ponteiro fino. */
+@media (hover: none) {
+    .neo-halftone::after {
+        display: none;
+    }
+}
