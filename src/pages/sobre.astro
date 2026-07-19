@@ -270,10 +270,20 @@ export const prerender = true;
 
         <script>
             document.addEventListener('astro:page-load', () => {
-                const tzDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
-                const day = tzDate.getDay();
-                const hour = tzDate.getHours();
-                const min = tzDate.getMinutes();
+                const formatter = new Intl.DateTimeFormat('en-US', {
+                    timeZone: 'America/Sao_Paulo',
+                    hour12: false,
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    weekday: 'short'
+                });
+                const parts = formatter.formatToParts(new Date());
+                const partMap = Object.fromEntries(parts.map(p => [p.type, p.value])) as any;
+                
+                const weekdayMap: any = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+                const day = weekdayMap[partMap.weekday];
+                const hour = parseInt(partMap.hour, 10);
+                const min = parseInt(partMap.minute, 10);
                 const timeInMinutes = hour * 60 + min;
                 
                 // Destacar dia atual na lista
@@ -282,7 +292,9 @@ export const prerender = true;
                     currentDayEl.classList.add('bg-destaque/10', 'border-principal', 'p-2', 'rounded-lg');
                     currentDayEl.classList.remove('border-slate-100');
                     const label = currentDayEl.querySelector('span:first-child');
-                    if (label) label.textContent += ' (Hoje)';
+                    if (label && !label.textContent.includes('(Hoje)')) {
+                        label.textContent += ' (Hoje)';
+                    }
                 }
                 
                 let isOpen = false;
@@ -297,9 +309,8 @@ export const prerender = true;
                 const pingEl = document.getElementById('sobre-status-ping');
                 const dotEl = document.getElementById('sobre-status-dot');
                 const textEl = document.getElementById('sobre-status-badge-text');
-                const cardEl = document.getElementById('sobre-status-card');
                 
-                if (titleEl && descEl && dotEl && textEl && cardEl) {
+                if (titleEl && descEl && dotEl && textEl) {
                     if (isOpen) {
                         titleEl.textContent = 'Estamos Abertos!';
                         descEl.textContent = 'Venha estudar, usar o Wi-Fi, jogar pingue-pongue ou participar de nossas atividades.';
