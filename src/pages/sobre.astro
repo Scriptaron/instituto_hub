@@ -211,6 +211,114 @@ export const prerender = true;
             </div>
         </section>
 
+        <!-- Horários de Funcionamento e Status Detalhado -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 animate-slide-up delay-200">
+            <div class="bg-white border-4 border-principal p-6 sm:p-10 flex flex-col justify-center rounded-2xl">
+                <h2 class="text-3xl sm:text-5xl font-heading font-black text-principal uppercase leading-[1] mb-6 border-b-4 border-destaque inline-block w-max pb-2">
+                    Horários de<br/>Funcionamento
+                </h2>
+                
+                <div class="flex flex-col gap-4 text-slate-700 font-bold">
+                    <div class="flex justify-between items-center py-2 border-b-2 border-slate-100" id="schedule-day-1">
+                        <span>Segunda-feira</span>
+                        <span class="text-principal">08:00 - 17:00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b-2 border-slate-100" id="schedule-day-2">
+                        <span>Terça-feira</span>
+                        <span class="text-principal">08:00 - 17:00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b-2 border-slate-100" id="schedule-day-3">
+                        <span>Quarta-feira</span>
+                        <span class="text-principal">14:00 - 22:00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b-2 border-slate-100" id="schedule-day-4">
+                        <span>Quinta-feira</span>
+                        <span class="text-principal">14:00 - 22:00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b-2 border-slate-100" id="schedule-day-5">
+                        <span>Sexta-feira</span>
+                        <span class="text-slate-400">Fechado</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2 border-b-2 border-slate-100" id="schedule-day-6">
+                        <span>Sábado</span>
+                        <span class="text-principal">08:00 - 17:00</span>
+                    </div>
+                    <div class="flex justify-between items-center py-2" id="schedule-day-0">
+                        <span>Domingo</span>
+                        <span class="text-slate-400">Fechado</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bg-principal text-white border-4 border-principal neo-shadow p-6 sm:p-10 flex flex-col justify-between rounded-2xl relative overflow-hidden" id="sobre-status-card">
+                <div class="absolute -right-16 -top-16 w-48 h-48 bg-destaque/10 rounded-full blur-3xl pointer-events-none"></div>
+                <div>
+                    <span class="bg-destaque text-principal px-3 py-1.5 text-xs font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black] inline-block mb-6">Status em Tempo Real</span>
+                    <h3 class="text-4xl sm:text-5xl font-black font-heading uppercase leading-none mb-4" id="sobre-status-title">Carregando...</h3>
+                    <p class="text-sm sm:text-base font-bold text-slate-200" id="sobre-status-desc">Verificando horário de funcionamento...</p>
+                </div>
+                
+                <div class="mt-8 flex items-center gap-4">
+                    <span class="relative flex h-4 w-4">
+                        <span id="sobre-status-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75"></span>
+                        <span id="sobre-status-dot" class="relative inline-flex rounded-full h-4 w-4"></span>
+                    </span>
+                    <span class="text-base sm:text-lg font-black uppercase tracking-wider" id="sobre-status-badge-text">...</span>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            document.addEventListener('astro:page-load', () => {
+                const tzDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+                const day = tzDate.getDay();
+                const hour = tzDate.getHours();
+                const min = tzDate.getMinutes();
+                const timeInMinutes = hour * 60 + min;
+                
+                // Destacar dia atual na lista
+                const currentDayEl = document.getElementById(`schedule-day-${day}`);
+                if (currentDayEl) {
+                    currentDayEl.classList.add('bg-destaque/10', 'border-principal', 'p-2', 'rounded-lg');
+                    currentDayEl.classList.remove('border-slate-100');
+                    const label = currentDayEl.querySelector('span:first-child');
+                    if (label) label.textContent += ' (Hoje)';
+                }
+                
+                let isOpen = false;
+                if (day === 1 || day === 2 || day === 6) {
+                    isOpen = timeInMinutes >= 8 * 60 && timeInMinutes < 17 * 60;
+                } else if (day === 3 || day === 4) {
+                    isOpen = timeInMinutes >= 14 * 60 && timeInMinutes < 22 * 60;
+                }
+                
+                const titleEl = document.getElementById('sobre-status-title');
+                const descEl = document.getElementById('sobre-status-desc');
+                const pingEl = document.getElementById('sobre-status-ping');
+                const dotEl = document.getElementById('sobre-status-dot');
+                const textEl = document.getElementById('sobre-status-badge-text');
+                const cardEl = document.getElementById('sobre-status-card');
+                
+                if (titleEl && descEl && dotEl && textEl && cardEl) {
+                    if (isOpen) {
+                        titleEl.textContent = 'Estamos Abertos!';
+                        descEl.textContent = 'Venha estudar, usar o Wi-Fi, jogar pingue-pongue ou participar de nossas atividades.';
+                        dotEl.className = 'relative inline-flex rounded-full h-4 w-4 bg-destaque';
+                        if (pingEl) pingEl.className = 'animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-destaque';
+                        textEl.textContent = 'Aberto Agora';
+                        textEl.className = 'text-base sm:text-lg font-black uppercase tracking-wider text-destaque';
+                    } else {
+                        titleEl.textContent = 'Estamos Fechados';
+                        descEl.textContent = 'No momento a sede está fechada. Confira nossa tabela de horários para programar sua visita.';
+                        dotEl.className = 'relative inline-flex rounded-full h-4 w-4 bg-slate-400';
+                        if (pingEl) pingEl.className = 'hidden';
+                        textEl.textContent = 'Fechado';
+                        textEl.className = 'text-base sm:text-lg font-black uppercase tracking-wider text-slate-300';
+                    }
+                }
+            });
+        </script>
+
         
         <section class="animate-slide-up delay-300">
             <div class="flex flex-col md:flex-row md:items-end justify-between font-heading font-black text-principal mb-8 sm:mb-12">
