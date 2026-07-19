@@ -361,9 +361,18 @@ html.dark .neo-halftone:hover::after {
 /* Anel de foco unificado */
 .focus-ring:focus-visible {
     outline: none !important;
-    ring: 4px solid var(--color-principal) !important;
-    ring-offset: 2px !important;
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 6px var(--color-principal) !important;
 }
-html.dark .focus-ring:focus-visible {
-    ring-color: var(--color-principal) !important; /* Verde Limão no Dark */
-}
+
+@media (prefers-reduced-motion: reduce) {
+    .neo-shadow:hover,
+    .neo-shadow:active,
+    .neo-shadow-sm:hover,
+    .neo-shadow-sm:active {
+        transform: none !important;
+        transition: none !important;
+    }
+    .neo-halftone::after {
+        transition: none !important;
+    }
+}
