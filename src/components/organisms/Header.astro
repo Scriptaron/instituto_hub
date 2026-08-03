@@ -1,5 +1,7 @@
 ---
 // Header Organism
+import NeoIcon from '../atoms/NeoIcon.astro';
+
 const pathname = new URL(Astro.request.url).pathname;
 
 // Helper function to determine if a link is active
@@ -10,23 +12,16 @@ const isActive = (path: string) => {
 };
 
 // Styling for active state: heavy border, yellow background, solid shadow vs default state
-const activeClass = 'bg-destaque border-4 border-principal font-black neo-shadow-yellow translate-x-[-2px] translate-y-[-2px]';
-const defaultClass = 'hover:bg-slate-100 rounded-none hover:text-principal border-4 border-transparent';
+const activeClass = 'bg-destaque border-4 border-principal font-black neo-shadow translate-x-[-2px] translate-y-[-2px]';
+const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-transparent';
 ---
 <div class="navbar header-bg border-b-4 border-principal sticky top-0 z-50 animate-slide-up px-4 md:px-8">
     <div class="navbar-start">
-        <div class="dropdown">
-            <div tabindex="0" role="button" aria-label="Abrir Menu Principal" aria-expanded="false" class="btn btn-ghost lg:hidden p-2 text-principal">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h8m-8 6h16" /></svg>
-            </div>
-            <!-- Improved Mobile Menu UX -->
-            <ul tabindex="0" class="menu dropdown-content mt-4 z-[1] bg-white border-2 border-principal rounded-none w-[85vw] max-w-[320px] neo-shadow text-principal font-bold font-heading uppercase text-xl p-2 gap-2">
-                <li><a href="/" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/') ? 'bg-destaque border-principal font-black' : 'hover:bg-slate-100 hover:border-principal'}`}>Home</a></li>
-                <li><a href="/aulas" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/aulas') ? 'bg-destaque border-principal font-black' : 'hover:bg-slate-100 hover:border-principal'}`}>Aulas</a></li>
-                <li><a href="/cronograma" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/cronograma') ? 'bg-destaque border-principal font-black' : 'hover:bg-slate-100 hover:border-principal'}`}>Cronograma</a></li>
-                <li><a href="/sobre" class={`py-4 px-6 rounded-none border-2 border-transparent ${isActive('/sobre') ? 'bg-destaque border-principal font-black' : 'hover:bg-slate-100 hover:border-principal'}`}>Sobre</a></li>
-            </ul>
-        </div>
+        
+        <button id="mobile-menu-btn" aria-label="Abrir Menu Principal" aria-expanded="false" class="btn btn-ghost lg:hidden p-2 text-principal focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal">
+            <NeoIcon name="menu" size={32} />
+        </button>
+
         <a href="/" class="btn btn-ghost hover:bg-transparent px-0 md:px-4 flex items-center gap-2 sm:gap-3 group h-auto py-2">
             <div 
                 class="w-8 h-8 sm:w-10 sm:h-10 md:w-11 md:h-11 bg-principal transition-colors shrink-0 translate-y-[2px]"
@@ -52,76 +47,172 @@ const defaultClass = 'hover:bg-slate-100 rounded-none hover:text-principal borde
         </ul>
     </div>
     <div class="navbar-end flex justify-end gap-3 sm:gap-4 items-center pr-2">
-        <!-- Theme Toggle Button -->
-        <button id="theme-toggle" aria-label="Alternar Tema Escuro" class="btn bg-white hover:bg-slate-100 text-principal border-2 border-principal rounded-none neo-shadow min-h-0 h-10 w-10 sm:h-12 sm:w-12 p-0 flex items-center justify-center">
-            <svg id="theme-icon-sun" class="hidden w-6 h-6 sm:w-7 sm:h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            <svg id="theme-icon-moon" class="w-6 h-6 sm:w-7 sm:h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
+        <div id="status-indicator" class="hidden sm:flex items-center gap-2 bg-white px-3 py-1.5 border-2 border-principal neo-shadow-sm text-xs font-black uppercase text-principal" title="Status de funcionamento do Instituto">
+            <span class="relative flex h-2.5 w-2.5">
+                <span id="status-dot-ping" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-green-400"></span>
+                <span id="status-dot" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+            </span>
+            <span id="status-text">...</span>
+        </div>
+        
+        <button id="theme-toggle" aria-label="Alternar Tema Escuro" class="btn bg-white hover:bg-slate-100 text-principal border-2 border-principal  neo-shadow min-h-0 h-10 w-10 sm:h-12 sm:w-12 p-0 flex items-center justify-center">
+            <NeoIcon id="theme-icon-sun" name="sun" class="hidden w-6 h-6 sm:w-7 sm:h-7" />
+            <NeoIcon id="theme-icon-moon" name="moon" class="w-6 h-6 sm:w-7 sm:h-7" />
         </button>
 
-        <!-- WhatsApp CTA -->
-        <a href="https://wa.me/555191774826?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20Instituto%21" target="_blank" rel="noopener noreferrer" class="btn bg-[#25D366] text-white border-2 border-principal hover:bg-[#128C7E] hover:border-principal rounded-none font-black font-heading uppercase tracking-widest text-xs lg:text-sm neo-shadow hidden lg:flex gap-2 min-h-0 h-10 sm:h-12 px-4 lg:px-6 transition-colors wpp-header-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        
+        <a href="https://wa.me/555191774826?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20Instituto%21" target="_blank" rel="noopener noreferrer" class="btn bg-whatsapp text-white border-2 border-principal hover:bg-whatsapp-hover hover:border-principal  font-black font-heading uppercase tracking-widest text-xs lg:text-sm neo-shadow hidden lg:flex gap-2 min-h-0 h-10 sm:h-12 px-4 lg:px-6 transition-colors wpp-header-btn">
+            <NeoIcon name="whatsapp" size={18} />
             Dúvidas?
         </a>
     </div>
 </div>
 
-<script is:inline>
-    document.addEventListener('DOMContentLoaded', () => {
-        const toggleBtn = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('theme-icon-sun');
-        const moonIcon = document.getElementById('theme-icon-moon');
-        const html = document.documentElement;
 
-        // Function to update icon visibility
-        const updateIcons = (isDark) => {
-            if (isDark) {
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            } else {
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-            }
-        };
+<div id="mobile-menu-overlay" class="fixed inset-0 w-screen h-screen z-[100] flex flex-col justify-between p-6 sm:p-8 hidden transition-all duration-300">
+    
+    <div class="flex justify-between items-center w-full animate-slide-up flex-row-reverse">
+        
+        <div class="flex items-center gap-2">
+            <div 
+                class="w-8 h-8 sm:w-10 sm:h-10 overlay-logo-icon shrink-0 translate-y-[2px]"
+                style="-webkit-mask-image: url('/instituto-logo.svg'); -webkit-mask-size: contain; -webkit-mask-repeat: no-repeat; -webkit-mask-position: center; mask-image: url('/instituto-logo.svg'); mask-size: contain; mask-repeat: no-repeat; mask-position: center;"
+            >
+            </div>
+            <div class="flex flex-col items-end justify-center text-right">
+                <span class="text-xl sm:text-2xl font-black font-heading overlay-logo-text uppercase tracking-tighter leading-none">
+                    Instituto Hub
+                </span>
+                <span class="text-[0.6rem] sm:text-xs font-bold text-white uppercase tracking-[0.2em] mt-0.5 opacity-80 leading-none">
+                    Porto Alegre Sul
+                </span>
+            </div>
+        </div>
+        
+        
+        <button id="mobile-menu-close-btn" aria-label="Fechar Menu Principal" class="btn border-4 p-2 neo-shadow h-12 w-12 flex items-center justify-center rounded-2xl active:translate-y-1 focus-visible:outline-none focus-visible:ring-4">
+            <NeoIcon name="close" size={24} />
+        </button>
+    </div>
 
-        // Initialize state based on script injected from BaseLayout
-        const isCurrentlyDark = html.classList.contains('dark');
-        updateIcons(isCurrentlyDark);
+    
+    <nav class="flex flex-col gap-6 my-auto pt-8">
+        <a href="/" class={`text-4xl sm:text-5xl font-black font-heading uppercase tracking-wider flex items-center gap-4 transition-all duration-300 w-max ${isActive('/') ? 'active translate-x-2' : 'hover:translate-x-2'}`}>
+            <span>Home</span>
+            {isActive('/') && <span class="indicator-finger text-3xl">👈</span>}
+        </a>
+        <a href="/aulas" class={`text-4xl sm:text-5xl font-black font-heading uppercase tracking-wider flex items-center gap-4 transition-all duration-300 w-max ${isActive('/aulas') ? 'active translate-x-2' : 'hover:translate-x-2'}`}>
+            <span>Aulas</span>
+            {isActive('/aulas') && <span class="indicator-finger text-3xl">👈</span>}
+        </a>
+        <a href="/cronograma" class={`text-4xl sm:text-5xl font-black font-heading uppercase tracking-wider flex items-center gap-4 transition-all duration-300 w-max ${isActive('/cronograma') ? 'active translate-x-2' : 'hover:translate-x-2'}`}>
+            <span>Cronograma</span>
+            {isActive('/cronograma') && <span class="indicator-finger text-3xl">👈</span>}
+        </a>
+        <a href="/sobre" class={`text-4xl sm:text-5xl font-black font-heading uppercase tracking-wider flex items-center gap-4 transition-all duration-300 w-max ${isActive('/sobre') ? 'active translate-x-2' : 'hover:translate-x-2'}`}>
+            <span>Sobre</span>
+            {isActive('/sobre') && <span class="indicator-finger text-3xl">👈</span>}
+        </a>
+    </nav>
 
-        toggleBtn.addEventListener('click', () => {
-            const willBeDark = !html.classList.contains('dark');
+    
+    <div class="flex flex-col gap-6 border-t-4 border-white/20 pt-6 mt-auto">
+        <div class="flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
+            <div>
+                <p class="text-xs uppercase tracking-widest overlay-logo-text font-black mb-1">Dúvidas ou Informações?</p>
+                <p class="text-sm font-bold text-slate-200">Seg a Sáb • Prédio Santana</p>
+                <div id="status-indicator-mobile" class="flex items-center gap-2 bg-slate-900 border-2 border-white/20 px-3 py-1.5 text-xs font-black uppercase text-white w-max rounded-lg mt-2">
+                    <span class="relative flex h-2.5 w-2.5">
+                        <span id="status-dot-ping-mobile" class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-green-400"></span>
+                        <span id="status-dot-mobile" class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+                    </span>
+                    <span id="status-text-mobile">...</span>
+                </div>
+            </div>
             
-            if (willBeDark) {
-                html.classList.add('dark');
-                html.setAttribute('data-theme', 'dracula'); // Optional DaisyUI trigger
-                localStorage.setItem('theme', 'dark');
-            } else {
-                html.classList.remove('dark');
-                html.setAttribute('data-theme', 'lofi');
-                localStorage.setItem('theme', 'light');
-            }
+            <div class="flex gap-4">
+                <a href="https://wa.me/555191774826?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20Instituto%21" target="_blank" rel="noopener noreferrer" class="btn bg-whatsapp text-white border-2 border-white hover:bg-whatsapp-hover font-black uppercase text-xs neo-shadow px-4 h-10 flex items-center gap-2 rounded-xl">
+                    WhatsApp
+                </a>
+                <a href="https://www.instagram.com/institutopoa/" target="_blank" rel="noopener noreferrer" class="btn bg-white text-principal border-2 border-principal hover:bg-destaque font-black uppercase text-xs neo-shadow px-4 h-10 flex items-center gap-2 rounded-xl">
+                    Instagram
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
-            updateIcons(willBeDark);
-        });
+<script>
+    import { updateStatusIndicator } from '../../utils/client/status';
+    import { initThemeToggle } from '../../utils/client/theme';
 
-        // Fechar menu mobile ao rolar a página
-        window.addEventListener('scroll', () => {
-            if (document.activeElement) {
-                document.activeElement.blur();
-            }
-        }, { passive: true });
+    document.addEventListener('astro:page-load', () => {
+        initThemeToggle();
 
-        // Fechar menu ao clicar fora dele (UX Touch)
-        document.addEventListener('touchstart', (e) => {
-            const dropdown = document.querySelector('.dropdown');
-            if (dropdown && !dropdown.contains(e.target)) {
-                if (document.activeElement) document.activeElement.blur();
-            }
-        }, { passive: true });
+        if ((window as any).statusInterval) {
+            clearInterval((window as any).statusInterval);
+        }
+
+        updateStatusIndicator();
+        (window as any).statusInterval = setInterval(updateStatusIndicator, 60000);
+
+        // ==========================================
+        // MOBILE OVERLAY MENU CONTROLLER
+        // ==========================================
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const closeBtn = document.getElementById('mobile-menu-close-btn');
+        const overlay = document.getElementById('mobile-menu-overlay');
+
+        if (menuBtn && closeBtn && overlay) {
+            const openOverlay = (e: Event) => {
+                e.stopPropagation();
+                overlay.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            };
+
+            const closeOverlay = (e: Event) => {
+                e.stopPropagation();
+                overlay.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            };
+
+            // Fast responsive pointerdown events
+            menuBtn.addEventListener('pointerdown', openOverlay);
+            closeBtn.addEventListener('pointerdown', closeOverlay);
+
+            // Accessiblity click fallbacks
+            menuBtn.addEventListener('click', (e) => {
+                if (e.clientX !== 0 && e.clientY !== 0) {
+                    e.preventDefault();
+                    return;
+                }
+                openOverlay(e);
+            });
+            closeBtn.addEventListener('click', (e) => {
+                if (e.clientX !== 0 && e.clientY !== 0) {
+                    e.preventDefault();
+                    return;
+                }
+                closeOverlay(e);
+            });
+
+            // Keyboard Escape close support
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && !overlay.classList.contains('hidden')) {
+                    overlay.classList.add('hidden');
+                    document.body.classList.remove('overflow-hidden');
+                }
+            });
+        }
+    });
+
+    // Reset overlay and scroll lock on navigation preparation
+    document.addEventListener('astro:before-preparation', () => {
+        const overlay = document.getElementById('mobile-menu-overlay');
+        if (overlay) {
+            overlay.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
     });
 </script>
 
@@ -129,5 +220,68 @@ const defaultClass = 'hover:bg-slate-100 rounded-none hover:text-principal borde
     /* Força o botão de WhatsApp do header a usar a variável de cor base correta em Dark Mode */
     :global(html.dark) .wpp-header-btn {
         color: var(--dark-base-black) !important;
+    }
+
+    /* CSS Customizado para o Menu Mobile Overlay */
+    #mobile-menu-overlay {
+        background-color: var(--color-principal); /* Roxo no Light */
+        border: 4px solid var(--color-foreground);
+    }
+    
+    #mobile-menu-overlay nav a {
+        color: #ffffff;
+        transition: all 0.3s ease;
+    }
+    
+    #mobile-menu-overlay nav a:hover,
+    #mobile-menu-overlay nav a.active {
+        color: var(--color-destaque) !important; /* Verde Limão no Light */
+    }
+
+    #mobile-menu-close-btn {
+        background-color: var(--color-destaque) !important;
+        color: var(--color-principal) !important;
+        border-color: var(--color-principal) !important;
+    }
+
+    .overlay-logo-icon {
+        background-color: var(--color-destaque);
+    }
+
+    .overlay-logo-text {
+        color: var(--color-destaque);
+    }
+
+    .indicator-finger {
+        color: var(--color-destaque);
+    }
+
+    /* MODO ESCURO (Inversão Semântica baseada na Paleta Oficial) */
+    :global(html.dark) #mobile-menu-overlay {
+        background-color: #121212 !important; /* Preto puro do site */
+        border-color: var(--color-principal) !important; /* Verde Limão */
+    }
+
+    :global(html.dark) #mobile-menu-overlay nav a:hover,
+    :global(html.dark) #mobile-menu-overlay nav a.active {
+        color: var(--color-principal) !important; /* Verde Limão no Dark */
+    }
+
+    :global(html.dark) #mobile-menu-close-btn {
+        background-color: var(--color-destaque) !important; /* Roxo no Dark */
+        color: var(--color-principal) !important; /* Verde Limão no Dark */
+        border-color: var(--color-principal) !important; /* Verde Limão no Dark */
+    }
+
+    :global(html.dark) .overlay-logo-icon {
+        background-color: var(--color-principal); /* Verde Limão no Dark */
+    }
+
+    :global(html.dark) .overlay-logo-text {
+        color: var(--color-principal); /* Verde Limão no Dark */
+    }
+
+    :global(html.dark) .indicator-finger {
+        color: var(--color-principal); /* Verde Limão no Dark */
     }
 </style>

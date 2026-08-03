@@ -1,0 +1,115 @@
+---
+// FAQ Section Component
+import NeoButton from '../atoms/NeoButton.astro';
+---
+
+<section class="max-w-4xl mx-auto w-full animate-slide-up delay-400 mt-8 mb-12">
+    <h2 class="text-3xl sm:text-5xl font-heading font-black text-principal uppercase leading-[1] mb-8 text-center sm:text-left border-b-4 border-destaque inline-block pb-2 w-full sm:w-auto">
+        Perguntas<br/>Frequentes
+    </h2>
+    
+    <div class="flex flex-col gap-4">
+        
+        <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
+            <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
+                <span>Preciso ser membro da igreja para participar?</span>
+                <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                </span>
+            </summary>
+            <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
+                <p><strong>De jeito nenhum!</strong> Todos os jovens adultos, de todas as crenças e origens, são extremamente bem-vindos para frequentar nossas aulas semanais, usar as salas de jogos e participar dos nossos eventos e festas.</p>
+            </div>
+        </details>
+
+        
+        <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
+            <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
+                <span>As aulas têm algum custo?</span>
+                <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                </span>
+            </summary>
+            <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
+                <p><strong>Não. Zero. Niente.</strong> Todas as classes de Instituto, materiais curriculares de estudo e acesso às dependências do prédio são <span class="bg-destaque px-1">100% gratuitos</span>.</p>
+            </div>
+        </details>
+
+        
+        <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
+            <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
+                <span>Como eu me inscrevo em uma turma?</span>
+                <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                </span>
+            </summary>
+            <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
+                <p>É super fácil. Acesse o menu <strong>Aulas</strong> aqui mesmo no site, navegue pelas turmas disponíveis nesta semana e, ao chegar lá, fale com qualquer pessoa na secretaria do prédio que eles farão sua matrícula na hora usando o portal do aluno <em>(MyInstitute)</em>.</p>
+            </div>
+        </details>
+        
+        
+        <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
+            <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
+                <span>Qual o horário de funcionamento do prédio?</span>
+                <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                </span>
+            </summary>
+            <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
+                <p>O prédio do Instituto Hub normalmente abre de terca a sábado a partir da tarde/noite, durante o horário vigente das aulas (veja a grade). Contudo, nas sextas também realizamos diversas festas estendidas.</p>
+            </div>
+        </details>
+
+        
+        <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
+            <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
+                <span>Qual é o propósito do Instituto?</span>
+                <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                </span>
+            </summary>
+            <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
+                <p>O Instituto de Religião é um programa oficial da Igreja focado na educação religiosa de jovens adultos (de 18 a 30 anos). O grande propósito é proporcionar um ambiente seguro para que você fortaleça seu compromisso com Jesus Cristo por meio de um estudo aprofundado das escrituras e das palavras dos profetas modernos. É o lugar perfeito para encontrar respostas e fazer grandes amigos.</p>
+                <NeoButton href="https://www.churchofjesuschrist.org/study/manual/objective-of-seminaries-and-institutes-2022/objective?lang=por" target="_blank" rel="noopener noreferrer" variant="primary" size="sm" class="mt-4 neo-shadow-sm">
+                    Ler mais no site oficial
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </NeoButton>
+            </div>
+        </details>
+
+        
+        <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
+            <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
+                <span>Como funciona a Formatura do Instituto?</span>
+                <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                </span>
+            </summary>
+            <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
+                <p>Sim, você se forma de verdade! Para receber o diploma de Formatura do Instituto, você precisa concluir cursos específicos, cumprir a frequência mínima de 75% e fazer as leituras de elevação do aprendizado. Antes da formatura, acontece uma rápida conversa com o Bispo local (Endosso Eclesiástico). Membros e amigos da Igreja podem se formar e receber os certificados!</p>
+                <NeoButton href="https://www.churchofjesuschrist.org/si/institute/institute-graduation-requirements?lang=por" target="_blank" rel="noopener noreferrer" variant="primary" size="sm" class="mt-4 neo-shadow-sm">
+                    Certificados e Graduação
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </NeoButton>
+            </div>
+        </details>
+
+        
+        <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
+            <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
+                <span>Posso transferir créditos do Instituto para a BYU?</span>
+                <span class="transition group-open:rotate-180">
+                    <svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="3" viewBox="0 0 24 24" width="24"><path d="M6 9l6 6 6-6"></path></svg>
+                </span>
+            </summary>
+            <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
+                <p>Com certeza. Vários de nossos cursos (especialmente a grade de cursos "Fundamentais") geram <span class="bg-destaque px-1 text-principal">créditos acadêmicos reais</span>. Se você for aprovado nesses cursos, esses créditos podem ser transferidos e eliminar disciplinas obrigatórias de religião caso você vá estudar na BYU (Brigham Young University), BYU-Idaho, BYU-Hawaii ou na Ensign College no futuro.</p>
+                <NeoButton href="https://www.churchofjesuschrist.org/si/institute/institute-graduation-requirements?lang=por" target="_blank" rel="noopener noreferrer" variant="primary" size="sm" class="mt-4 neo-shadow-sm">
+                    Normas de Transferência
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                </NeoButton>
+            </div>
+        </details>
+    </div>
+</section>

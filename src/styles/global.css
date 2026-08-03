@@ -1,24 +1,44 @@
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap');
 @import "tailwindcss";
+
+/* Configura o dark: do Tailwind para usar a classe .dark (não prefers-color-scheme) */
+@custom-variant dark (&:where(.dark, .dark *));
+
 
 @plugin "daisyui";
 
 @theme {
     --color-principal: #7a3aed;
+    --color-principal-foreground: #ffffff;
     --color-destaque: #d9ff7f;
+    --color-destaque-foreground: #2d2d2d;
     --color-background: #f2f2f2;
     --color-foreground: #2d2d2d;
 
-    --font-heading: 'Bricolage Grotesque', sans-serif;
-    --font-body: 'DM Sans', sans-serif;
+    /* Cores de marca de terceiros — usadas apenas em botões de CTA externos */
+    --color-whatsapp: #25D366;
+    --color-whatsapp-hover: #128C7E;
+    --color-zoom: #2D8CFF;
+    --color-zoom-hover: #0B5CFF;
+
+    --font-heading: 'Bricolage Grotesque Variable', sans-serif;
+    --font-body: 'DM Sans Variable', sans-serif;
 }
+
+/* ========================================================
+   PALETTE CUSTOM PROPERTY CONFIGURATIONS
+   ======================================================== */
+:root {
+    --color-dot-pattern: rgba(122, 58, 237, 0.15);
+    --color-text-muted: #475569;
+}
+
 
 /* NEUTRALIZAÇÃO TOTAL DO DAISYUI PARA ESTILO NEO-BRUTALISTA */
 :root, [data-theme] {
-    --rounded-box: 0rem;
-    --rounded-btn: 0rem;
-    --rounded-badge: 0rem;
-    --tab-radius: 0rem;
+    --rounded-box: 0.5rem;
+    --rounded-btn: 0.5rem;
+    --rounded-badge: 0.5rem;
+    --tab-radius: 0.5rem;
 }
 
 body {
@@ -27,7 +47,7 @@ body {
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
-    background-image: radial-gradient(rgba(122, 58, 237, 0.15) 2px, transparent 2px) !important;
+    background-image: radial-gradient(var(--color-dot-pattern) 2px, transparent 2px) !important;
     background-size: 32px 32px !important;
     background-attachment: fixed !important;
 }
@@ -59,16 +79,6 @@ h6,
         transform: translate(4px, 4px);
     }
 
-    .neo-shadow-yellow {
-        box-shadow: 0px 0px 0px 1px var(--color-foreground), 6px 6px 0px 0px var(--color-foreground);
-        transition: all 0.2s ease-in-out;
-    }
-
-    .neo-shadow-yellow:hover {
-        box-shadow: 0px 0px 0px 1px var(--color-foreground), 2px 2px 0px 0px var(--color-foreground);
-        transform: translate(4px, 4px);
-    }
-    
     .neo-shadow-sm {
         box-shadow: 0px 0px 0px 1px var(--color-foreground), 3px 3px 0px 0px var(--color-foreground);
         transition: all 0.2s ease-in-out;
@@ -98,6 +108,20 @@ h6,
     opacity: 0;
 }
 
+@keyframes fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.animate-fade-in {
+    animation: fade-in 0.3s ease-out forwards;
+}
+
+
 .delay-100 {
     animation-delay: 100ms;
 }
@@ -108,6 +132,24 @@ h6,
 
 .delay-300 {
     animation-delay: 300ms;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+.animate-float {
+  animation: float 2.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-float,
+  .animate-bounce,
+  .animate-slide-up,
+  .animate-fade-in {
+    animation: none !important;
+  }
 }
 
 /* Hide Scrollbar Utility */
@@ -124,25 +166,38 @@ h6,
 
 /* ========================================================
    GLOBAL NEO-BRUTALIST DARK MODE CAPABILITY
-   Minimalist, Elegant Neutral Palette (Church/Apple Inspired)
    ======================================================== */
 html.dark body {
-    /* Cores Globais Básicas */
-    --color-background: #121212;
     color: #e4e4e7;
-    
-    /* INVERTE AS CORES: Verde vira o principal, Roxo vira destaque */
-    --color-principal: #d9ff7f; /* Verde */
-    --color-destaque: #7a3aed; /* Roxo */
+    --color-foreground: #e4e4e7;
+    /* Default dark mode values (neon theme) */
+    --color-background: #121212;
+    --color-principal: #d9ff7f;
+    --color-principal-foreground: #09090b;
+    --color-destaque: #7a3aed;
+    --color-destaque-foreground: #ffffff;
+    --dark-panel-bg: #1c1c1f;     /* Lighter panel bg for black shadow contrast */
+    --dark-panel-bg-alt: #27272a;
+    --dark-panel-text: #f1f5f9;
+    --dark-base-black: #09090b;
+    --color-dot-pattern: rgba(217, 255, 127, 0.08);
+    --color-text-muted: #a1a1aa;
 
-    /* Tokens DRY para cores estruturais do Dark Mode */
-    --dark-panel-bg: #18181b;     /* Painéis principais (substitui bg-white) */
-    --dark-panel-bg-alt: #27272a; /* Painéis secundários (substitui bg-slate-100) */
-    --dark-panel-text: #f1f5f9;   /* Textos super claros para painéis escuros e botões roxos */
-    --dark-base-black: #09090b;   /* Uso em sombras pesadas, cabeçalhos/rodapés e textos sobre fundos claros(Verde) */
-    
-    /* Bolinhas do fundo com tom de verde translúcido */
-    background-image: radial-gradient(rgba(217, 255, 127, 0.08) 2px, transparent 2px) !important;
+    /* Default Shadow Style: Black Shadow */
+    --dark-shadow-color: #000000;
+    --dark-shadow-ring-color: var(--dark-panel-text); /* White border, black shadow */
+}
+
+/* 2. Sombra Neon */
+html.dark[data-shadow-style="neon-shadow"] body {
+    --dark-shadow-color: var(--color-principal); /* Verde Limão */
+    --dark-shadow-ring-color: var(--dark-base-black); /* Black border, green shadow */
+}
+
+/* 3. Sombra Branca */
+html.dark[data-shadow-style="white-shadow"] body {
+    --dark-shadow-color: var(--dark-panel-text); /* White shadow */
+    --dark-shadow-ring-color: var(--dark-panel-text); /* White border */
 }
 
 /* =========================================
@@ -172,7 +227,7 @@ html.dark .hover\:bg-slate-100:hover {
 html.dark .text-slate-800,
 html.dark .text-slate-700,
 html.dark .text-slate-600 {
-    color: #a1a1aa !important; /* Mantido fixo pois é um caso único de zinc-400 */
+    color: var(--color-text-muted) !important;
 }
 
 /* As cores Neon (Verde principal e Roxo destaque) exigem texto preto em oposição ao branco para estética absoluta */
@@ -180,21 +235,14 @@ html.dark .bg-principal,
 html.dark .bg-principal .text-white,
 html.dark .bg-principal .text-blue-50,
 html.dark .bg-principal .text-blue-200,
-html.dark .bg-principal .text-slate-200,
-html.dark .bg-destaque .text-white,
-html.dark .bg-destaque .text-blue-50,
-html.dark .bg-destaque .text-blue-200,
-html.dark .bg-destaque .text-slate-200 {
+html.dark .bg-principal .text-slate-200 {
     color: var(--dark-base-black) !important;
 }
 
 /* Transforma bordas brancas/translúcidas em linhas pretas sólidas para estética sobre os Neons */
 html.dark .bg-principal .border-white,
 html.dark .bg-principal .border-white\/20,
-html.dark .bg-principal .border-principal\/50,
-html.dark .bg-destaque .border-white,
-html.dark .bg-destaque .border-white\/20,
-html.dark .bg-destaque .border-principal\/50 {
+html.dark .bg-principal .border-principal\/50 {
     border-color: var(--dark-base-black) !important; 
 }
 
@@ -204,23 +252,19 @@ html.dark .bg-destaque .border-principal\/50 {
    SOMBRAS NEO-BRUTALISTAS E ÍCONES
    ========================================= */
 html.dark .neo-shadow, 
-html.dark .neo-shadow-yellow,
 html.dark .neo-shadow-sm,
 html.dark .hover\:neo-shadow:hover,
-html.dark .hover\:neo-shadow-yellow:hover,
 html.dark .hover\:neo-shadow-sm:hover {
-    /* O primeiro 0px 0px 0px 1px garante que não haja vazamentos de anti-aliasing */
-    box-shadow: 0 0 0 1px var(--dark-panel-text), 4px 4px 0px 0px var(--dark-panel-text) !important;
+    box-shadow: 0 0 0 1px var(--dark-shadow-ring-color), 4px 4px 0px 0px var(--dark-shadow-color) !important;
 }
 
-html.dark .neo-shadow:hover,
-html.dark .neo-shadow-yellow:hover {
-    box-shadow: 0 0 0 1px var(--dark-panel-text), 2px 2px 0px 0px var(--dark-panel-text) !important;
+html.dark .neo-shadow:hover {
+    box-shadow: 0 0 0 1px var(--dark-shadow-ring-color), 2px 2px 0px 0px var(--dark-shadow-color) !important;
     transform: translate(2px, 2px);
 }
 
 html.dark .neo-shadow-sm:hover {
-    box-shadow: 0 0 0 1px var(--dark-panel-text), 1px 1px 0px 0px var(--dark-panel-text) !important;
+    box-shadow: 0 0 0 1px var(--dark-shadow-ring-color), 1px 1px 0px 0px var(--dark-shadow-color) !important;
     transform: translate(2px, 2px);
 }
 
@@ -255,4 +299,102 @@ html.dark .group:hover img.group-hover\:grayscale-0 {
 /* Restaura o brilho e cor total em imagens individuais com Hover Direto */
 html.dark img.hover\:grayscale-0:hover {
     filter: grayscale(0) brightness(0.85) contrast(1.1) !important;
+}
+
+/* Em dispositivos touch (sem hover real), mostra as fotos com brilho e cor
+   normais desde o início — sem interação de hover para "revelar" a imagem. */
+@media (hover: none) {
+    html.dark img:not(.group-hover\:grayscale-0):not(.hover\:grayscale-0) {
+        filter: brightness(0.85) grayscale(0) contrast(1.1) !important;
+    }
+    html.dark img.group-hover\:grayscale-0,
+    html.dark img.hover\:grayscale-0 {
+        filter: grayscale(0) brightness(0.85) contrast(1.1) !important;
+    }
+}
+
+/* Correção de contraste sobre fundo destaque */
+.bg-destaque.text-principal,
+.bg-destaque .text-principal,
+.hover\:bg-destaque:hover {
+    color: var(--color-destaque-foreground) !important;
+}
+
+/* Custom View Transition styles for Radial Reveal */
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+}
+::view-transition-old(root) {
+    z-index: 1;
+}
+::view-transition-new(root) {
+    z-index: 9999;
+}
+
+/* Efeito de Retícula Brutalista (Halftone Overlay) */
+.neo-halftone {
+    position: relative;
+}
+.neo-halftone::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: radial-gradient(var(--color-foreground) 25%, transparent 25%);
+    background-size: 4px 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+    mix-blend-mode: multiply;
+    z-index: 10;
+}
+html.dark .neo-halftone::after {
+    background-image: radial-gradient(var(--color-foreground) 25%, transparent 25%);
+    mix-blend-mode: overlay;
+}
+.neo-halftone:hover::after {
+    opacity: 0.12;
+}
+html.dark .neo-halftone:hover::after {
+    opacity: 0.18;
+}
+
+/* Ajustes de Clique e Estados de Foco do Tópico 6 */
+.neo-shadow:active {
+    box-shadow: 0px 0px 0px 1px var(--color-foreground), 2px 2px 0px 0px var(--color-foreground) !important;
+    transform: translate(4px, 4px) !important;
+}
+.neo-shadow-sm:active {
+    box-shadow: 0px 0px 0px 1px var(--color-foreground), 1px 1px 0px 0px var(--color-foreground) !important;
+    transform: translate(2px, 2px) !important;
+}
+
+/* Anel de foco unificado */
+.focus-ring:focus-visible {
+    outline: none !important;
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 6px var(--color-principal) !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .neo-shadow:hover,
+    .neo-shadow:active,
+    .neo-shadow-sm:hover,
+    .neo-shadow-sm:active {
+        transform: none !important;
+        transition: none !important;
+    }
+    .neo-halftone::after {
+        transition: none !important;
+    }
+}
+
+/* Remove o efeito halftone em dispositivos touch (sem hover real).
+   Usa detecção de capacidade de input, não tamanho de tela —
+   correto para touch phones/tablets enquanto preserva o efeito
+   em laptops com tela touch que ainda têm ponteiro fino. */
+@media (hover: none) {
+    .neo-halftone::after {
+        display: none;
+    }
 }

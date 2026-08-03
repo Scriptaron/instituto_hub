@@ -1,0 +1,53 @@
+---
+// src/components/molecules/HeroBanner.astro
+export interface Props {
+  emoji: string;
+  titleLine1: string;
+  titleLine2: string;
+  subtitle?: string;
+  titleLine2Stroke?: boolean;
+  variant?: 'destaque' | 'principal';
+  class?: string;
+}
+
+const {
+  emoji,
+  titleLine1,
+  titleLine2,
+  subtitle,
+  titleLine2Stroke = true,
+  variant = 'destaque',
+  class: extraClass = '',
+} = Astro.props;
+
+const bgClass = variant === 'destaque' ? 'bg-destaque' : 'bg-principal';
+const headingColorClass = variant === 'destaque' ? 'text-principal' : 'text-destaque';
+---
+
+<section
+  class={`${bgClass} border-4 border-principal neo-shadow p-5 sm:p-8 animate-slide-up transform -rotate-1 relative lg:mt-4 group hover:rotate-0 transition-transform duration-300 w-full rounded-2xl ${extraClass}`}
+>
+  <div
+    aria-hidden="true"
+    class="absolute -top-3 -right-3 sm:-top-4 sm:-right-4 w-10 h-10 sm:w-12 sm:h-12 bg-white border-4 border-principal rounded-full z-20 flex items-center justify-center text-xl sm:text-2xl neo-shadow group-hover:scale-110 transition-transform"
+  >{emoji}</div>
+
+  <h1 class={`text-[2.5rem] sm:text-5xl md:text-6xl font-heading font-black uppercase leading-[0.9] tracking-tighter ${headingColorClass}`}>
+    {titleLine1}<br />
+    {titleLine2Stroke ? (
+      <span class="text-white dark:text-[var(--color-background)] transition-colors duration-300" style="-webkit-text-stroke: 1.5px var(--color-principal);">
+        {titleLine2}
+      </span>
+    ) : (
+      <span class="text-white dark:text-[var(--color-background)] transition-colors duration-300">{titleLine2}</span>
+    )}
+  </h1>
+
+  {subtitle && (
+    <p class={`mt-4 text-sm sm:text-base md:text-lg font-bold opacity-80 ${headingColorClass}`}>
+      {subtitle}
+    </p>
+  )}
+
+  <slot />
+</section>

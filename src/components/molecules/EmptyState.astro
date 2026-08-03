@@ -1,0 +1,42 @@
+---
+// src/components/molecules/EmptyState.astro
+import NeoButton from '../atoms/NeoButton.astro';
+
+export interface Props {
+  emoji?: string;
+  title: string;
+  description: string;
+  actionLabel?: string;
+  actionHref?: string;
+  class?: string;
+}
+
+const { emoji = '🗓️', title, description, actionLabel, actionHref, class: extraClass = '' } = Astro.props;
+---
+
+<div class={`w-full flex flex-col items-center text-center py-12 px-4 ${extraClass}`}>
+  <div class="flex flex-col items-center justify-center bg-white border-4 border-principal p-6 sm:p-10 max-w-lg shadow-[8px_8px_0_var(--color-principal)] hover:shadow-[12px_12px_0_var(--color-principal)] transition-all group hover:-translate-y-2 rounded-2xl">
+    <div aria-hidden="true" class="text-5xl sm:text-7xl mb-4 sm:mb-6 opacity-30 grayscale group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 transition-all">
+      {emoji}
+    </div>
+    <h3 class="text-xl sm:text-3xl font-black font-heading text-slate-400 group-hover:text-principal transition-colors uppercase leading-[1.1] mb-3">
+      {title}
+    </h3>
+    <p class="text-xs sm:text-base font-bold text-slate-400 leading-relaxed">
+      {description}
+    </p>
+    {actionLabel && actionHref && (
+      <NeoButton
+        href={actionHref}
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="secondary"
+        size="sm"
+        class="mt-6 text-[10px]"
+      >
+        {actionLabel}
+      </NeoButton>
+    )}
+    <slot />
+  </div>
+</div>

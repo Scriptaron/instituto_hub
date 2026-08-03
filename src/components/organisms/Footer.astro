@@ -1,12 +1,13 @@
 ---
 // Footer Organism
+import NeoIcon from '../atoms/NeoIcon.astro';
 ---
 <footer class="bg-principal text-slate-200 border-t-8 border-destaque mt-16 md:mt-32 relative z-20">
     <div class="container mx-auto px-4 py-12 md:py-16 max-w-7xl">
         <div class="footer flex flex-col md:flex-row justify-between gap-10">
             <aside class="flex flex-col gap-6 max-w-sm">
                 <h3 class="font-heading font-black text-5xl text-destaque uppercase tracking-tighter">Instituto Hub</h3>
-                <p class="text-xl font-medium border-l-4 border-destaque pl-4">
+                <p class="text-xl font-medium opacity-80 leading-snug">
                     Instituto de Religião de Porto Alegre.<br/>
                     Conectando jovens adultos com propósito.
                 </p>
@@ -22,11 +23,11 @@
                 <nav class="flex flex-col gap-4">
                     <h6 class="footer-title text-destaque font-bold uppercase tracking-widest text-lg opacity-100">Redes Sociais</h6> 
                     <a href="https://www.instagram.com/institutopoa/" target="_blank" rel="noopener noreferrer" aria-label="Acessar Instagram do Instituto" class="link link-hover text-lg font-medium hover:text-destaque transition-colors flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                        <NeoIcon name="instagram" size={24} />
                         Instagram
                     </a>
                     <a href="https://myinstitute.churchofjesuschrist.org/" target="_blank" rel="noopener noreferrer" aria-label="Acessar Site Oficial do MyInstitute" class="link link-hover text-lg font-medium hover:text-destaque transition-colors flex items-center gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                        <NeoIcon name="globe" size={24} />
                         Site Oficial
                     </a>
                 </nav>
@@ -51,14 +52,14 @@
                 href="https://www.linkedin.com/in/aaroncauet/" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                class="group flex items-center gap-4 hover:bg-white/5 px-4 py-2 border-2 border-transparent hover:border-white/20 transition-all duration-300"
+                class="group flex items-center gap-4 hover:bg-destaque/10 px-4 py-2 border-2 border-transparent hover:border-destaque/60 transition-all duration-300"
             >
                 <div class="flex flex-col items-end leading-none">
                     <span class="text-[0.65rem] uppercase tracking-[0.2em] opacity-80 mb-1">Developed by</span>
                     <span class="font-heading font-black text-lg group-hover:underline decoration-2 underline-offset-4">Aaron Manzone</span>
                 </div>
                 <div class="w-10 h-10 bg-white flex items-center justify-center text-principal group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    <NeoIcon name="linkedin" size={20} />
                 </div>
             </a>
         </div>
