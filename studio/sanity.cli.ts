@@ -1,8 +1,9 @@
 import {defineCliConfig} from 'sanity/cli'
 
 export default defineCliConfig({
+  studioHost: 'admin-instituto-hub',
   api: {
-    projectId: 'btt36vts',
+    projectId: process.env.SANITY_STUDIO_PROJECT_ID || 'btt36vts',
     dataset: 'production'
   },
   deployment: {

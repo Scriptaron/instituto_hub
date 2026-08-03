@@ -35,11 +35,11 @@ const headingColorClass = variant === 'destaque' ? 'text-principal' : 'text-dest
   <h1 class={`text-[2.5rem] sm:text-5xl md:text-6xl font-heading font-black uppercase leading-[0.9] tracking-tighter ${headingColorClass}`}>
     {titleLine1}<br />
     {titleLine2Stroke ? (
-      <span class="text-white" style="-webkit-text-stroke: 1.5px var(--color-principal);">
+      <span class="text-white dark:text-[var(--color-background)] transition-colors duration-300" style="-webkit-text-stroke: 1.5px var(--color-principal);">
         {titleLine2}
       </span>
     ) : (
-      <span class="text-white">{titleLine2}</span>
+      <span class="text-white dark:text-[var(--color-background)] transition-colors duration-300">{titleLine2}</span>
     )}
   </h1>
 

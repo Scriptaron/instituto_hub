@@ -1,5 +1,7 @@
 ---
 // src/components/molecules/EmptyState.astro
+import NeoButton from '../atoms/NeoButton.astro';
+
 export interface Props {
   emoji?: string;
   title: string;
@@ -24,12 +26,16 @@ const { emoji = '🗓️', title, description, actionLabel, actionHref, class: e
       {description}
     </p>
     {actionLabel && actionHref && (
-      <a
+      <NeoButton
         href={actionHref}
-        class="btn btn-sm mt-6 bg-transparent border-4 border-principal text-principal hover:bg-principal hover:text-white uppercase font-black tracking-widest text-[10px] shadow-[4px_4px_0_var(--color-principal)]"
+        target="_blank"
+        rel="noopener noreferrer"
+        variant="secondary"
+        size="sm"
+        class="mt-6 text-[10px]"
       >
         {actionLabel}
-      </a>
+      </NeoButton>
     )}
     <slot />
   </div>

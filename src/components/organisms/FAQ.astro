@@ -1,5 +1,6 @@
 ---
 // FAQ Section Component
+import NeoButton from '../atoms/NeoButton.astro';
 ---
 
 <section class="max-w-4xl mx-auto w-full animate-slide-up delay-400 mt-8 mb-12">
@@ -8,7 +9,7 @@
     </h2>
     
     <div class="flex flex-col gap-4">
-        <!-- FAQ Item 1 -->
+        
         <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
             <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
                 <span>Preciso ser membro da igreja para participar?</span>
@@ -21,7 +22,7 @@
             </div>
         </details>
 
-        <!-- FAQ Item 2 -->
+        
         <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
             <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
                 <span>As aulas têm algum custo?</span>
@@ -34,7 +35,7 @@
             </div>
         </details>
 
-        <!-- FAQ Item 3 -->
+        
         <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
             <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
                 <span>Como eu me inscrevo em uma turma?</span>
@@ -47,7 +48,7 @@
             </div>
         </details>
         
-        <!-- FAQ Item 4 -->
+        
         <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
             <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
                 <span>Qual o horário de funcionamento do prédio?</span>
@@ -60,7 +61,7 @@
             </div>
         </details>
 
-        <!-- FAQ Item 5 -->
+        
         <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
             <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
                 <span>Qual é o propósito do Instituto?</span>
@@ -70,14 +71,14 @@
             </summary>
             <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
                 <p>O Instituto de Religião é um programa oficial da Igreja focado na educação religiosa de jovens adultos (de 18 a 30 anos). O grande propósito é proporcionar um ambiente seguro para que você fortaleça seu compromisso com Jesus Cristo por meio de um estudo aprofundado das escrituras e das palavras dos profetas modernos. É o lugar perfeito para encontrar respostas e fazer grandes amigos.</p>
-                <a href="https://www.churchofjesuschrist.org/study/manual/objective-of-seminaries-and-institutes-2022/objective?lang=por" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-xs tracking-widest uppercase font-black px-4 py-2 bg-principal text-white hover:bg-destaque hover:text-principal border-2 border-principal neo-shadow-sm transition-colors w-max focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal active:translate-y-1">
+                <NeoButton href="https://www.churchofjesuschrist.org/study/manual/objective-of-seminaries-and-institutes-2022/objective?lang=por" target="_blank" rel="noopener noreferrer" variant="primary" size="sm" class="mt-4 neo-shadow-sm">
                     Ler mais no site oficial
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
+                </NeoButton>
             </div>
         </details>
 
-        <!-- FAQ Item 6 -->
+        
         <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
             <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
                 <span>Como funciona a Formatura do Instituto?</span>
@@ -87,14 +88,14 @@
             </summary>
             <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
                 <p>Sim, você se forma de verdade! Para receber o diploma de Formatura do Instituto, você precisa concluir cursos específicos, cumprir a frequência mínima de 75% e fazer as leituras de elevação do aprendizado. Antes da formatura, acontece uma rápida conversa com o Bispo local (Endosso Eclesiástico). Membros e amigos da Igreja podem se formar e receber os certificados!</p>
-                <a href="https://www.churchofjesuschrist.org/si/institute/institute-graduation-requirements?lang=por" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-xs tracking-widest uppercase font-black px-4 py-2 bg-principal text-white hover:bg-destaque hover:text-principal border-2 border-principal neo-shadow-sm transition-colors w-max focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal active:translate-y-1">
+                <NeoButton href="https://www.churchofjesuschrist.org/si/institute/institute-graduation-requirements?lang=por" target="_blank" rel="noopener noreferrer" variant="primary" size="sm" class="mt-4 neo-shadow-sm">
                     Certificados e Graduação
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
+                </NeoButton>
             </div>
         </details>
 
-        <!-- FAQ Item 7 -->
+        
         <details class="group bg-white border-4 border-principal neo-shadow overflow-hidden [&_summary::-webkit-details-marker]:hidden rounded-2xl focus-within:ring-4 focus-within:ring-principal">
             <summary class="flex justify-between items-center font-bold text-lg sm:text-xl text-principal p-5 sm:p-6 cursor-pointer list-none group-hover:bg-destaque transition-colors relative z-10 font-heading uppercase focus-visible:outline-none">
                 <span>Posso transferir créditos do Instituto para a BYU?</span>
@@ -104,10 +105,10 @@
             </summary>
             <div class="p-5 sm:p-6 text-slate-700 font-bold border-t-4 border-principal bg-white group-open:animate-fade-in relative z-0">
                 <p>Com certeza. Vários de nossos cursos (especialmente a grade de cursos "Fundamentais") geram <span class="bg-destaque px-1 text-principal">créditos acadêmicos reais</span>. Se você for aprovado nesses cursos, esses créditos podem ser transferidos e eliminar disciplinas obrigatórias de religião caso você vá estudar na BYU (Brigham Young University), BYU-Idaho, BYU-Hawaii ou na Ensign College no futuro.</p>
-                <a href="https://www.churchofjesuschrist.org/si/institute/institute-graduation-requirements?lang=por" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 mt-4 text-xs tracking-widest uppercase font-black px-4 py-2 bg-principal text-white hover:bg-destaque hover:text-principal border-2 border-principal neo-shadow-sm transition-colors w-max focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal active:translate-y-1">
+                <NeoButton href="https://www.churchofjesuschrist.org/si/institute/institute-graduation-requirements?lang=por" target="_blank" rel="noopener noreferrer" variant="primary" size="sm" class="mt-4 neo-shadow-sm">
                     Normas de Transferência
                     <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                </a>
+                </NeoButton>
             </div>
         </details>
     </div>

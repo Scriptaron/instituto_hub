@@ -1,5 +1,7 @@
 ---
 // Header Organism
+import NeoIcon from '../atoms/NeoIcon.astro';
+
 const pathname = new URL(Astro.request.url).pathname;
 
 // Helper function to determine if a link is active
@@ -17,7 +19,7 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
     <div class="navbar-start">
         
         <button id="mobile-menu-btn" aria-label="Abrir Menu Principal" aria-expanded="false" class="btn btn-ghost lg:hidden p-2 text-principal focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-principal">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" /></svg>
+            <NeoIcon name="menu" size={32} />
         </button>
 
         <a href="/" class="btn btn-ghost hover:bg-transparent px-0 md:px-4 flex items-center gap-2 sm:gap-3 group h-auto py-2">
@@ -54,17 +56,13 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
         </div>
         
         <button id="theme-toggle" aria-label="Alternar Tema Escuro" class="btn bg-white hover:bg-slate-100 text-principal border-2 border-principal  neo-shadow min-h-0 h-10 w-10 sm:h-12 sm:w-12 p-0 flex items-center justify-center">
-            <svg id="theme-icon-sun" class="hidden w-6 h-6 sm:w-7 sm:h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            <svg id="theme-icon-moon" class="w-6 h-6 sm:w-7 sm:h-7" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
-            </svg>
+            <NeoIcon id="theme-icon-sun" name="sun" class="hidden w-6 h-6 sm:w-7 sm:h-7" />
+            <NeoIcon id="theme-icon-moon" name="moon" class="w-6 h-6 sm:w-7 sm:h-7" />
         </button>
 
         
         <a href="https://wa.me/555191774826?text=Ol%C3%A1%2C%20tenho%20d%C3%BAvidas%20sobre%20o%20Instituto%21" target="_blank" rel="noopener noreferrer" class="btn bg-whatsapp text-white border-2 border-principal hover:bg-whatsapp-hover hover:border-principal  font-black font-heading uppercase tracking-widest text-xs lg:text-sm neo-shadow hidden lg:flex gap-2 min-h-0 h-10 sm:h-12 px-4 lg:px-6 transition-colors wpp-header-btn">
-            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+            <NeoIcon name="whatsapp" size={18} />
             Dúvidas?
         </a>
     </div>
@@ -93,7 +91,7 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
         
         
         <button id="mobile-menu-close-btn" aria-label="Fechar Menu Principal" class="btn border-4 p-2 neo-shadow h-12 w-12 flex items-center justify-center rounded-2xl active:translate-y-1 focus-visible:outline-none focus-visible:ring-4">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" /></svg>
+            <NeoIcon name="close" size={24} />
         </button>
     </div>
 
@@ -145,140 +143,18 @@ const defaultClass = 'hover:bg-slate-100  hover:text-principal border-4 border-t
 </div>
 
 <script>
+    import { updateStatusIndicator } from '../../utils/client/status';
+    import { initThemeToggle } from '../../utils/client/theme';
+
     document.addEventListener('astro:page-load', () => {
-        const toggleBtn = document.getElementById('theme-toggle');
-        if (toggleBtn) {
-            toggleBtn.replaceWith(toggleBtn.cloneNode(true));
-        }
-
-        const newToggleBtn = document.getElementById('theme-toggle');
-        const sunIcon = document.getElementById('theme-icon-sun');
-        const moonIcon = document.getElementById('theme-icon-moon');
-
-        function updateIcons(isDark: boolean) {
-            if (!sunIcon || !moonIcon) return;
-            if (isDark) {
-                sunIcon.classList.remove('hidden');
-                moonIcon.classList.add('hidden');
-            } else {
-                sunIcon.classList.add('hidden');
-                moonIcon.classList.remove('hidden');
-            }
-        }
-
-        // Sync icons with current theme state on every page load
-        updateIcons(document.documentElement.classList.contains('dark'));
-
-        newToggleBtn?.addEventListener('click', (event) => {
-            const isDark = document.documentElement.classList.contains('dark');
-            const willBeDark = !isDark;
-            
-            const toggleTheme = () => {
-                if (willBeDark) {
-                    document.documentElement.classList.add('dark');
-                    document.documentElement.setAttribute('data-theme', 'dracula');
-                    localStorage.setItem('theme', 'dark');
-                } else {
-                    document.documentElement.classList.remove('dark');
-                    document.documentElement.setAttribute('data-theme', 'lofi');
-                    localStorage.setItem('theme', 'light');
-                }
-                updateIcons(willBeDark);
-            };
-
-            const transitionSupported = (document as any).startViewTransition && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            if (!transitionSupported) {
-                toggleTheme();
-                return;
-            }
-
-            const mouseEvent = event as MouseEvent;
-            const x = mouseEvent.clientX;
-            const y = mouseEvent.clientY;
-            const endRadius = Math.hypot(
-                Math.max(x, window.innerWidth - x),
-                Math.max(y, window.innerHeight - y)
-            );
-
-            const transition = (document as any).startViewTransition(() => {
-                toggleTheme();
-            });
-
-            transition.ready.then(() => {
-                const clipPath = [
-                    `circle(0px at ${x}px ${y}px)`,
-                    `circle(${endRadius}px at ${x}px ${y}px)`
-                ];
-                document.documentElement.animate(
-                    {
-                        clipPath: clipPath
-                    },
-                    {
-                        duration: 450,
-                        easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
-                        pseudoElement: '::view-transition-new(root)'
-                    }
-                );
-            });
-        });
-
-        // LÓGICA DE STATUS
-        const updateStatus = () => {
-            const tzDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
-            const day = tzDate.getDay();
-            const hour = tzDate.getHours();
-            const min = tzDate.getMinutes();
-            const timeInMinutes = hour * 60 + min;
-
-            let isOpen = false;
-            if (day === 1 || day === 2 || day === 6) { // Seg, Ter, Sáb
-                isOpen = timeInMinutes >= 8 * 60 && timeInMinutes < 17 * 60;
-            } else if (day === 3 || day === 4) { // Qua, Qui
-                isOpen = timeInMinutes >= 14 * 60 && timeInMinutes < 22 * 60;
-            }
-
-            const headerIndicator = document.getElementById('status-indicator');
-            const mobileIndicator = document.getElementById('status-indicator-mobile');
-
-            const setIndicator = (indicator: HTMLElement | null, isMob: boolean) => {
-                if (!indicator) return;
-                const dot = indicator.querySelector(isMob ? '#status-dot-mobile' : '#status-dot') as HTMLElement;
-                const ping = indicator.querySelector(isMob ? '#status-dot-ping-mobile' : '#status-dot-ping') as HTMLElement;
-                const txt = indicator.querySelector(isMob ? '#status-text-mobile' : '#status-text') as HTMLElement;
-
-                if (isOpen) {
-                    dot.className = `relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500`;
-                    if (ping) {
-                        ping.className = `animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-green-400`;
-                    }
-                    txt.textContent = 'Aberto Agora';
-                    if (!isMob) {
-                        indicator.classList.remove('border-principal', 'text-principal');
-                        indicator.classList.add('border-green-600', 'text-green-600');
-                    }
-                } else {
-                    dot.className = `relative inline-flex rounded-full h-2.5 w-2.5 bg-slate-400`;
-                    if (ping) {
-                        ping.className = `hidden`;
-                    }
-                    txt.textContent = 'Fechado';
-                    if (!isMob) {
-                        indicator.classList.remove('border-green-600', 'text-green-600');
-                        indicator.classList.add('border-principal', 'text-principal');
-                    }
-                }
-            };
-
-            setIndicator(headerIndicator, false);
-            setIndicator(mobileIndicator, true);
-        };
+        initThemeToggle();
 
         if ((window as any).statusInterval) {
             clearInterval((window as any).statusInterval);
         }
 
-        updateStatus();
-        (window as any).statusInterval = setInterval(updateStatus, 60000);
+        updateStatusIndicator();
+        (window as any).statusInterval = setInterval(updateStatusIndicator, 60000);
 
         // ==========================================
         // MOBILE OVERLAY MENU CONTROLLER

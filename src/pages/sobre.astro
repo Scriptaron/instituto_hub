@@ -10,6 +10,11 @@ import dirGeraldo from '../assets/diretor-geraldo.jpg';
 import dirHeberto from '../assets/diretor-heberto.jpg';
 import dirEverton from '../assets/diretor-everton.jpg';
 import NeoButton from '../components/atoms/NeoButton.astro';
+import imgEntrada from '../assets/entrada-instituto.png';
+import imgSalaAula from '../assets/sala-aula.webp';
+import imgSalaJogos from '../assets/sala-jogos.webp';
+import imgChurrasqueira from '../assets/churrasqueira.webp';
+import imgQuadra from '../assets/quadra.webp';
 
 export const prerender = true;
 ---
@@ -166,7 +171,7 @@ export const prerender = true;
                         <div class="absolute -top-4 left-1/2 -translate-x-1/2 w-20 h-8 bg-yellow-100 opacity-90 transform -rotate-3 z-10 pointer-events-none shadow-sm drop-shadow-sm"></div>
                         
                         <div class="w-full aspect-[4/3] overflow-hidden bg-slate-200 mb-2">
-                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=800&auto=format&fit=crop" width="800" height="600" loading="lazy" decoding="async" alt="Foto histórica do Instituto" class="w-full h-full object-cover grayscale-[0.8] contrast-125 " />
+                            <Image src={imgEntrada} alt="Foto da entrada do Instituto" class="w-full h-full object-cover grayscale-[0.3] contrast-125" />
                         </div>
                         <div class="absolute bottom-5 sm:bottom-6 w-full left-0 text-center px-4 flex flex-col items-center">
                             <p class="font-heading font-black text-principal text-lg sm:text-xl uppercase tracking-wider">O Início</p>
@@ -381,10 +386,10 @@ export const prerender = true;
                     
                     
                     <div class="md:col-span-2 relative group overflow-hidden border-4 border-principal neo-shadow w-full h-full transform transition-transform hover:-translate-y-1 hover:rotate-1 bg-principal rounded-2xl neo-halftone">
-                        <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=1200&auto=format&fit=crop" width="1200" height="800" loading="lazy" decoding="async" alt="Convívio e Sofás" class="w-full h-full object-cover [@media(hover:hover)]:grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 [@media(hover:hover)]:group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
+                        <Image src={imgSalaJogos} alt="Sala de Jogos e Convívio" class="w-full h-full object-cover [@media(hover:hover)]:grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 [@media(hover:hover)]:group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
                         <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
                         <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="bg-destaque text-principal px-3 py-1.5 text-sm sm:text-base font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Lounge Principal</span>
+                            <span class="bg-destaque text-principal px-3 py-1.5 text-sm sm:text-base font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Sala de Jogos</span>
                             <p class="text-white font-bold text-sm sm:text-base max-w-md mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
                                 Sofás gigantes e ambiente perfeito para conversar, relaxar ou jogar ping-pong antes e depois das aulas.
                             </p>
@@ -393,7 +398,7 @@ export const prerender = true;
 
                     
                     <div class="md:col-span-1 relative group overflow-hidden border-4 border-principal neo-shadow w-full h-full transform transition-transform hover:-translate-y-1 hover:-rotate-1 bg-principal rounded-2xl neo-halftone">
-                        <img src="https://images.unsplash.com/photo-1577415124269-fc1140a69e91?q=80&w=800&auto=format&fit=crop" width="800" height="600" loading="lazy" decoding="async" alt="Salas Climatizadas" class="absolute inset-0 w-full h-full object-cover [@media(hover:hover)]:grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 [@media(hover:hover)]:group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
+                        <Image src={imgSalaAula} alt="Salas de Aula" class="absolute inset-0 w-full h-full object-cover [@media(hover:hover)]:grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 [@media(hover:hover)]:group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
                         <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
                         <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
                             <span class="bg-principal text-white px-3 py-1.5 text-sm font-black uppercase tracking-widest border-2 border-white shadow-[2px_2px_0_0_black]">Salas de Aula</span>
@@ -402,21 +407,21 @@ export const prerender = true;
 
                     
                     <div class="md:col-span-1 relative group overflow-hidden border-4 border-principal neo-shadow w-full h-full transform transition-transform hover:-translate-y-1 hover:rotate-1 bg-principal rounded-2xl neo-halftone">
-                        <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=800&auto=format&fit=crop" width="800" height="600" loading="lazy" decoding="async" alt="Estacionamento e Estrutura Externa" class="absolute inset-0 w-full h-full object-cover [@media(hover:hover)]:grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 [@media(hover:hover)]:group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
+                        <Image src={imgChurrasqueira} alt="Churrasqueira" class="absolute inset-0 w-full h-full object-cover [@media(hover:hover)]:grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 [@media(hover:hover)]:group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
                         <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
                         <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="bg-blue-400 text-white px-3 py-1.5 text-sm font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Co-worker</span>
+                            <span class="bg-blue-400 text-white px-3 py-1.5 text-sm font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Churrasqueira</span>
                         </div>
                     </div>
 
                     
                     <div class="md:col-span-2 relative group overflow-hidden border-4 border-principal neo-shadow w-full h-full transform transition-transform hover:-translate-y-1 hover:-rotate-1 bg-principal rounded-2xl neo-halftone">
-                        <img src="https://images.unsplash.com/photo-1511116173007-8461abfd4bea?q=80&w=1200&auto=format&fit=crop" width="1200" height="800" loading="lazy" decoding="async" alt="Festas e Eventos" class="w-full h-full object-cover [@media(hover:hover)]:grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 [@media(hover:hover)]:group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
+                        <Image src={imgQuadra} alt="Quadra Poliesportiva" class="w-full h-full object-cover [@media(hover:hover)]:grayscale-[0.4] contrast-125 opacity-80 group-hover:opacity-100 [@media(hover:hover)]:group-hover:grayscale-0 transition-all duration-500 group-hover:scale-105 " />
                         <div class="absolute inset-0 bg-gradient-to-t from-principal/90 via-principal/20 to-transparent pointer-events-none"></div>
                         <div class="absolute bottom-0 left-0 w-full p-6 sm:p-8 z-10 flex flex-col items-start translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-                            <span class="bg-white text-principal px-3 py-1.5 text-sm sm:text-base font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Salão de Eventos</span>
+                            <span class="bg-white text-principal px-3 py-1.5 text-sm sm:text-base font-black uppercase tracking-widest border-2 border-principal shadow-[2px_2px_0_0_black]">Quadra Poliesportiva</span>
                             <p class="text-white font-bold text-sm sm:text-base max-w-md mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 hidden sm:block">
-                                Amplo espaço e palco para nossas noites de jogos, devocionais musicais e grandes festas institucionais.
+                                Quadra poliesportiva para a prática de esportes, vôlei, futebol, basquete e integração dos alunos.
                             </p>
                         </div>
                     </div>

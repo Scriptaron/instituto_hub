@@ -1,21 +1,23 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import AulaCard from '../components/molecules/AulaCard.astro';
-import { fetchAulas, urlFor, daysOfWeek } from '../utils/sanity';
+import { fetchAulas, fetchSiteSettings, urlFor, daysOfWeek } from '../utils/sanity';
 import HeroBanner from '../components/molecules/HeroBanner.astro';
 import EmptyState from '../components/molecules/EmptyState.astro';
+import type { Aula } from '../types';
 
 // Configuração de Cache no Edge (Netlify ISR magico)
 Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate');
 Astro.response.headers.set('Netlify-CDN-Cache-Control', 'public, s-maxage=60, stale-while-revalidate=31536000');
 
-const { aulas, validDays, activeDayId } = await fetchAulas();
+const { aulas, activeDayId } = await fetchAulas();
+const siteSettings = await fetchSiteSettings();
 ---
 
 <BaseLayout title="Aulas - Instituto Hub">
 
 		<main class="container mx-auto px-4 py-8 md:py-16 max-w-7xl flex flex-col gap-12 sm:gap-16 relative z-10">
-            <!-- Header Banner -->
+            
             <HeroBanner
               emoji="📚"
               titleLine1="Aulas"
@@ -24,7 +26,7 @@ const { aulas, validDays, activeDayId } = await fetchAulas();
               class="max-w-4xl mx-auto mb-4 sm:mb-8"
             />
 
-            <!-- Tabs Menu (Navegação dos Dias) -->
+            
             <div class="grid grid-cols-2 sm:flex sm:flex-wrap gap-3 sm:gap-4 mt-4 sm:mt-6 justify-center animate-slide-up z-20 relative w-full max-w-[340px] sm:max-w-none mx-auto sm:px-2">
                 {daysOfWeek.map(day => (
                     <button 
@@ -40,28 +42,30 @@ const { aulas, validDays, activeDayId } = await fetchAulas();
                 ))}
             </div>
 
-            <!-- Conteúdo das Abas (Aulas Dinâmicas do Sanity) -->
+            
             <div class="animate-slide-up delay-100 mt-4 sm:mt-6 min-h-[40vh] relative z-10 w-full mb-12">
                 
                 {daysOfWeek.map(day => {
-                    const aulasDia = aulas.filter((a: any) => a.weekday === day.id);
+                    const aulasDia = aulas.filter((a: Aula) => a.weekday === day.id);
                     return (
                         <section id={`tab-${day.id}`} class={`tab-content ${day.id === activeDayId ? 'grid' : 'hidden'} grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto`}>
                             {aulasDia.length > 0 ? (
-                                aulasDia.map((aula: any, index: number) => (
+                                aulasDia.map((aula: Aula, index: number) => (
                                     <AulaCard 
-                                        relCode={aula.relCode}
+                                        courseType={aula.courseType}
                                         modality={aula.modality}
                                         title={aula.title}
                                         instructor={aula.instructor}
-                                        time={aula.time}
+                                        time={aula.time || ''}
                                         description={aula.description}
                                         imageSrc={aula.image ? urlFor(aula.image).width(800).height(600).url() : 'https://images.unsplash.com/photo-1491841550275-ad7854e35ca6?q=80&w=1000&auto=format&fit=crop'}
                                         imageAlt={aula.title}
                                         tagRotateClass={index % 2 === 0 ? '-rotate-3' : 'rotate-2'}
-                                        theme={aula.relCode === 'Fundamental' ? 'fundamental' : 'eletivo'}
+                                        theme={aula.courseType === 'Fundamental' ? 'fundamental' : 'eletivo'}
                                         whatsAppUrl={aula.whatsAppUrl}
                                         zoomUrl={aula.zoomUrl}
+                                        enrollmentUrl={siteSettings?.enrollmentUrl}
+                                        recoveryUrl={siteSettings?.recoveryUrl}
                                     />
                                 ))
                             ) : (
@@ -77,9 +81,9 @@ const { aulas, validDays, activeDayId } = await fetchAulas();
                 })}
 
             </div>
-        </main>
+		</main>
 
-        <!-- Script Isolado Para Alternância de Abas -->
+        
         <script>
             document.addEventListener('astro:page-load', () => {
                 const tabBtns = document.querySelectorAll('.tab-btn');
@@ -114,4 +118,24 @@ const { aulas, validDays, activeDayId } = await fetchAulas();
                 });
             });
         </script>
+
+        
+        <script is:inline type="application/ld+json" set:html={JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "ItemList",
+          "itemListElement": aulas.map((aula, idx) => ({
+            "@type": "ListItem",
+            "position": idx + 1,
+            "item": {
+              "@type": "Course",
+              "name": aula.title,
+              "description": aula.description,
+              "provider": {
+                "@type": "Organization",
+                "name": "Instituto de Religião de Porto Alegre",
+                "sameAs": "https://instituto-hub.netlify.app"
+              }
+            }
+          }))
+        })} />
 </BaseLayout>

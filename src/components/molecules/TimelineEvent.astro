@@ -1,4 +1,7 @@
 ---
+import NeoButton from '../atoms/NeoButton.astro';
+import NeoTag from '../atoms/NeoTag.astro';
+
 export interface Props {
     align?: 'left' | 'right';
     
@@ -70,27 +73,29 @@ const emptyDivClass = isLeft ? 'mr-auto' : 'ml-auto';
 <div class={`relative flex items-center lg:justify-between w-full mb-12 sm:mb-16 flex-col ${rowClass} pl-24 lg:pl-0`}>
     <div class={`hidden lg:block w-[45%] ${emptyDivClass}`}></div>
     
-    <!-- Bolinha do Timeline com Borda Grossa -->
+    
     <div class={`absolute left-8 lg:left-1/2 transform -translate-x-1/2 lg:-translate-x-1/2 w-8 h-8 sm:w-12 sm:h-12 border-4 border-principal rounded-full z-10 flex flex-col justify-center items-center ${dotColorClass} ${dotShadowClass}`}>
     </div>
     
-    <!-- Cartão do Evento -->
+    
     <div class={`w-full lg:w-[45%] border-4 border-principal p-6 sm:p-8 hover:-translate-y-1 transition-all relative group ${cardBgClass} ${cardShadowClass} ${cardExtraClass}`}>
         
         {isLeft ? (
             <>
-                <!-- Traço Conector Horizontal Oculto em Mobile, visivel esq no Desktop -->
+                
                 <div class={`hidden lg:block absolute top-[1.5rem] sm:top-[2rem] -right-12 w-12 h-3 bg-principal border-b-4 -z-10 ${connectorBorderClass}`}></div>
-                <!-- Traço Conector Horizontal Mobile (mantem sempre à esquerda nas bolinhas) -->
+                
                 <div class={`lg:hidden absolute top-[1.5rem] sm:top-[2rem] -left-8 w-8 h-3 bg-principal border-b-4 -z-10 ${connectorBorderClass}`}></div>
             </>
         ) : (
-            <!-- Traço Conector Horizontal -->
+            
             <div class={`absolute top-[1.5rem] sm:top-[2rem] -left-8 lg:-left-12 w-8 lg:w-12 h-3 bg-principal border-b-4 -z-10 ${connectorBorderClass}`}></div>
         )}
         
         <div class="flex items-center gap-2 mb-6 flex-wrap">
-            <span class={`border-2 border-principal px-3 py-1 text-[10px] sm:text-xs font-black uppercase transition-transform hover:-translate-y-0.5 ${tagClass}`}>{tagLabel}</span>
+            <NeoTag class={tagClass}>
+                {tagLabel}
+            </NeoTag>
             {price && (
                 <span class="text-xs sm:text-sm font-bold text-principal line-through opacity-50 ml-2">{price}</span>
             )}
@@ -112,13 +117,22 @@ const emptyDivClass = isLeft ? 'mr-auto' : 'ml-auto';
         </p>
         
         {buttonUrl ? (
-            <a href={buttonUrl} target="_blank" rel="noopener noreferrer" class={`btn sm:btn-md w-full sm:w-auto border-4 border-principal  uppercase font-black tracking-widest text-[10px] sm:text-xs transition-transform active:translate-y-1 active:shadow-none inline-flex flex-wrap items-center justify-center ${buttonClass}`}>
+            <NeoButton 
+                href={buttonUrl} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class={`w-full sm:w-auto text-[10px] sm:text-xs ${buttonClass}`}
+                size="sm"
+            >
                 {buttonText}
-            </a>
+            </NeoButton>
         ) : (
-            <button class={`btn sm:btn-md w-full sm:w-auto border-4 border-principal  uppercase font-black tracking-widest text-[10px] sm:text-xs transition-transform active:translate-y-1 active:shadow-none ${buttonClass}`}>
+            <NeoButton 
+                class={`w-full sm:w-auto text-[10px] sm:text-xs ${buttonClass}`}
+                size="sm"
+            >
                 {buttonText}
-            </button>
+            </NeoButton>
         )}
     </div>
 </div>

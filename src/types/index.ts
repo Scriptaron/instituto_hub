@@ -3,18 +3,28 @@ export interface SanityImageAsset {
   asset: { _ref: string; _type: 'reference' };
 }
 
+export interface Schedule {
+  weekday: 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado';
+  time: string;
+  modality?: 'Presencial' | '100% Online' | 'Híbrido' | string;
+  instructor?: string;
+  whatsAppUrl?: string;
+  zoomUrl?: string;
+}
+
 export interface Aula {
   _id: string;
-  relCode: string;
+  courseType: string;
   modality: 'Presencial' | 'Online' | 'Híbrido';
   title: string;
   instructor: string;
-  time: string;
-  weekday: 'terca' | 'quarta' | 'quinta' | 'sabado';
+  time?: string;
+  weekday?: 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado';
   description: string;
   image?: SanityImageAsset;
   whatsAppUrl?: string;
   zoomUrl?: string;
+  schedules?: Schedule[];
 }
 
 export interface Evento {
@@ -35,12 +45,25 @@ export interface EventoFormatado extends Evento {
 }
 
 export interface DiaSemana {
-  id: 'terca' | 'quarta' | 'quinta' | 'sabado';
+  id: 'terca' | 'quarta' | 'quinta' | 'sexta' | 'sabado';
   label: string;
 }
 
 export interface Mes {
   id: string;
+  name: string;
+}
+
+export interface SiteSettings {
+  enrollmentUrl?: string;
+  recoveryUrl?: string;
+  semesterTitle?: string;
+  noticeBannerText?: string;
+  noticeBannerActive?: boolean;
+}
+
+export interface Professor {
+  _id: string;
   name: string;
 }
 

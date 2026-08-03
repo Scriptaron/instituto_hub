@@ -1,12 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NeoButton from '../components/atoms/NeoButton.astro';
 
 export const prerender = true;
 ---
 
 <BaseLayout title="Página não encontrada - Instituto Hub">
 	<main class="container mx-auto px-4 py-16 md:py-32 max-w-4xl flex flex-col items-center justify-center text-center gap-8 relative z-10 min-h-[60vh]">
-        <!-- Decor element -->
+        
         <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-destaque rounded-full blur-[100px] -z-10 opacity-50 animate-pulse pointer-events-none"></div>
 
         <div class="relative group">
@@ -24,10 +25,10 @@ export const prerender = true;
                 Parece que a página que você está procurando não existe ou foi movida. Mas não se preocupe, o caminho de volta é seguro.
             </p>
             
-            <a href="/" class="btn bg-principal text-white border-4 border-principal hover:bg-destaque hover:text-principal py-4 h-auto text-lg sm:text-xl font-black uppercase tracking-wider shadow-[6px_6px_0_var(--color-principal)] hover:shadow-[2px_2px_0_var(--color-principal)] hover:translate-x-1 hover:translate-y-1 transition-all font-heading px-8 rounded-xl w-full sm:w-auto inline-flex items-center justify-center gap-2">
+            <NeoButton href="/" variant="primary" size="lg" class="py-4 h-auto text-lg sm:text-xl font-black px-8 rounded-xl w-full sm:w-auto inline-flex items-center justify-center gap-2">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
                 Voltar para a Home
-            </a>
+            </NeoButton>
         </div>
 	</main>
 </BaseLayout>

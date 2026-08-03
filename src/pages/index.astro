@@ -1,7 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { sanityClient } from 'sanity:client';
-import { formatEventDate } from '../utils/sanity';
+import { formatEventDate, fetchProximosEventos } from '../utils/sanity';
 import TestimonialCarousel from '../components/organisms/TestimonialCarousel.astro';
 import { Image } from 'astro:assets';
 import imgHero from '../assets/img_herosection.jpg';
@@ -17,18 +16,7 @@ Astro.response.headers.set('Cache-Control', 'public, max-age=0, must-revalidate'
 Astro.response.headers.set('Netlify-CDN-Cache-Control', 'public, s-maxage=60, stale-while-revalidate=31536000');
 
 // Busca os 3 próximos eventos com data >= hoje, ordenados por data real
-const localDate = new Date(new Date().toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
-const year = localDate.getFullYear();
-const month = String(localDate.getMonth() + 1).padStart(2, '0');
-const day = String(localDate.getDate()).padStart(2, '0');
-const today = `${year}-${month}-${day}`; // Formato: AAAA-MM-DD no timezone de Porto Alegre
-const proximosEventos = await sanityClient.fetch(
-  `*[_type == "evento" && eventDate >= $today] | order(eventDate asc) [0...3] {
-    title,
-    eventDate
-  }`,
-  { today }
-);
+const proximosEventos = await fetchProximosEventos(3);
 
 
 ---
