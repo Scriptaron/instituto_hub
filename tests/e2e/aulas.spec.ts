@@ -9,8 +9,8 @@ test.describe('Página de Aulas', () => {
     await expect(page.locator('h1')).toContainText(/Aulas/i);
   });
 
-  test('exibe 4 botões de abas de dia', async ({ page }) => {
-    await expect(page.locator('.tab-btn')).toHaveCount(4);
+  test('exibe 5 botões de abas de dia', async ({ page }) => {
+    await expect(page.locator('.tab-btn')).toHaveCount(5);
   });
 
   test('clicar na segunda aba exibe seu conteúdo', async ({ page }) => {

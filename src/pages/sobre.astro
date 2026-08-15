@@ -10,9 +10,10 @@ import dirGeraldo from '../assets/diretor-geraldo.jpg';
 import dirHeberto from '../assets/diretor-heberto.jpg';
 import dirEverton from '../assets/diretor-everton.jpg';
 import NeoButton from '../components/atoms/NeoButton.astro';
-import imgEntrada from '../assets/entrada-instituto.png';
-import imgSalaAula from '../assets/sala-aula.webp';
-import imgSalaJogos from '../assets/sala-jogos.webp';
+import imgEntrada from '../assets/entrada-instituto.jpg';
+import imgSalaAula from '../assets/sala-aula.jpg';
+import imgSalaJogos from '../assets/sala-jogos.jpg';
+import dirGal from '../assets/diretor-gal.jpg';
 import imgChurrasqueira from '../assets/churrasqueira.webp';
 import imgQuadra from '../assets/quadra.webp';
 
@@ -110,9 +111,22 @@ export const prerender = true;
                                     </div>
                                 </div>
                             </div>
-                            
+
                             <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
                                 <div class="bg-white p-2 pb-14 transform rotate-1 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
+                                    <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-blue-100 opacity-90 z-10 pointer-events-none"></div>
+                                    <div class="w-full aspect-[4/5] overflow-hidden bg-destaque mb-2">
+                                        <Image src={dirGal} alt="Thiago Gal" class="w-full h-full object-cover object-top grayscale-[0.3] scale-[1.8] origin-[48%_55%]" />
+                                    </div>
+                                    <div class="absolute bottom-3 w-full left-0 text-center flex flex-col items-center">
+                                        <p class="font-heading font-black text-principal text-xs uppercase truncate w-full px-1">Thiago Gal</p>
+                                        <span class="bg-principal text-white px-2 py-0.5 text-[0.55rem] font-black uppercase tracking-widest mt-0.5">2014 - 2017</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="snap-center shrink-0 w-[200px] flex justify-center py-2">
+                                <div class="bg-white p-2 pb-14 transform -rotate-1 w-[184px] relative text-principal outline outline-1 outline-transparent ring-1 ring-transparent">
                                     <div class="absolute -top-2 left-1/2 -translate-x-1/2 w-8 h-4 bg-pink-100 opacity-90 z-10 pointer-events-none"></div>
                                     <div class="w-full aspect-[4/5] overflow-hidden bg-destaque mb-2">
                                         <Image src={dirHeberto} alt="Herberto Morôni Klein" class="w-full h-full object-cover object-top grayscale-[0.3] " />
