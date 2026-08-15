@@ -29,3 +29,7 @@ pnpm-debug.log*
 # Playwright
 playwright-report/
 test-results/
+
+# Agent / Tool Artifacts
+.impeccable/
+.codex/
